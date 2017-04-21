@@ -1,0 +1,558 @@
+做最好的自己
+Find our way, Find our style...
+=> 每天一点点进步，每月一点点积累，要敬业、爱业，我们给别人提供的是服务。
+=> 对程序员来说，开发思想、架构、代码就是财富，要学会保护自己的劳动成果。
+=> 要对身边的人好，要得到老板的信任、同事的认可及支持、珍惜良好的工作环境。
+** 提升系统稳定性、性能、可用性；提升错误处理能力，灾难应对能力。
+Plan :
+
+1 打字练习提升计划
+2 运动计划 -- 降体重
+3 读书复习计划
+4 前端初步掌握
+
+mstsc
+
+http://ifeve.com/google-guava/
+
+面试准备 https://zhuanlan.zhihu.com/p/21551758
+每天至少精确一个问题
+
+http://idea.qinxi1992.cn/  Idea注册码
+
+优博：
+
+http://www.cnblogs.com/sharpxiajun/
+
+http://dreamhead.blogbus.com/tag/%E4%BD%A0%E5%BA%94%E8%AF%A5%E6%9B%B4%E6%96%B0%E7%9A%84Java%E7%9F%A5%E8%AF%86/
+http://brokendreams.iteye.com/blog/1913619   集合相关
+http://elim.iteye.com/
+http://database.51cto.com/art/201407/445934.htm  sql语句优化
+http://blog.csdn.net/xifeijian/article/details/20313977 数据库锁
+http://www.cnblogs.com/wangjq/category/389973.html 设计模式
+http://www.micmiu.com/soa/rpc/thrift-sample/   thrift
+
+远程分布式事务
+
+每天一看：http://blog.csdn.net/baochanghong/article/details/52982903
+
+http://blog.csdn.net/xlgen157387/article/details/47293517 guava缓存
+
+动态代理  设计模式（singleton refactor）
+NIO原理http://blog.csdn.net/wuxianglong/article/details/6604817
+RPC原理
+JVM 并发库 多线程  ioc aop
+
+Summary :
+
+mongo语法： https://docs.mongodb.com/manual/reference/operator/query/
+
+0 经验之谈 -- 一切都是为了让代码更简洁高效
+
+   * 方法返回的值是集合的时候 不要返回null 而是返回empty
+   * 类 方法 属性 命名 要见名知意  -- 无注释编程  简洁而显著 降低方法复杂度
+      1 方法命名使用简单的动宾结构，以求规范、简洁明了
+      2 方法抽取：一个方法职责单一，只完成一个单独的功能 把不与方法名相符的代码抽取出为单独的方法
+      3 方法命名：业务层(service)以业务命名，数据控制层(dao\repository)以存在命名
+   * 参数有效性验证 包括有无、真实性、范围等等
+   * 定义常量： 尽量避免注解使用".."来处理业务
+   * 尽量减少数据库的访问次数
+   * 一般选择高散列程度的键做索引，或者在组合索引中，把高散列程度的键放在前面
+   * guava使用
+
+1 usually copy
+
+try {
+
+}catch (Exception e){
+
+}
+
+public static void main (String [] args){   // psvm
+
+}
+
+日志使用slf4j
+private static final Logger LOGGER = LoggerFactory.getLogger(BaseWordService.class);
+LOGGER.error("获取基础词库hashCode失败！", e);
+
+1.1   单元测试覆盖率
+
+    mvn cobertura:cobertura
+
+    <!-- 单元测试覆盖率插件 -->
+    <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>2.7</version>
+        <configuration>
+            <encoding>UTF-8</encoding>
+            <formats>
+                <format>html</format>
+                <format>xml</format>
+            </formats>
+        </configuration>
+    </plugin>
+
+单元测试步骤 :
+  数据准备和环境设置：使用哪些对象 都用哪些方法 传入哪些参数
+  执行被测试方法
+  验证：结果是否正确 抛出异常是否正确 对象行为是否执行
+
+示例1：
+  import static org.mockito.Mockito.doReturn;
+  import static org.mockito.Mockito.when;
+
+  @Before
+  public void setUp() {
+        MockitoAnnotations.initMocks(this);
+  }
+
+
+1.2 git command
+
+解决冲突
+Git stash
+Git pull
+Git stash pop
+
+放弃工作区修改
+Git checkout .
+
+放弃修改和commit
+Git resert --hard
+
+
+1.3 语法糖
+
+(0) Idea debug
+
+F9            resume programe 恢复程序
+Alt+F10       show execution point 显示执行断点
+F8            Step Over 相当于eclipse的f6      跳到下一步
+F7            Step Into 相当于eclipse的f5就是  进入到代码
+Alt+shift+F7  Force Step Into 这个是强制进入代码
+Shift+F8      Step Out  相当于eclipse的f8跳到下一个断点，也相当于eclipse的f7跳出函数
+Atl+F9        Run To Cursor 运行到光标处
+ctrl+shift+F9   debug运行java类
+ctrl+shift+F10  正常运行java类
+** alt+F8          debug时选中查看值
+
+(1) 日期格式
+
+   Localdate/DateTime.parse(timeStr);
+   dateTimeInstance.toString(format);
+
+   yyyy-MM-dd HH:mm:ss
+
+
+(2) String.format
+
+    精确到小数点后2位  String.format("%.2f%%", (float) pass * 100 / submit )
+    private String calculateRate(int section, int all) {
+        if (section == 0 || all == 0) {
+            return "0%";
+        }
+        return String.format("%.2f%%", (float) section * 100 / all);    // %.2f表示输出浮点数并保留两位小数。%%表示直接输出一个%。
+    }
+
+(3) Guava
+
+
+   (1 从一个集合中遍历抽取字段到另一个集合
+      常见的就是遍历domian集合获取id集合  或者对集合里面的属性进行转换
+      Collection<String> idList = Collections2.transform(ideaList, new Function<Idea, String>() {  // Idea 输入类型   String 输出类型
+               @Override
+               public String apply(Idea idea) { // 遍历ideaList中的每一个Idea
+                   return idea.getId();  // 操作并返回String类型的值
+               }
+      });
+
+      List<String> transform = FluentIterable.from(userList).transform(new Function<User, String>() {
+                  @Override
+                  public String apply(User input) {
+                      return Joiner.on("==").join(input.getAge(), input.getName());
+                  }
+              }).toList();  // toSet();
+
+   		---->  原来的写法
+
+   		List<String> idList = Lists.newArrayList();
+   		if(Collections.isNotEmpty()){
+   			for(Idea idea : ideaList){
+   		       idList.add(idea.getId());
+   		    }
+   		}
+
+      遍历选出符合条件的
+      FluentIterable<User> filter = FluentIterable.from(userList).filter(new Predicate<User>() {
+        @Override
+        public boolean apply(User user) {
+            return user.getAge() == 20;
+        }
+      }); // toList()  toSet()
+
+   (2  使用Guava方式复写 equals  hashCode toString   Idea可以快速复写
+
+       @Override
+       public boolean equals(Object o) {
+           if (this == o) return true;
+           if (o == null || getClass() != o.getClass()) return false;
+
+           ObjectId that = (ObjectId) o;
+
+           return Objects.equal(this.serialVersionUID, that.serialVersionUID) &&    ----> 替换为实际属性
+                   Objects.equal(this.LOGGER, that.LOGGER) &&
+                   Objects.equal(this._time, that._time));
+       }
+
+       @Override
+       public int hashCode() {
+           return Objects.hashCode(serialVersionUID, LOGGER, _time);    ----> 替换为实际属性
+       }
+
+       @Override
+       public String toString() {
+           return MoreObjects.toStringHelper(this)
+                   .add("id", id)
+                   .add("name", name)
+                   .toString();
+       }
+
+(4) list
+
+
+数组 互置
+
+list变为数组
+Xxx[] arr = list.toArray(new Xxx[size]);
+
+List<String> strs = Lists.newArrayList("1", "2", "3");
+String[] strArray = new String[strs.size()];  // 传入数组大小不够 创建新的数组返回
+strArray = strs.toArray(strArray);
+
+数组变为list
+// 返回的是Arrays的内部类  底层还是数组(原数组变化,得到的list也会更改)  不要做修改 否则抛出异常 UnsupportedOperationException
+String[] arr = {"asd","sd","df"};
+List<String> list = Arrays.asList(arr);
+
+将一个元素前加到一个list中去
+return Lists.asList(history, proposalService.getProposalsHistoryByProposalId(id).toArray(new ProposalHistory [0]));
+--——->
+List<ProposalsHistory> list = proposalService.getProposalsHistoryByProposalId(id);
+list.add(0, history);
+return list;
+
+(5)Map
+
+HashMap神奇的写法：
+new HashMap<String, Object>() {{
+    put("uri_list", userIds);
+}}
+
+HashMap<String, String> map =  new HashMap<String,String>(){
+	private static final long serialVersionUID = 1L;
+	{put("key1","value1");}
+	{put("key2","value2");}
+};
+
+---->
+
+HashMap<String, String> map =  new HashMap<String,String>();
+map.put("key1","value1");
+map.put("key2","value2");
+
+list也有类似写法：
+invite(new ArrayList<String>(){
+    {
+      add("Harry");
+      add("Tony");
+    }
+  };
+)
+其实这是使用了内部类的语法  -- 双括号初始化
+外层括号创建了 ArrayList 的一个匿名子类， 内部括号则是一个初始化块。
+
+
+* 集合排序 使用局部内部类而不要去创建一个比较器类
+
+Collections.sort(approveInfoList, new Comparator<ApproveInfo>() {
+            @Override
+            public int compare(ApproveInfo o1, ApproveInfo o2) {
+                return o2.getApproverTime().compareTo(o1.getApproverTime());
+            }
+});
+
+* 复杂json序列化 -- 反射
+
+private Map<String, List<Checklist>> parse2ChecklistMap(String json) {
+
+    if (json == null || "{}".equals(json)) {
+        return new HashMap<>();
+    }
+    try {
+        return WafJsonMapper.getMapper().readValue(json, new TypeReference<Map<String, List<Checklist>>>() {
+        });
+    } catch (IOException e) {
+    }
+    return new HashMap<>();
+}
+
+(6) 远程调用
+
+  (1 apache http
+
+  发送http请求示例
+  private final static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2873.0 Safari/537.36";
+  private final static String URL = "http://nderp.99.com/asmx/order.asmx/GetOrderInfoByCode";
+  private String doRequestErp(String code) throws IOException {
+          HttpClient client = HttpClientBuilder.create().build();
+
+          HttpPost post = new HttpPost(URL);
+          post.setHeader("User-Agent", USER_AGENT);
+          List<NameValuePair> urlParameters = new ArrayList<>();
+          urlParameters.add(new BasicNameValuePair("code", code));
+          post.setEntity(new UrlEncodedFormEntity(urlParameters));
+
+          HttpResponse response = client.execute(post);
+          if (response.getStatusLine().getStatusCode() != 200) {
+              logger.error("请求erp接口 GetOrderInfoByCode 失败 ", result);
+              return null;
+          }
+
+          BufferedReader rd = new BufferedReader(
+                  new InputStreamReader(response.getEntity().getContent()));
+          StringBuilder result = new StringBuilder();
+          String line;
+          while ((line = rd.readLine()) != null) {
+              result.append(line);
+          }
+          return result.toString();
+  }
+  然后处理得到的字符串
+  他可能是json 我们借助JsonWapper装换为对象
+  可能是异常 判断后做对应处理
+
+
+   (2 spring : RestTemplate
+
+
+(7) maven配置：java中的配置文件再编译后正确放入class文件夹
+    特别用于处理mybatis的mapper.xml（正确输出源码中的配置） 和 后缀特殊的配置文件（限制配置文件类型） 如 .sql
+
+maven中配置文件的设置
+/**
+   <resources>
+            <resource>
+                <directory>src/main/java</directory>   <!-- 配置文件在源码中 -->
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <!-- 是否替换资源中的属性 -->
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory> <!-- 配置文件在资源中 -->
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.sql</include>
+                </includes>
+                <!-- 是否替换资源中的属性 -->
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+ </build>
+
+ **/
+
+(8) mybatis
+
+    (1 参数为String时问题:MyBatis要求如果参数为String的话，不管接口方法的形参是什么，在Mapper.xml中引用时需要改变为_parameter才能识别
+    <select id="findByAccountType " parameterType="string" resultType="account">
+    select *
+    form account
+    <where>
+        <if test =" _parameter != null and _parameter != '' ">
+            type=#{_parameter}
+        </if>
+    </where>
+   </select>
+
+  (2 MyBatis 模糊查询 防止Sql注入
+
+  Mysql:
+    select * from t_user where name like concat('%', #{name}, '%')
+    SELECT * FROM tableName WHERE name LIKE '%${text}%';
+    #{xxx}，使用的是PreparedStatement，会有类型转换，所以比较安全；
+    ${xxx}，使用字符串拼接，可以SQL注入；
+    like查询不小心会有漏动，正确写法如下：
+    select * from t_user where name like concat('%', #{name}, '%')
+
+  Oracle:
+    select * from t_user where name like '%' || #{name} || '%'
+
+  (3 #和$的区别
+
+  1. #将传入的数据都当成一个字符串，会对自动传入的数据加一个双引号。如：order by #user_id#，如果传入的值是111,那么解析成sql时的值为order by "111", 如果传入的值是id，则解析成的sql为order by "id".　
+  2. $将传入的数据直接显示生成在sql中。如：order by $user_id$，如果传入的值是111,那么解析成sql时的值为order by user_id,  如果传入的值是id，则解析成的sql为order by id.　
+  3. #方式能够很大程度防止sql注入。
+  4.$方式无法防止Sql注入
+  5.$方式一般用于传入数据库对象，例如传入表名.
+  6.一般能用#的就别用$.
+  7. MyBatis排序时使用order by 动态参数时需要注意，用$而不是#
+
+字符串替换
+默认情况下，使用#{}格式的语法会导致MyBatis创建预处理语句属性并以它为背景设置安全的值（比如?）。这样做很安全，很迅速也是首选做法，有时你只是想直接在SQL语句中插入一个不改变的字符串。比如，像ORDER BY，你可以这样来使用：
+ORDER BY ${columnName}
+这里MyBatis不会修改或转义字符串。
+重要：接受从用户输出的内容并提供给语句中不变的字符串，这样做是不安全的。这会导致潜在的SQL注入攻击，因此你不应该允许用户输入这些字段，或者通常自行转义并检查。
+
+
+Mybatis在xml文件中处理大于号小于号的方法
+
+第一种方法：
+用了转义字符把">"和"<"替换掉，然后就没有问题了。
+
+SELECT * FROM test WHERE 1 = 1 AND start_date  &lt;= CURRENT_DATE AND end_date &gt;= CURRENT_DATE
+附：XML转义字符
+
+&lt; < 小于号
+&gt; >  大于号
+&amp; & 和
+&apos; ’单引号
+&quot; " 双引号
+
+ 第二种方法：
+因为这个是xml格式的，所以不允许出现类似">"这样的字符，但是都可以使用<![CDATA[ ]]>符号进行说明，将此类符号不进行解析
+你的可以写成这个：
+mapper文件示例代码
+
+ <![CDATA[ when min(starttime)<='12:00' and max(endtime)<='12:00' ]]>
+
+
+(9)数据库
+
+  (1 date_format
+
+   开始时间是某一天 或用于按照时间统计（年啊月..）
+   date_format(begin_time, '%Y-%m-%d')=date_format(#{beginTime}, '%Y-%m-%d')
+
+
+(*) 其他
+
+(1 静态方法使用泛型：
+public static <T> T print(){....}//correct
+public static <T> void print(){....}//correct
+
+(2 使用regex时 要对查询关键字中的部分字符进行转义  主要针对正则表达式中的元字符  尤其是mongo
+private static String escapeExprSpecialWord(String keyword) {
+    if (StringUtils.isNotBlank(keyword)) {
+        String[] fbsArr = { "\\", "$", "(", ")", "*", "+", ".", "[", "]", "?", "^", "{", "}", "|" };
+        for (String key : fbsArr) {
+            if (keyword.contains(key)) {
+                keyword = keyword.replace(key, "\\" + key);
+            }
+        }
+    }
+    return keyword;
+}
+
+3）HttpServletRequest
+
+获取request：
+
+<listener>
+    <listener-class>
+        org.springframework.web.context.request.RequestContextListener
+    </listener-class>
+</listener>
+
+request = ((ServletRequestAttributes) RequestContextHolder
+        .getRequestAttributes()).getRequest();
+
+常用获取URL的方法
+1、request.getRequestURL()
+
+返回的是完整的url，包括Http协议，端口号，servlet名字和映射路径，但它不包含请求参数。
+2、request.getRequestURI()
+
+得到的是request URL的部分值，并且web容器没有decode过的
+
+3、request.getContextPath()
+返回 the context of the request.
+
+4、request.getServletPath()
+返回调用servlet的部分url.
+
+5、request.getQueryString()
+返回url路径后面的查询字符串
+
+
+示例：
+
+当前url：http://localhost:8080/CarsiLogCenter_new/idpstat.jsp?action=idp.sptopn
+
+request.getRequestURL()  http://localhost:8080/CarsiLogCenter_new/idpstat.jsp
+request.getRequestURI()  /CarsiLogCenter_new/idpstat.jsp
+request.getContextPath() /CarsiLogCenter_new
+request.getServletPath() /idpstat.jsp
+request.getQueryString() action=idp.sptopn
+
+
+(*) 理论性
+
+同步是需要主动等待消息通知，而异步则是被动接收消息通知
+阻塞关注的是能不能同时做其他事
+
+*
+全量同步：
+    1 按照时间升序 大于某一时间（第一次为0） 并获取有限数量
+    2 获取上一批次的最后一个的时间
+    3 按照这个时间再次去获取 直到获取不到
+
+
+2 Windows 使用速记
+
+2.1 系统日志   Eventvwr.msc
+
+2.2 关闭占用端口号的进程
+
+在Windows操作系统中，我们在启动一个tomcat服务器时，经常会发现8080端口已经被占用的错误，而我们又不知道如何停止这个tomcat服务器。
+本文将通过命令来强行终止这个已经运行的tomcat进程如下：
+
+(1、首先查找到占用8080端口的进程号PID是多少
+CMD>netstat -ano | findstr 8080
+这个命令输出的最后一列表示占用8080端口的进程号是多少，假设为1234
+
+(2、kill掉这个进程
+CMD>taskkill /F /PID 1234
+
+
+<build>
+  <pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.sonarsource.scanner.maven</groupId>
+        <artifactId>sonar-maven-plugin</artifactId>
+        <version>3.0</version>
+      </plugin>
+    </plugins>
+  </pluginManagement>
+</build>
+
+mvn org.jacoco:jacoco-maven-plugin:prepare-agent clean test -Pjava -Ptest -Dsonar.language=java -Dsonar.binaries=target/classes -Dsonar.surefire.reportsPath=target/surefire-reports -Dcobertura.report.format=xml sonar:sonar
+
+  <profile>
+    <id>sonar</id>
+    <activation>
+      <activeByDefault>true</activeByDefault>
+    </activation>
+    <properties>
+      <!-- <sonar.host.url>http://sonar.sdp.nd</sonar.host.url> -->
+      <sonar.host.url>http://sonar.debug.sdp.nd </sonar.host.url>
+      <sonar.login>601198</sonar.login>
+      <sonar.password>lijian2570</sonar.password>
+    </properties>
+  </profile>
