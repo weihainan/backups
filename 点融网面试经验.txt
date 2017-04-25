@@ -1,0 +1,56 @@
+电话面：
+一面（数据组负责人面试）：
+1、首先上来让我作自我介绍
+2、问我项目问题（简历上面的一个数据修复和同步的报表项目）主要介绍了这个项目的大体是干嘛的，以及遇到的一些问题
+3、谈谈对spring有哪些了解，说了一下AOP、IOC、SpringMvc和Spring事务管理（事务传播机制）
+4、谈谈对http的理解，SpringMvc的RESTful有哪些好处（也可以从http协议谈谈RESTful）
+5、Thrift和Dubbo的区别，Thrift的原理，Dubbo底层用的什么协议
+6、ConcurrentHashMap原理
+7、日志分哪些级别？（日志信息的优先级从高到低有ERROR、WARN、INFO、DEBUG）什么情况下用warn（指定具有潜在危害的情况）？有没有用过debug（指定细粒度信息事件是最有用的应用程序调试）
+8、对数据结构和算法有哪些了解
+9、线上jvm出现内存泄漏如何处理？
+10、看过哪些书，我说了《深入理解Java虚拟机》、《spring技术内幕》、《react入门》阮一峰的《Es6》，接着问我有没有了解过Python，ruby这些（这些没看过。。。。可能因为是数据组的面试官就问了这个）
+
+二面（架构组负责人面试）：
+1、首先上来了解基本情况，然后就问了项目（也是数据修复和同步的报表项目），说完之后，面试官记了很多问题，项目中有涉及到数据的切分然后并发执行，这种是如何切分的，回答这个之后接着问如果涉及到从原库到中间库的修复数据的时候，原库表没有时间戳的话，如何作处理（懵逼）
+2、Java5并法库里面的Semaphere是有什么用？（信号灯同步工具，可以控制同时访问资源的线程个数。）
+3、Java5并发库里面的locksupport有什么用？（这个没回答出来）
+4、多线程yield作用？多线程Thread里面的interrupt、interrupted和isInterruptedd区别（Thread.interrupt()来中断一个线程就会设置中断标识为true。当中断线程调用静态方法Thread.interrupted()来检查中断状态时，中断状态会被清零。而非静态方法isInterrupted()用来查询其它线程的中断状态且不会改变中断状态标识。）
+5、sql有慢查询，怎么查看解决（使用 EXPLAIN 关键字可以知道MySQL是如何处理你的SQL语句的。这可以帮你分析你的查询语句或是表结构的性能瓶颈。EXPLAIN 的查询结果还会告诉你你的索引主键被如何利用的，数据表是如何被搜索和排序的）
+
+6、说一下NIO的原理（NIO 有一个主要的类Selector，这个类似一个观察者，只要我们把需要探知的SocketChannel告诉Selector，我们接着做别的事情，当有事件发生时，他会通知我们，传回一组SelectionKey，我们读取这些Key，就会获得我们刚刚注册过的SocketChannel，然后，我们从这个Channel中读取数据，接着我们可以处理这些数据。）
+
+7、ByteBuffer的mark、position、limit、flip、reset，get方法介绍（懵逼）
+8、说一下垃圾回收算法？各个收集器采用什么样的算法
+9、CMS只采用了标记清除算法吗
+10、CMS收集器对象从Eden区到survivor区1，再到survivor区2，再到老年代，收集的时候出现不连续的空间怎么办？（当时说的是设置老年代的内存百分比閥值，CMS需在老年代一定比例时就进行收集，通过-XX:CMSInitiatingOccupancyFraction设置老年代触发CMS比例。基于标记清除算法的CMS，会使老年代产生很多空间碎片，不利于大对象的使用，使用-UseCMSCompactAtFullCollection（默认true）来设置在将要进行CMS收集时进行碎片整理压缩，此设置会造成停顿，同时可以设置-XX:CMSFullGCsBeforeCompaction来设置执行碎片整理的间隔CMS次数，即，执行多少次CMS收集后，执行一次碎片整理。）
+
+11、Java虚拟机每个类加载器加载了哪些包？（根装载器不是ClassLoader的子类，由C++编写，因此在java中看不到他，负责装载JRE的核心类库，如JRE目录下的rt.jar,charsets.jar等。ExtClassLoader是ClassLoder的子类，负责装载JRE扩展目录ext下的jar类包；AppClassLoader负责装载classpath路径下的类包）类加载的时候方法执行流程是怎样的？（每个类加载器：loadClass->findClass->defineClass） loadclass方法是如何执行的？（首先通过findLoadedClass(name)检查，是否该类已经加载过了，如果加载过了，就不加载了。如果自定义的类加载器的parent不为null,就调用parent的loadClass进行加载类 。如果自定义的类加载器的parent为null，就调用findBootstrapClass方法查找类，就是Bootstrap类加载器。如果parent加载类失败，就调用自己的findClass方法进行类加载）
+
+12、平时看哪些书
+13、说了后面还有两轮面试，前两轮比较关键，后面需要注意一下，也介绍了架构组主要做些什么
+
+现场面：
+一面（架构组负责人）：介绍了业务情况，学的技术方向
+
+二面（架构组小组长）：
+1、英文 自我介绍
+2、相关设计模式类图
+3、sql查询
+4、git底层原理（要从git的工作区，暂存区，还有当前分支说起指针指向情况）
+5、沟通能力考查，如何处理很多任务。。。
+
+三面（数据组负责人）：
+1、hashmap底层实现原理
+2、现场给个算法实现，一个数组A = [1，9，3，8， 4， 7,  0,  6]，如何获取两两相加等于10的那些组合？要求性能最好。
+3、数据库锁（表锁，行锁，共享锁，排它锁）
+4、MySQL死锁如何处理？
+
+四面（业务组负责人）：
+1、threadlocal底层原理？如果一个类有static修饰会有影响吗？
+2、了解并发库里哪些集合？说了concurrenthashmap，阻塞队列。
+3、什么是阻塞
+4、sleep() 和 wait() 区别？哪个是持有CPU？
+5、有没有了解spring boot？ zookeeper?
+
+五面（HR面）：介绍了薪资福利，谈了一下工资，也介绍了各个面试官大佬。

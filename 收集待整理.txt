@@ -1,0 +1,74 @@
+http://www.codeceo.com/article/understand-json.html
+
+http://blog.csdn.net/heting90/article/details/52248729 table page
+http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/
+http://www.cnblogs.com/wang2650/articles/4262857.html
+http://www.cnblogs.com/belloworld/p/5242564.html
+
+- http://www.cnblogs.com/fangjian0423/p/spring-Ordered-interface.html  Spring中的Ordered接口
+- http://yingzhuo.iteye.com/blog/1940111   audit
+
+- http://blog.csdn.net/wangnan537/article/details/50353174  二维码
+
+- Java8 hashmap
+
+http://blog.csdn.net/a837199685/article/details/41009145
+http://www.cnblogs.com/huaizuo/p/5371099.html
+https://my.oschina.net/hosee/blog/618953
+http://blog.csdn.net/zdsicecoco/article/details/51775545
+http://blog.csdn.net/q291611265/article/details/46797557
+http://blog.jobbole.com/66078/
+
+Java8 新特性学习
+http://www.cnblogs.com/leejuen/p/5547467.html
+http://blog.csdn.net/wangnan537/article/details/49102877
+
+支持基本的过滤条件
+
+http://www.sdbeta.com/mf/wl/2016/1201/131654.html
+
+http://docs.mongoing.com/manual-zh/
+http://xybl8.com/
+
+mvc
+http://blog.csdn.net/lvjiankui_wwx/article/details/44223069
+http://www.cnblogs.com/dreamworlds/p/5396209.html
+
+Spring 知识点
+http://www.cnblogs.com/gossip/p/5505715.html
+
+整理 归类  删除 博客
+
+format
+http://www.cnblogs.com/xytop/articles/1277125.html
+http://www.layoutit.com/cn
+
+1   Aspect
+http://blog.csdn.net/zl3450341/article/category/1169602
+http://www.360doc.com/content/13/1212/09/14416931_336521220.shtml
+http://blog.csdn.net/kjfcpua/article/details/7513273
+
+奇怪的问题：AspectJ在controller中进入就能监控到各个方法的执行，但是不从controller调用  aspectJ失效？？
+
+http://www.runoob.com/sitemap
+
+
+
+http://www.bejson.com/  json tools
+AspectJ问题的答案
+rdb的多数据源
+事务总结与待办系统
+
+security
+redis的作用
+192.168.0.110
+         .113
+
+- 61.131.127.31
+
+http://www.tuicool.com/articles/jAzyyeY
+
+http://www.jcodecraeer.com/plus/list.php?tid=7   没事看一看的网站
+
+http://www.cnblogs.com/liuxianan/p/js-date-format-parse.html js日期工具
+
