@@ -30,3 +30,5 @@ http://blog.csdn.net/pistolove/article/category/2787031 代码重构
 http://blog.csdn.net/pistolove/article/category/2661591 设计模式
 
 http://outofmemory.cn/java/guava/  guava全面的讲解
+
+http://www.cnblogs.com/keepfool/p/5619070.html  vue.js教程
