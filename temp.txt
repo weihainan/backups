@@ -32,3 +32,23 @@ http://blog.csdn.net/pistolove/article/category/2661591 设计模式
 http://outofmemory.cn/java/guava/  guava全面的讲解
 
 http://www.cnblogs.com/keepfool/p/5619070.html  vue.js教程
+
+
+npm install -g vue-cli
+vue init browserify-simple my-browserify-simple-demo
+cd my-browserify-simple-demo
+npm install
+npm run dev  
+npm run build
+
+
+vue init browserify my-browserify-demo
+cd my-browserify-demo
+npm install
+npm run dev
+
+http://blog.csdn.net/sinat_17775997/article/details/52825890
+
+http://blog.csdn.net/sinat_17775997/article/details/52548973
+
+http://blog.csdn.net/sinat_17775997/article/details/54943797
