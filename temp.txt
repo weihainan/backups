@@ -46,3 +46,16 @@ vue init browserify my-browserify-demo
 cd my-browserify-demo
 npm install
 npm run dev
+
+npm install -g vue-cli
+vue init webpack-simple my-webpack-simple-demo
+cd my-webpack-simple-demo
+npm install
+npm run dev
+npm run build
+
+
+vue init webpack my-webpack-demo
+cd my-webpack-demo
+npm install
+
