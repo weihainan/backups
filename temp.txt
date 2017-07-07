@@ -32,6 +32,7 @@ http://blog.csdn.net/pistolove/article/category/2661591 设计模式
 http://outofmemory.cn/java/guava/  guava全面的讲解
 
 http://www.cnblogs.com/keepfool/p/5619070.html  vue.js教程
+http://www.php230.com/1487154002.html
 
 
 npm install -g vue-cli
@@ -78,3 +79,7 @@ http://www.imooc.com/learn/262
 
 https://github.com/fengcms/vuedemo
 http://blog.guowenfh.com/2016/03/24/vue-webpack-01-base/
+
+
+
+https://laravel-china.org/topics/2827/vuejswebpackgulplaravel-simple-message-board  good
