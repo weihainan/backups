@@ -1,3 +1,40 @@
+container
+container-fluid
+row
+.col-xs-	.col-sm-	.col-md-	.col-lg-
+col-md-offset-
+col-md-push-*  .col-md-pull-*
+.h1 到 .h6 类  --  <h1> 到 <h6>  副标题 <small> .small 
+<p class="lead">...</p>
+<mark>
+<del>  <s>
+<ins>  <u>
+<strong>
+<em>
+
+<p class="text-left">Left aligned text.</p>
+<p class="text-center">Center aligned text.</p>
+<p class="text-right">Right aligned text.</p>
+<p class="text-justify">Justified text.</p>
+<p class="text-nowrap">No wrap text.</p>
+
+<p class="text-lowercase">Lowercased text.</p>
+<p class="text-uppercase">Uppercased text.</p>
+<p class="text-capitalize">Capitalized text.</p>
+
+<abbr title="attribute">attr</abbr>
+<abbr title="HyperText Markup Language" class="initialism">HTML</abbr>
+
+<address>
+  <strong>Twitter, Inc.</strong><br>
+  1355 Market Street, Suite 900<br>
+  San Francisco, CA 94103<br>
+  <abbr title="Phone">P:</abbr> (123) 456-7890<br>
+  <a href="mailto:#">first.last@example.com</a>
+</address>
+
+<blockquote class="blockquote-reverse">
+
 background	简写属性，作用是将背景属性设置在一个声明中。
 background-attachment	背景图像是否固定或者随着页面的其余部分滚动。
 background-color	设置元素的背景颜色。
