@@ -34,6 +34,12 @@ http://outofmemory.cn/java/guava/  guava全面的讲解
 http://www.cnblogs.com/keepfool/p/5619070.html  vue.js教程
 http://www.php230.com/1487154002.html
 http://www.jianshu.com/p/d6f7e11f18af
+http://blog.csdn.net/bboyjoe/article/details/52668512  vue基础总结
+
+vue root
+
+https://segmentfault.com/a/1190000007825106
+http://blog.csdn.net/bboyjoe/article/details/52804988
 
 
 npm install -g vue-cli
