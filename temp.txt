@@ -92,3 +92,5 @@ http://blog.guowenfh.com/2016/03/24/vue-webpack-01-base/
 https://laravel-china.org/topics/2827/vuejswebpackgulplaravel-simple-message-board  good
 
 http://blog.csdn.net/sinat_17775997/article/category/6723531
+
+http://www.cnblogs.com/sailengsi/p/6400340.html 基于vue2+vuex2+vue-router+axios+elementUI做的自动化后台模板
