@@ -40,6 +40,7 @@ vue root
 
 https://segmentfault.com/a/1190000007825106
 http://blog.csdn.net/bboyjoe/article/details/52804988
+http://blog.csdn.net/lemon_zhao/article/details/55510589 坑
 
 
 npm install -g vue-cli
@@ -92,3 +93,7 @@ http://blog.guowenfh.com/2016/03/24/vue-webpack-01-base/
 https://laravel-china.org/topics/2827/vuejswebpackgulplaravel-simple-message-board  good
 
 http://blog.csdn.net/sinat_17775997/article/category/6723531
+
+
+
+http://element.eleme.io/#/zh-CN/component/installation  好用的组件库
