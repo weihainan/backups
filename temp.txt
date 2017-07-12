@@ -99,6 +99,7 @@ http://blog.csdn.net/sinat_17775997/article/category/6723531
 http://element.eleme.io/#/zh-CN/component/installation  好用的组件库
 
 
+####  创建 vue vue-router element-ui axios 项目
 
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 cnpm install -g vue-cli
@@ -113,3 +114,4 @@ cnpm i element-ui -S
 
 npm run dev
 npm run build
+
