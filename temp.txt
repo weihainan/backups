@@ -1,4 +1,4 @@
-http://www.jcodecraeer.com/plus/list.php?tid=7   没事看一看的网站 泡在网上的日子
+ttp://www.jcodecraeer.com/plus/list.php?tid=7   没事看一看的网站 泡在网上的日子
 
 
 http://www.cnblogs.com/landeanfen/p/4976838.html bootstrap table、
@@ -40,6 +40,7 @@ vue root
 
 https://segmentfault.com/a/1190000007825106
 http://blog.csdn.net/bboyjoe/article/details/52804988
+http://blog.csdn.net/lemon_zhao/article/details/55510589 坑
 
 
 npm install -g vue-cli
@@ -93,4 +94,56 @@ https://laravel-china.org/topics/2827/vuejswebpackgulplaravel-simple-message-boa
 
 http://blog.csdn.net/sinat_17775997/article/category/6723531
 
+
 http://www.cnblogs.com/sailengsi/p/6400340.html 基于vue2+vuex2+vue-router+axios+elementUI做的自动化后台模板
+
+
+
+http://element.eleme.io/#/zh-CN/component/installation  好用的组件库
+
+
+####  创建 vue vue-router element-ui axios 项目
+
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+cnpm install -g vue-cli
+
+vue init webpack whn-personal-admin
+cd whn-personal-admin
+
+cnpm install
+cnpm install vue-router -S
+cnpm install axios -S
+cnpm i element-ui -S
+
+npm run dev
+npm run build
+
+https://segmentfault.com/a/1190000008010666 vue生命周期
+
+
+
+SET FOREIGN_KEY_CHECKS=0;
+
+DROP TABLE IF EXISTS `charge`;
+CREATE TABLE `charge` (
+  `id` varchar(64) NOT NULL COMMENT '标签，收支的分类',
+  `amount` double NOT NULL,
+  `label` varchar(128) NOT NULL,
+  `type` enum(' disbursements','receipts') NOT NULL DEFAULT ' disbursements' COMMENT 'receipts and disbursements： 收入与支出',
+  `user_id` varchar(64) NOT NULL,
+  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `assignment`;
+CREATE TABLE `assignment` (
+  `id` varchar(64) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `stare` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否重点关注',
+  `compeleted` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否完成',
+  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `user_id` varchar(54) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+>>>>>>> f1d8c25be2f707fb2c1c624c4b8367d124909109
