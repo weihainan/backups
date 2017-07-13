@@ -120,30 +120,32 @@ npm run build
 
 https://segmentfault.com/a/1190000008010666 vue生命周期
 
+------------------------ Vue模板--------------------------------
+<template>
+  <div d="wrapper">
+
+  </div><!-- end wrapper -->
+</template>
+
+<script>
+  export default{
+    data(){
+      let data = {};
+      return data;
+    },
+    methods:{
+
+    },
+    components:{
+
+    },
+    mounted(){
+         // 在这发起后端请求，拿回数据，配合路由钩子做一些事情
+    }
+  }
+</script>
+
+<style scoped>
 
 
-SET FOREIGN_KEY_CHECKS=0;
-
-DROP TABLE IF EXISTS `charge`;
-CREATE TABLE `charge` (
-  `id` varchar(64) NOT NULL COMMENT '标签，收支的分类',
-  `amount` double NOT NULL,
-  `label` varchar(128) NOT NULL,
-  `type` enum(' disbursements','receipts') NOT NULL DEFAULT ' disbursements' COMMENT 'receipts and disbursements： 收入与支出',
-  `user_id` varchar(64) NOT NULL,
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-DROP TABLE IF EXISTS `assignment`;
-CREATE TABLE `assignment` (
-  `id` varchar(64) NOT NULL,
-  `content` varchar(255) NOT NULL,
-  `stare` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否重点关注',
-  `compeleted` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否完成',
-  `create_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `user_id` varchar(54) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
->>>>>>> f1d8c25be2f707fb2c1c624c4b8367d124909109
+</style>
