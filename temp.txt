@@ -94,7 +94,7 @@ https://laravel-china.org/topics/2827/vuejswebpackgulplaravel-simple-message-boa
 
 http://blog.csdn.net/sinat_17775997/article/category/6723531
 
-
+http://www.cnblogs.com/wisewrong/p/6255817.html
 http://www.cnblogs.com/sailengsi/p/6400340.html 基于vue2+vuex2+vue-router+axios+elementUI做的自动化后台模板
 
 
