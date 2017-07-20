@@ -103,7 +103,8 @@ cnpm install --save vuex
 cnpm install axios -S
 cnpm i element-ui -S
 
-npm install --save isomorphic-fetch es6-promise
+cnpm install --save isomorphic-fetch es6-promise
+npm install --save vue-echarts-v3
 
 npm run dev
 npm run build
