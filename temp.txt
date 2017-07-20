@@ -143,3 +143,30 @@ http://www.w3school.com.cn/html5/html_5_webstorage.asp html5存储 sessionStorage 
 
 
 </style>
+
+
+
+终于在vue-cli 生成的工程中引入了jquery，记录一下。(模板用的webpack)
+
+首先在package.json里的dependencies加入"jquery" : "^2.2.3"，然后install
+
+在webpack.base.conf.js里加入
+
+var webpack = require("webpack")
+
+在module.exports的最后加入
+
+plugins: [
+new webpack.optimize.CommonsChunkPlugin('common.js'),
+new webpack.ProvidePlugin({
+jQuery: "jquery",
+$: "jquery"
+})
+]
+
+然后一定要重新 run dev
+
+在main.js 引入就ok了import $ from 'jquery'
+
+ 
+ var Showbo = require("exports?Showbo!./path/to/showbo.js");
