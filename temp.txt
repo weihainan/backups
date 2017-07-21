@@ -127,6 +127,9 @@ http://www.w3school.com.cn/html5/html_5_webstorage.asp html5´æ´¢ sessionStorage 
       let data = {};
       return data;
     },
+    components: {
+    
+    },
     methods:{
 
     },
@@ -170,3 +173,6 @@ $: "jquery"
 
  
  var Showbo = require("exports?Showbo!./path/to/showbo.js");
+ 
+ 
+ http://www.cnblogs.com/luozhihao/p/5579786.html  react
