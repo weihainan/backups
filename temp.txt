@@ -109,11 +109,15 @@ npm install --save vue-echarts-v3
 npm run dev
 npm run build
 
+http://www.cnblogs.com/wisewrong/p/6255817.html Vue 爬坑之路
+
 https://segmentfault.com/a/1190000008010666 vue生命周期
 https://segmentfault.com/a/1190000009651628 vue-router
 
 http://www.w3school.com.cn/html5/html_5_webstorage.asp html5存储 sessionStorage localStorage
 
+
+https://juejin.im/post/59097cd7a22b9d0065fb61d2
 ------------------------ Vue模板--------------------------------
 <template>
   <div d="wrapper">
