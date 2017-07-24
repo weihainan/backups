@@ -1,0 +1,596 @@
+http://www.w3school.com.cn/css/index.asp
+
+CSS 后代选择器
+后代选择器（descendant selector）又称为包含选择器。
+后代选择器可以选择作为某元素后代的元素。
+h1 em {color:red;}  包含 em 的所有 h1 会把以下样式应用到该 em
+
+子元素选择器（Child selectors）只能选择作为某元素子元素的元素
+h1 > strong {color:red;}  把第一个 h1 下面的两个 strong 元素变为红色，但是第二个 h1 中的 strong 不受影响
+
+相邻兄弟选择器（Adjacent sibling selector）可选择紧接在另一元素后的元素，且二者有相同父元素。
+h1 + p {margin-top:50px;} 选择紧接在 h1 元素后出现的段落，h1 和 p 元素拥有共同的父元素
+
+id 选择器  以 "#" 来定义
+类选择器以一个点号显示
+属性选择器  [title]{color:red;}
+
+
+<link rel="stylesheet" type="text/css" href="mystyle.css" />
+
+<style type="text/css">
+
+</style>
+
+
+背景：
+
+background
+
+background : background-color || background-image || background-repeat || background-attachment || background-position
+
+background : transparent none repeat scroll 0% 0%
+transparent   表示透明无颜色，是background-color 的默认值
+none   表示没有设置背景图片
+repeat   表示图片重复
+scroll   表示背景图片随浏览器下拉而滚动
+0%   水平位置在x0
+0%   垂直位置在y0
+ 
+ 
+
+background-color ：
+color_name	规定颜色值为颜色名称的背景颜色（比如 red）。
+hex_number	规定颜色值为十六进制值的背景颜色（比如 #ff0000）。
+rgb_number	规定颜色值为 rgb 代码的背景颜色（比如 rgb(255,0,0)）。
+transparent	默认。背景颜色为透明。
+inherit	规定应该从父元素继承 background-color 属性的设置。
+
+background-image ：
+url('URL')	指向图像的路径。
+none	默认值。不显示背景图像。
+inherit	规定应该从父元素继承 background-image 属性的设置
+
+background-repeat：
+repeat	默认。背景图像将在垂直方向和水平方向重复。
+repeat-x	背景图像将在水平方向重复。
+repeat-y	背景图像将在垂直方向重复。
+no-repeat	背景图像将仅显示一次。
+inherit	规定应该从父元素继承 background-repeat 属性的设置。
+
+background-position：
+top left
+top center
+top right
+center left
+center center
+center right
+bottom left
+bottom center
+bottom right
+如果您仅规定了一个关键词，那么第二个值将是"center"。
+默认值：0% 0%。
+
+x% y%	
+第一个值是水平位置，第二个值是垂直位置。
+左上角是 0% 0%。右下角是 100% 100%。
+如果您仅规定了一个值，另一个值将是 50%。
+
+xpos ypos	
+第一个值是水平位置，第二个值是垂直位置。
+左上角是 0 0。单位是像素 (0px 0px) 或任何其他的 CSS 单位。
+如果您仅规定了一个值，另一个值将是50%。
+您可以混合使用 % 和 position 值。
+
+
+background-attachment：
+scroll	默认值。背景图像会随着页面其余部分的滚动而移动。
+fixed	当页面的其余部分滚动时，背景图像不会移动。
+inherit	规定应该从父元素继承 background-attachment 属性的设置。
+
+
+background-size：background-size: length|percentage|cover|contain;
+
+length	
+设置背景图像的高度和宽度。
+第一个值设置宽度，第二个值设置高度。
+如果只设置一个值，则第二个值会被设置为 "auto"。
+
+percentage	
+以父元素的百分比来设置背景图像的宽度和高度。
+第一个值设置宽度，第二个值设置高度。
+如果只设置一个值，则第二个值会被设置为 "auto"。
+
+cover	
+把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。
+背景图像的某些部分也许无法显示在背景定位区域中。
+
+contain	把图像图像扩展至最大尺寸，以使其宽度和高度完全适应内容区域。
+
+background-origin 属性规定 background-position 属性相对于什么位置来定位
+padding-box	背景图像相对于内边距框来定位。	
+border-box	背景图像相对于边框盒来定位。
+content-box	背景图像相对于内容框来定位。
+
+background-clip 属性规定背景的绘制区域
+border-box	背景被裁剪到边框盒。	
+padding-box	背景被裁剪到内边距框。	
+content-box	背景被裁剪到内容框
+
+
+--------------------------------------------------------
+CSS 文本属性可定义文本的外观
+
+color 属性规定文本的颜色。
+color_name	规定颜色值为颜色名称的颜色（比如 red）。
+hex_number	规定颜色值为十六进制值的颜色（比如 #ff0000）。
+rgb_number	规定颜色值为 rgb 代码的颜色（比如 rgb(255,0,0)）。
+inherit	规定应该从父元素继承颜色。
+
+direction 属性规定文本的方向 / 书写方向。
+ltr	默认。文本方向从左到右。
+rtl	文本方向从右到左。
+inherit	规定应该从父元素继承 direction 属性的值
+
+text-indent 属性规定文本块中首行文本的缩进：
+length	定义固定的缩进。默认值：0。
+%	定义基于父元素宽度的百分比的缩进。
+inherit	规定应该从父元素继承 text-indent 属性的值。
+
+
+text-align 属性规定元素中的文本的水平对齐方式：
+left	把文本排列到左边。默认值：由浏览器决定。
+right	把文本排列到右边。
+center	把文本排列到中间。
+justify	实现两端对齐文本效果。
+inherit	规定应该从父元素继承 text-align 属性的值。
+
+word-spacing 属性增加或减少单词间的空白（即字间隔）
+normal	默认。定义单词间的标准空间。
+length	定义单词间的固定空间。
+inherit	规定应该从父元素继承 word-spacing 属性的值。
+
+
+letter-spacing 属性增加或减少字符间的空白（字符间距）
+normal	默认。规定字符间没有额外的空间。
+length	定义字符间的固定空间（允许使用负值）。
+inherit	规定应该从父元素继承 letter-spacing 属性的值。
+
+
+text-transform 属性控制文本的大小写
+none	默认。定义带有小写字母和大写字母的标准的文本。
+capitalize	文本中的每个单词以大写字母开头。
+uppercase	定义仅有大写字母。
+lowercase	定义无大写字母，仅有小写字母。
+inherit	规定应该从父元素继承 text-transform 属性的值。
+
+
+text-decoration 属性规定添加到文本的修饰。
+none	默认。定义标准的文本。
+underline	定义文本下的一条线。
+overline	定义文本上的一条线。
+line-through	定义穿过文本下的一条线。
+blink	定义闪烁的文本。
+inherit	规定应该从父元素继承 text-decoration 属性的值。
+
+
+white-space 属性设置如何处理元素内的空白
+normal	默认。空白会被浏览器忽略。
+pre	空白会被浏览器保留。其行为方式类似 HTML 中的 <pre> 标签。
+nowrap	文本不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。
+pre-wrap	保留空白符序列，但是正常地进行换行。
+pre-line	合并空白符序列，但是保留换行符。
+inherit	规定应该从父元素继承 white-space 属性的值。
+
+
+-----------------------------------------------------------------------------
+
+CSS 字体
+
+在 CSS 中，有两种不同类型的字体系列名称：
+通用字体系列 - 拥有相似外观的字体系统组合（比如 "Serif" 或 "Monospace"）
+特定字体系列 - 具体的字体系列（比如 "Times" 或 "Courier"）
+除了各种特定的字体系列外，CSS 定义了 5 种通用字体系列：
+Serif 字体
+Sans-serif 字体
+Monospace 字体
+Cursive 字体
+Fantasy 字体
+
+
+font-family：
+font-family: Microsoft YaHei, Arial, Helvetica, sans-serif;
+
+font-style 属性定义字体的风格
+normal	默认值。浏览器显示一个标准的字体样式。
+italic	浏览器会显示一个斜体的字体样式。
+oblique	浏览器会显示一个倾斜的字体样式。
+inherit	规定应该从父元素继承字体样式。
+
+
+font-variant 属性设置小型大写字母的字体显示文本，这意味着所有的小写字母均会被转换为大写，但是所有使用小型大写字体的字母与其余文本相比，其字体尺寸更小。
+normal	默认值。浏览器会显示一个标准的字体。
+small-caps	浏览器会显示小型大写字母的字体。
+inherit	规定应该从父元素继承 font-variant 属性的值。
+
+
+font-weight 属性设置文本的粗细
+
+normal	默认值。定义标准的字符。
+bold	定义粗体字符。
+bolder	定义更粗的字符。
+lighter	定义更细的字符。
+100
+200
+300
+400
+500
+600
+700
+800
+900
+定义由粗到细的字符。400 等同于 normal，而 700 等同于 bold。
+inherit	规定应该从父元素继承字体的粗细。
+
+
+font-size 属性可设置字体的尺寸
+如果您没有规定字体大小，普通文本（比如段落）的默认大小是 16 像素 (16px=1em)
+
+----------------------------------------------------------------------------------
+
+CSS 链接
+
+a:link - 普通的、未被访问的链接
+a:visited - 用户已访问的链接
+a:hover - 鼠标指针位于链接的上方
+a:active - 链接被点击的时刻
+
+a:hover 必须位于 a:link 和 a:visited 之后
+a:active 必须位于 a:hover 之后
+
+a:link,a:visited
+{
+display:block;
+font-weight:bold;
+font-size:14px;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+color:#FFFFFF;
+background-color:#98bf21;
+width:120px;
+text-align:center;
+padding:4px;
+text-decoration:none;
+}
+
+a:hover,a:active
+{
+background-color:#7A991A;
+}
+
+:link	a:link	选择所有未访问链接
+:visited	a:visited	选择所有访问过的链接
+:active	a:active	选择正在活动链接
+:hover	a:hover	把鼠标放在链接上的状态
+:focus	input:focus	选择元素输入后具有焦点
+:first-letter	p:first-letter	选择每个<p> 元素的第一个字母
+:first-line	p:first-line	选择每个<p> 元素的第一行
+:first-child	p:first-child	选择器匹配属于任意元素的第一个子元素的 <]p> 元素
+:before	p:before	在每个<p>元素之前插入内容
+:after	p:after	在每个<p>元素之后插入内容
+:lang(language)	p:lang(it)	为<p>元素的lang属性选择一个开始值
+-----------------------------------------------------------------------------------
+
+CSS 列表
+
+list-style 简写属性在一个声明中设置所有的列表属性
+可以按顺序设置如下属性：
+list-style-type ： none decimal
+
+list-style-position： 属性设置在何处放置列表项标记
+inside	列表项目标记放置在文本以内，且环绕文本根据标记对齐。
+outside	默认值。保持标记位于文本的左侧。列表项目标记放置在文本以外，且环绕文本不根据标记对齐。
+inherit	规定应该从父元素继承 list-style-position 属性的值。
+
+list-style-image
+URL	图像的路径。
+none	默认。无图形被显示。
+inherit	规定应该从父元素继承 list-style-image 属性的值。
+
+水平导航栏实例
+ul
+{
+list-style-type:none;
+margin:0;
+padding:0;
+padding-top:6px;
+padding-bottom:6px;
+}
+li
+{
+display:inline;
+}
+a:link,a:visited
+{
+font-weight:bold;
+color:#FFFFFF;
+background-color:#98bf21;
+text-align:center;
+padding:6px;
+text-decoration:none;
+text-transform:uppercase;
+}
+a:hover,a:active
+{
+background-color:#7A991A;
+}
+
+
+------------------------------------------------------------------------------------------------
+
+CSS 表格
+
+border  width height
+
+border-collapse	设置是否把表格边框合并为单一的边框。
+separate	默认值。边框会被分开。不会忽略 border-spacing 和 empty-cells 属性。
+collapse	如果可能，边框会合并为一个单一的边框。会忽略 border-spacing 和 empty-cells 属性。
+inherit	规定应该从父元素继承 border-collapse 属性的值。
+
+border-spacing	设置分隔单元格边框的距离。
+caption-side	设置表格标题的位置。 top bottom
+empty-cells	设置是否显示表格中的空单元格。 hide show
+
+table-layout	设置显示单元、行和列的算法。
+automatic	默认。列宽度由单元格内容设定。
+fixed	列宽由表格宽度和列宽度设定
+
+-------------------------------------------------------------------------------------------------
+
+outline 属性
+
+outline （轮廓）是绘制于元素周围的一条线，位于边框边缘的外围，可起到突出元素的作用。
+注释：轮廓线不会占据空间，也不一定是矩形
+
+--------------------------------------------------------------------------------------------------
+
+CSS 框模型
+
+element : 元素。
+padding : 内边距，也有资料将其翻译为填充。
+border : 边框。
+margin : 外边距，也有资料将其翻译为空白或空白边。
+
+
+padding-top
+padding-right
+padding-bottom
+padding-left
+
+Padding属性，可以有一到四个值。
+  padding:25px 50px 75px 100px;
+上填充为25px
+右填充为50px
+下填充为75px
+左填充为100px
+  padding:25px 50px 75px;
+上填充为25px
+左右填充为50px
+下填充为75px
+  padding:25px 50px;
+上下填充为25px
+左右填充为50px
+  padding:25px;
+所有的填充都是25px
+
+
+border	简写属性，用于把针对四个边的属性设置在一个声明。
+border-style	用于设置元素所有边框的样式，或者单独地为各边设置边框样式。
+border-width	简写属性，用于为元素的所有边框设置宽度，或者单独地为各边边框设置宽度。
+border-color	简写属性，设置元素的所有边框中可见部分的颜色，或为 4 个边分别设置颜色。
+border-bottom	简写属性，用于把下边框的所有属性设置到一个声明中。
+border-bottom-color	设置元素的下边框的颜色。
+border-bottom-style	设置元素的下边框的样式。
+border-bottom-width	设置元素的下边框的宽度。
+border-left	简写属性，用于把左边框的所有属性设置到一个声明中。
+border-left-color	设置元素的左边框的颜色。
+border-left-style	设置元素的左边框的样式。
+border-left-width	设置元素的左边框的宽度。
+border-right	简写属性，用于把右边框的所有属性设置到一个声明中。
+border-right-color	设置元素的右边框的颜色。
+border-right-style	设置元素的右边框的样式。
+border-right-width	设置元素的右边框的宽度。
+border-top	简写属性，用于把上边框的所有属性设置到一个声明中。
+border-top-color	设置元素的上边框的颜色。
+border-top-style	设置元素的上边框的样式。
+border-top-width	设置元素的上边框的宽度。
+
+
+margin	简写属性。在一个声明中设置所有外边距属性。
+margin-bottom	设置元素的下外边距。
+margin-left	设置元素的左外边距。
+margin-right	设置元素的右外边距。
+margin-top	设置元素的上外边距。
+
+
+外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距。
+合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。
+------------------------------------------------------------------------------------------------------------
+
+CSS 定位 (Positioning) 属性允许你对元素进行定位。
+
+display 属性规定元素应该生成的框的类型。
+none	此元素不会被显示。
+block	此元素将显示为块级元素，此元素前后会带有换行符。
+inline	默认。此元素会被显示为内联元素，元素前后没有换行符。
+inline-block	行内块元素。（CSS2.1 新增的值）
+list-item	此元素会作为列表显示。
+
+
+position 
+static
+元素框正常生成。块级元素生成一个矩形框，作为文档流的一部分，行内元素则会创建一个或多个行框，置于其父元素中。
+生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。
+relative
+元素框偏移某个距离。元素仍保持其未定位前的形状，它原本所占的空间仍保留。
+生成相对定位的元素，相对于其正常位置进行定位。
+absolute
+元素框从文档流完全删除，并相对于其包含块定位。包含块可能是文档中的另一个元素或者是初始包含块。
+元素原先在正常文档流中所占的空间会关闭，就好像元素原来不存在一样。元素定位后生成一个块级框，而不论原来它在正常流中生成何种类型的框。
+fixed
+元素框的表现类似于将 position 设置为 absolute，不过其包含块是视窗本身。
+生成绝对定位的元素，相对于浏览器窗口进行定位。
+
+
+float
+float 属性定义元素在哪个方向浮动。以往这个属性总应用于图像，使文本围绕在图像周围，不过在 CSS 中，任何元素都可以浮动。浮动元素会生成一个块级框，而不论它本身是何种元素。
+left	元素向左浮动。
+right	元素向右浮动。
+none	默认值。元素不浮动，并会显示在其在文本中出现的位置。
+inherit	规定应该从父元素继承 float 属性的值。
+--------------------------------------------------------------------------------------------------------------
+
+使用 margin 属性来水平对齐：
+margin-left:auto;
+margin-right:auto;
+
+使用 position 属性进行左和右对齐
+position:absolute;
+right:0px;
+width:300px;
+
+使用 float 属性来进行左和右对齐
+
+float:right;
+width:300px;
+
+
+------------------------------------------------------------------------------------------------------------
+
+CSS 尺寸属性
+CSS 尺寸属性允许你控制元素的高度和宽度。同样，还允许你增加行间距。
+属性	描述
+height	设置元素的高度。
+line-height	设置行高。
+max-height	设置元素的最大高度。
+max-width	设置元素的最大宽度。
+min-height	设置元素的最小高度。
+min-width	设置元素的最小宽度。
+width	设置元素的宽度。
+
+
+CSS 分类属性 (Classification)
+CSS 分类属性允许你控制如何显示元素，设置图像显示于另一元素中的何处，相对于其正常位置来定位元素，使用绝对值来定位元素，以及元素的可见度。
+
+
+clear	设置一个元素的侧面是否允许其他的浮动元素。
+left	在左侧不允许浮动元素。
+right	在右侧不允许浮动元素。
+both	在左右两侧均不允许浮动元素。
+none	默认值。允许浮动元素出现在两侧。
+inherit	规定应该从父元素继承 clear 属性的值。
+
+cursor	规定当指向某元素之上时显示的指针类型。
+url	
+需使用的自定义光标的 URL。
+注释：请在此列表的末端始终定义一种普通的光标，以防没有由 URL 定义的可用光标。
+default	默认光标（通常是一个箭头）
+auto	默认。浏览器设置的光标。
+crosshair	光标呈现为十字线。
+pointer	光标呈现为指示链接的指针（一只手）
+move	此光标指示某对象可被移动。
+e-resize	此光标指示矩形框的边缘可被向右（东）移动。
+ne-resize	此光标指示矩形框的边缘可被向上及向右移动（北/东）。
+nw-resize	此光标指示矩形框的边缘可被向上及向左移动（北/西）。
+n-resize	此光标指示矩形框的边缘可被向上（北）移动。
+se-resize	此光标指示矩形框的边缘可被向下及向右移动（南/东）。
+sw-resize	此光标指示矩形框的边缘可被向下及向左移动（南/西）。
+s-resize	此光标指示矩形框的边缘可被向下移动（南）。
+w-resize	此光标指示矩形框的边缘可被向左移动（西）。
+text	此光标指示文本。
+wait	此光标指示程序正忙（通常是一只表或沙漏）。
+help	此光标指示可用的帮助（通常是一个问号或一个气球）。
+
+display	设置是否及如何显示元素。
+float	定义元素在哪个方向浮动。
+position	把元素放置到一个静态的、相对的、绝对的、或固定的位置中。
+visibility	设置元素是否可见或不可见。
+
+----------------------------------------------------------------------------------
+
+CSS3 
+
+border-radius
+
+box-shadow
+
+h-shadow	必需。水平阴影的位置。允许负值。
+v-shadow	必需。垂直阴影的位置。允许负值。	
+blur	可选。模糊距离。
+spread	可选。阴影的尺寸。
+color	可选。阴影的颜色。请参阅 CSS 颜色值。	
+inset	可选。将外部阴影 (outset) 改为内部阴影。
+
+border-image
+border-image-source	用在边框的图片的路径。	
+border-image-slice	图片边框向内偏移。	
+border-image-width	图片边框的宽度。	
+border-image-outset	边框图像区域超出边框的量。	
+border-image-repeat	图像边框是否应平铺(repeated)、铺满(rounded)或拉伸(stretched)。
+
+
+text-shadow
+word-wrap
+
+
+hanging-punctuation	规定标点字符是否位于线框之外。	3
+punctuation-trim	规定是否对标点字符进行修剪。	3
+text-align-last	设置如何对齐最后一行或紧挨着强制换行符之前的行。	3
+text-emphasis	向元素的文本应用重点标记以及重点标记的前景色。	3
+text-justify	规定当 text-align 设置为 "justify" 时所使用的对齐方法。	3
+text-outline	规定文本的轮廓。	3
+text-overflow	规定当文本溢出包含元素时发生的事情。	3
+text-shadow	向文本添加阴影。	3
+text-wrap	规定文本的换行规则。	3
+word-break	规定非中日韩文本的换行规则。	3
+word-wrap	允许对长的不可分割的单词进行分割并换行到下一行。
+
+
+
+CSS3 过渡
+CSS3 过渡是元素从一种样式逐渐改变为另一种的效果。
+要实现这一点，必须规定两项内容：
+规定您希望把效果添加到哪个 CSS 属性上
+规定效果的时长
+div
+{
+width:100px;
+height:100px;
+background:yellow;
+transition:width 2s;
+-moz-transition:width 2s; /* Firefox 4 */
+-webkit-transition:width 2s; /* Safari and Chrome */
+-o-transition:width 2s; /* Opera */
+}
+
+div:hover
+{
+width:300px;
+}
+
+
+向宽度、高度和转换添加过渡效果：
+div
+{
+transition: width 2s, height 2s, transform 2s;
+-moz-transition: width 2s, height 2s, -moz-transform 2s;
+-webkit-transition: width 2s, height 2s, -webkit-transform 2s;
+-o-transition: width 2s, height 2s,-o-transform 2s;
+}
+
+
+透明/不透明
+img
+{
+  opacity:0.4;
+  filter:alpha(opacity=40); /* IE8 及其更早版本 */
+}
