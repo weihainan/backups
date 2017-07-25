@@ -1,0 +1,78 @@
+.alternate-button-wrapper{
+	padding:0;
+	width:240px;
+	height:30px;
+	background:#F2F2F2;
+	border-radius:6px;
+	-webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+	text-align:justify;
+	outline: none;
+}
+
+.alternate-button-wrapper > button{
+	padding:0;
+	margin:0;
+	width:48%;
+	height:100%;
+	border-radius:6px;
+	-webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+	display: inline-block;
+	outline: none;
+	border:0;
+}
+
+.alternate-button-wrapper .active{
+		width:50%;
+		background:#53A6F1;
+}
+
+.circle-radius  {
+	width:60px;
+	height:60px;
+	border-radius:50%;
+	background:#A4B6C1;
+	color:white;
+	text-align:center;
+	line-height:60px; 
+	display:block;
+	margin:20px;
+}
+.circle-radius:hover{
+	background:#53A6F1;
+	box-shadow: 0px 8px 8px #ADB8BC;
+	transition: background box-shadow 2s;
+}
+
+    #login
+    {
+        display:none;
+        border:1em solid #3366FF;
+        height:30%;
+        width:50%;
+        position:absolute;/*让节点脱离文档流,我的理解就是,从页面上浮出来,不再按照文档其它内容布局*/
+        top:24%;/*节点脱离了文档流,如果设置位置需要用top和left,right,bottom定位*/
+        left:24%;
+        z-index:2;/*个人理解为层级关系,由于这个节点要在顶部显示,所以这个值比其余节点的都大*/
+        background: white;
+    }
+	
+	
+.newlast{
+	margin: 0 0 0 20px;
+	padding: 0 0 0 10px;
+	border-left:#51A6F6 2px solid;
+	color:#51A6F6;
+}
+
+
+.newlast span{
+	color:#ABABAB;
+	font-size:40%;
+	margin-left:5px;
+}

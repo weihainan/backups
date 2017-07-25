@@ -1,5 +1,15 @@
 http://www.w3school.com.cn/css/index.asp
 
+http://css3generator.com/
+http://enjoycss.com/
+https://www.oschina.net/translate/free-css3-generators
+
+
+http://www.cnblogs.com/jdonson/archive/2011/06/10/2077932.html display:inline、block、inline-block的区别
+
+
+http://blog.csdn.net/u011047006/article/details/52597178
+
 CSS 后代选择器
 后代选择器（descendant selector）又称为包含选择器。
 后代选择器可以选择作为某元素后代的元素。

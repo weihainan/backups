@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>learn</title>
+	<link rel="stylesheet" type="text/css" href="./styles/app.css" />
+	<link rel="stylesheet" type="text/css" href="./styles/main.css" />
+</head>
+<body>
+
+  <a href="javascript:show()">弹出</a>
+  <div id="login">
+      <a href="javascript:hide()">关闭</a>
+      <div>这里是关闭弹窗的内容</div>
+  </div>
+  <div id="over" class="mask"></div>
+
+<div class="alternate-button-wrapper">
+  <button id="reject" type="button" class="active" onclick="change('REJECT')">全部案子</button>
+  <button id="pass" class="" type="button" onclick="change('PASS')">3级以上难度</button>
+</div>
+
+<div class="circle-radius"> 1 </div>
+<div class="circle-radius"> 2 </div>
+<div class="circle-radius"> 3 </div>
+
+  
+<div class="newlast"> 最新 <span>（点击添加可以将该竞品添加到竞品搜集中）<span> </div>
+
+<script>
+
+function change(state){
+ var x=document.getElementById('pass');
+ var y=document.getElementById('reject');
+ x.setAttribute("class", state == 'PASS' ? 'active':'');
+ y.setAttribute("class", state == 'REJECT' ? 'active':'');
+}
+
+
+var login = document.getElementById('login');
+var over = document.getElementById('over');
+    function show()
+    {
+        login.style.display = "block";
+        over.style.display = "block";
+    }
+    function hide()
+    {
+        login.style.display = "none";
+        over.style.display = "none";
+    }
+</script>
+
+</body>
+</html>
