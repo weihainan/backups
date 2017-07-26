@@ -5,13 +5,23 @@
     <title>learn</title>
 	<link rel="stylesheet" type="text/css" href="./styles/app.css" />
 	<link rel="stylesheet" type="text/css" href="./styles/main.css" />
+	<link rel="stylesheet" type="text/css" href="./images/css/font-awesome.css" />
 </head>
 <body>
 
   <a href="javascript:show()">弹出</a>
   <div id="login">
-      <a href="javascript:hide()">关闭</a>
-      <div>这里是关闭弹窗的内容</div>
+      <div class="header"><span class="title">优先级配置</span> <a href="javascript:hide()" class="close fa-close"></a></div>
+      <div>
+	      <p class="clearfix">
+		      <label style="vertical-align:top;text-align:right;">等级：</label> 
+		      <input type="text" />
+		  </p>
+	      <p class="clearfix">
+			  <label style="vertical-align:top;text-align:right;">等级描述：</label> 
+		      <textarea rows="5" cols="25"></textarea>
+		  </p>
+	  </div>
   </div>
   <div id="over" class="mask"></div>
 
@@ -23,6 +33,8 @@
 <div class="circle-radius"> 1 </div>
 <div class="circle-radius"> 2 </div>
 <div class="circle-radius"> 3 </div>
+
+ <div class="linear"></div>  
 
   
 <div class="newlast"> 最新 <span>（点击添加可以将该竞品添加到竞品搜集中）<span> </div>

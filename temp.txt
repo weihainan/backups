@@ -180,3 +180,14 @@ $: "jquery"
  
  
  http://www.cnblogs.com/luozhihao/p/5579786.html  react
+ 
+ 
+ 
+ 
+ 
+ 
+ ------------------------------------------------------------------------
+ 
+ http://www.jianshu.com/p/4df92c335617
+ https://segmentfault.com/a/1190000008257732
+ 

@@ -48,7 +48,7 @@ body, input, button, select, textarea {
     /*background-color: transparent;*/
 /*}*/
 
-button, textarea, img {
+button, img {
     border:none;
     background: transparent;
     outline: none;
@@ -62,7 +62,7 @@ table {
     border-collapse: collapse;
     border-spacing: 0
 }
-input {
+input, textarea {
     background-color: #fff;
     border: 1px solid #BEBFBF;
     border-radius: 2px;
