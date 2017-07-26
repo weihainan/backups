@@ -22,7 +22,7 @@ body {
 	background-color:#F6F6F6;
 }
 
-body, input, button, select, textarea {
+body, input, button, select, textarea, li{
     font-family: Microsoft YaHei, Arial, Helvetica, sans-serif;
     font-weight: normal;
 }
@@ -54,6 +54,8 @@ button, textarea, img {
     background: transparent;
     outline: none;
 }
+
+a, a:hover{text-decoration: none;}
 
 ol, ul {
     list-style: none
