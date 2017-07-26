@@ -219,6 +219,26 @@ ctrl+shift+F10  正常运行java类
                    .toString();
        }
 
+   (3  使用guava cache作为内存中的缓存
+   
+	   private Cache<String, Map<String, Integer>> standardLaborTimeCache = CacheBuilder.newBuilder()
+            .maximumSize(100).expireAfterWrite(3600, TimeUnit.SECONDS).build();
+	  
+	  public Map<String, Integer> getCaseStandardLaborTime(final String caseType, final int difficulty) {
+        String key = String.format("%s_%d", caseType, difficulty);
+        try {
+            return standardLaborTimeCache.get(key, new Callable<Map<String, Integer>>() {
+                @Override
+                public Map<String, Integer> call() throws Exception {
+                    return httpClient.getForObject(methodologyHost+STANDARD_TIME_URL, Map.class, caseType, difficulty);
+                }
+            });
+        } catch (ExecutionException e) {
+            LOGGER.error("getCaseStandardLaborTime error", e);
+        }
+        return Collections.emptyMap();
+      }	
+			
 (4) list
 
 
