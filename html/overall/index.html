@@ -11,16 +11,20 @@
 
   <a href="javascript:show()">弹出</a>
   <div id="login">
-      <div class="header"><span class="title">优先级配置</span> <a href="javascript:hide()" class="close fa-close"></a></div>
+      <div class="header"><span class="title">优先级配置</span> <button onclick="hide()" class="close fa-close"></button></div>
       <div>
-	      <p class="clearfix">
+	      <div class="input_wrapper">
 		      <label style="vertical-align:top;text-align:right;">等级：</label> 
 		      <input type="text" />
-		  </p>
-	      <p class="clearfix">
+		  </div>
+	      <div class="input_wrapper">
 			  <label style="vertical-align:top;text-align:right;">等级描述：</label> 
 		      <textarea rows="5" cols="25"></textarea>
-		  </p>
+		  </div>
+		  <div class="input_wrapper"> 
+             <button type="button" class="confirm" onclick="hide()">确定</button>
+             <button class="cancel" type="button" onclick="hide()">取消</button>
+		  </div>
 	  </div>
   </div>
   <div id="over" class="mask"></div>

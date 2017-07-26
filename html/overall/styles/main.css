@@ -52,7 +52,7 @@
     #login
     {
         display:none;
-        border-radius:10px;
+        border-radius:8px;
         height:255px;
         width:420px;
         position:absolute;/*让节点脱离文档流,我的理解就是,从页面上浮出来,不再按照文档其它内容布局*/
@@ -66,7 +66,34 @@
 	width:420px;
 	height:40px;
 	background: #5EC9AA;
-	border-radius:10px 10px 0 0;
+	border-radius:8px 8px 0 0;
+}
+
+.confirm{
+	width:70px;
+	height:25px;
+	border-radius:4px;
+    background:#53A6F1;
+	margin-right:10px;
+	margin-left:200px;
+	color:#FFF9FB;
+}
+
+.confirm:hover{
+background:#5294EB;
+}
+
+.cancel{
+	width:70px;
+	height:25px;
+	border-radius:4px;
+    background:#CCCCCC;
+	margin-right:20px;
+		color:#FFF9FB;
+}
+	
+.cancel:hover{
+background:#999999;
 }
 	
 .title{
@@ -89,9 +116,18 @@
 	background-image:;
 }
 
-.clearfix{
-	padding-left:20px;
-	margin-top:10px;
+.input_wrapper{
+	margin-left:40px;
+	margin-top:15px;
+}
+
+.input_wrapper label{
+	display:inline-block;
+	width:80px;
+	text-align:right;
+	display:inline-block;
+	font-weight:bold;
+	margin-right:10px;
 }
 	
 .newlast{
