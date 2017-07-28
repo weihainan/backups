@@ -1,8 +1,19 @@
+import 'core-js/fn/object/assign';
 import React from 'react';
-import ReactDom from 'react-dom';
-import Component from './components/Component.jsx';
+import ReactDOM from 'react-dom';
+import {createStore, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
 
-ReactDom.render(
-    <Component />,
-    document.getElementById('content')
+import reducer from './reducers';
+import AppleBasket from './components/AppleBasket.jsx';
+
+
+const store = createStore(reducer, applyMiddleware(thunk));
+
+ReactDOM.render(
+    <Provider store={store}>
+        <AppleBasket />
+    </Provider>,
+    document.getElementById('app')
 );

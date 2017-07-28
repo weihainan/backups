@@ -8,8 +8,8 @@ module.exports = {//注意这里是exports不是export
         path: __dirname + "/build",//打包后的js文件存放的地方
         filename: "bundle.js"//打包后的js文件名
     },
-	
-	module: {
+
+    module: {
         //loaders加载器
         loaders: [
             {
@@ -17,23 +17,41 @@ module.exports = {//注意这里是exports不是export
                 exclude: /node_modules/,//屏蔽不需要处理的文件（文件夹）（可选）
                 loader: 'babel-loader'//loader的名称（必须）
             },
-			{
-                test: /\.scss$/,//loaders是依靠正则表达式来测试这个文件是不是这个loader来处理，所以test不能少
-                loaders: ['style-loader','css-loader','sass-loader'],
-                //"-loader"一定要写，不然会报错
-                //loaders的处理顺序是从右向左，就是会先用sass-loader，其次css-loader，再次style-loader
+            {
+                test: /\.css$/,
+                loader: 'style-loader!css-loader'
             },
             {
-               test: /\.(png|jpq)$/,
-               loader: 'url?limit = 40000'
-            }			
+                test: /\.sass/,
+                loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded&indentedSyntax'
+            },
+            {
+                test: /\.scss/,
+                loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
+            },
+            {
+                test: /\.less/,
+                loader: 'style-loader!css-loader!less-loader'
+            },
+            {
+                test: /\.styl/,
+                loader: 'style-loader!css-loader!stylus-loader'
+            },
+            {
+                test: /\.(png|jpg|gif|woff|woff2)$/,
+                loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]'
+            },
+            {
+                test: /\.(mp4|ogg|svg)$/,
+                loader: 'file-loader'
+            }
         ]
     },
-	
-	plugins: [
-       new webpack.HotModuleReplacementPlugin()//热加载插件
+
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()//热加载插件
     ],
-	
+
     //webpack-dev-server配置
     devServer: {
         contentBase: './build',//默认webpack-dev-server会为根文件夹提供本地服务器，如果想为另外一个目录下的文件提供本地服务器，应该在这里设置其所在目录（本例设置到"build"目录）
