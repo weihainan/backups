@@ -13,7 +13,8 @@ class AppleBusket extends React.Component {
     }
 
     componentDidMount() {
-
+        let {actions} = this.props;
+        actions.init();
     }
 
     componentWillUnmount() {
@@ -33,11 +34,13 @@ class AppleBusket extends React.Component {
                 weight: 0
             }
         };
-        this.props.appleBasket.apples.forEach(apple => {
-            let selector = apple.isEaten ? 'appleEaten' : 'appleNow';
-            status[selector].quantity++;
-            status[selector].weight += apple.weight;
-        });
+        if(this.props.appleBasket.apples) {
+            this.props.appleBasket.apples.forEach(apple => {
+                let selector = apple.isEaten ? 'appleEaten' : 'appleNow';
+                status[selector].quantity++;
+                status[selector].weight += apple.weight;
+            });
+        }
         return status;
     }
 

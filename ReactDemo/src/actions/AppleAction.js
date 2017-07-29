@@ -1,56 +1,73 @@
-export const BEGIN_PICK_APPLE = 'apple/BEGIN_PICK_APPLE'
-export const DONE_PICK_APPLE = 'apple/DONE_PICK_APPLE'
-export const FAIL_PICK_APPLE = 'apple/FAIL_PICK_APPLE'
+import AppleService from '../services/AppleService'
 
-export const EAT_APPLE = 'apple/EAT_APPLE'
+
+export const FETCH_APPLES = 'FETCH_APPLES'
+export const FETCH_APPLES_SUCCESS = 'FETCH_APPLES_SUCCESS'
+export const FETCH_APPLES_FAIL = 'FETCH_APPLES_FAIL'
+
+export const PICK_APPLE = 'PICK_APPLE'
+export const PICK_APPLE_SUCCESS = 'PICK_APPLE_SUCCESS'
+export const PICK_APPLE_FAIL = 'PICK_APPLE_FAIL'
+
+export const EAT_APPLE = 'EAT_APPLE'
+export const EAT_APPLE_SUCCESS = 'EAT_APPLE_SUCCESS'
+export const EAT_APPLE_FAIL = 'EAT_APPLE_FAIL'
 
 let actions = {
+
+    init: ()=> {
+        return function (dispatch, getState) {
+            AppleService.getApples().then(value => {
+                dispatch(actions[FETCH_APPLES_SUCCESS](!value ? [] : value));
+            });
+        }
+    },
+
+    eatApple: (id)=> {
+        return function (dispatch, getState) {
+            AppleService.eat(id).then(value => {
+                AppleService.getApples().then(value => {
+                    dispatch(actions[FETCH_APPLES_SUCCESS](!value ? [] : value));
+                });
+            });
+        }
+    },
 
     pickApple: ()=> {
         //在函数体内可以使用 dispatch 方法来发射其他action
         //在函数体内可以使用 getState 方法来获取当前的state
         return function (dispatch, getState) {
-
             /** 如果正在摘苹果，则结束这个thunk, 不执行摘苹果 */
             if (getState().appleBasket.isPicking) {
                 return;
             }
-
             /** 通知开始摘苹果 */
-            dispatch(actions.beginPickApple());
-            let url = 'https://hacker-news.firebaseio.com/v0/jobstories.json';
-            fetch(url)
-                .then(res => {
-                    if (res.status != 200) dispatch(
-                        actions.failPickApple(res.statusText)
-                    );
-                    let weight = Math.floor(200 + Math.random() * 50);
-                    dispatch(actions.donePickApple(weight));
-                }).catch(e => {
-                dispatch(actions.failPickApple(e.statusText));
+            dispatch(actions[PICK_APPLE]());
+            AppleService.getOne().then(res => {
+                dispatch(actions[PICK_APPLE_SUCCESS]());
+                AppleService.getApples().then(value => {
+                    dispatch(actions[FETCH_APPLES_SUCCESS](!value ? [] : value));
+                });
+            }).catch(e => {
+                dispatch(actions[PICK_APPLE_FAIL](e.message));
             });
         }
     },
-    beginPickApple: () => ({
-        type: BEGIN_PICK_APPLE
+
+    [FETCH_APPLES_SUCCESS]: (list)=>({
+        type: FETCH_APPLES_SUCCESS,
+        payload: list
     }),
 
-    donePickApple: appleWeight => ({
-        type: DONE_PICK_APPLE,
-        payload: appleWeight
+    [PICK_APPLE]: ()=> ({
+        type: PICK_APPLE,
     }),
-
-    failPickApple: errMsg => ({
-        type: FAIL_PICK_APPLE,
-        payload: new Error(errMsg),
-        error: true
+    [PICK_APPLE_SUCCESS]: ()=> ({
+        type: PICK_APPLE_SUCCESS,
     }),
-
-    eatApple: appleId => ({
-        type: EAT_APPLE,
-        payload: appleId
-    })
-
+    [PICK_APPLE_FAIL]: ()=> ({
+        type: PICK_APPLE_FAIL,
+    }),
 };
 
 export default actions;

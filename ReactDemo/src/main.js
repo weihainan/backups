@@ -8,7 +8,6 @@ import thunk from 'redux-thunk';
 import reducer from './reducers';
 import AppleBasket from './components/AppleBasket.jsx';
 
-
 const store = createStore(reducer, applyMiddleware(thunk));
 
 ReactDOM.render(

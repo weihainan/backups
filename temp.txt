@@ -203,10 +203,8 @@ cnpm install -g webpack
 
 cnpm install --save-dev webpack
 
-
-
 cnpm install --save-dev react react-dom
-cnpm install --save-dev babel-core babel-loader  babel-preset-es2015 babel-preset-react
+cnpm install --save-dev babel-cli babel-core babel-loader  babel-preset-es2015 babel-preset-react
 cnpm install --save-dev webpack-dev-server
 
 cnpm install --save-dev babel-plugin-react-transform react-transform-hmr
@@ -245,3 +243,31 @@ style-loader 将样式添加进 DOM 中)
 14: npm install autoprefixer-loader --save-dev//
 15: npm install vue --save-dev//
 16: npm install -d //将项目中package.json依赖的包全部下载到该项目中
+
+
+# 最新转码规则
+$ npm install --save-dev babel-preset-latest
+
+# react 转码规则
+$ npm install --save-dev babel-preset-react
+
+# 不同阶段语法提案的转码规则（共有4个阶段），选装一个
+$ npm install --save-dev babel-preset-stage-0
+$ npm install --save-dev babel-preset-stage-1
+$ npm install --save-dev babel-preset-stage-2
+$ npm install --save-dev babel-preset-stage-3
+
+ {
+    "presets": [
+      "latest",
+      "react",
+      "stage-2"
+    ],
+    "plugins": []
+  }
+  
+  npm i -g eslint-config-airbnb
+  {
+  "extends": "eslint-config-airbnb"
+  }
+  eslint index.js
