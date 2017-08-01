@@ -34,7 +34,7 @@ class AppleBusket extends React.Component {
                 weight: 0
             }
         };
-        if(this.props.appleBasket.apples) {
+        if (this.props.appleBasket.apples) {
             this.props.appleBasket.apples.forEach(apple => {
                 let selector = apple.isEaten ? 'appleEaten' : 'appleNow';
                 status[selector].quantity++;
@@ -53,7 +53,7 @@ class AppleBusket extends React.Component {
             }
         });
 
-        if (!data.length) data.push(<div className="empty-tip" key="empty">苹果篮子空空如也</div>);
+        if (!data.length) data.push(<div className="empty-tip" key="empty">苹果篮子空空如也.</div>);
 
         return data;
     }
@@ -101,6 +101,11 @@ class AppleBusket extends React.Component {
         );
     }
 }
+
+AppleBusket.propTypes = {
+    isPicking: React.PropTypes.bool.isRequired,
+    apples: React.PropTypes.array.isRequired
+};
 
 const mapStateToProps = state => ({
     appleBasket: state.appleBasket

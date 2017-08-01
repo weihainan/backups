@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2015/12/7.
  */
-import $ from 'jquery'
+// import $ from 'jquery'
 import CONFIG from '../constants/config'
 import auth from './auth'
 import fetch from 'isomorphic-fetch'
@@ -43,7 +43,7 @@ export default class {
                     return Promise.reject(json)
                 }
                 console.log(JSON.stringify(camelizeKeys(json)))
-                return json
+                return camelizeKeys(json);
             }).catch(e => {
                 if (response.ok) {
                     return {}
@@ -53,17 +53,17 @@ export default class {
             })
         })
     }
-
-    ajaxUnauthorized(url, method, data, headers) {
-        return $.ajax({
-            url: url,
-            headers: headers,
-            dataType: 'json',
-            type: method.toUpperCase(),
-            data: data,
-            cache: false
-        })
-    }
+    //
+    // ajaxUnauthorized(url, method, data, headers) {
+    //     return $.ajax({
+    //         url: url,
+    //         headers: headers,
+    //         dataType: 'json',
+    //         type: method.toUpperCase(),
+    //         data: data,
+    //         cache: false
+    //     })
+    // }
 
     ufRequest({endpoint, body, method = 'get', withAuthToken = true}) {
         let apiUrl = `${CONFIG.api_protocol}://${CONFIG.uf.host}/${CONFIG.uf.version}/${endpoint}`

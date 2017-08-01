@@ -1,5 +1,5 @@
 import {fromJS} from 'immutable';
-import * as actionTypes from '../actions/AppleAction'
+import * as actionTypes from '../actions/AppleAction.js'
 
 const initialState = {
     isPicking: false,
@@ -18,13 +18,10 @@ export default (state = initialState, action) => {
             return state;
 
         case actionTypes.PICK_APPLE:
-            /** 将isPicking设置true */
             return fromJS(state).set('isPicking', true).toJS();
         case actionTypes.PICK_APPLE_SUCCESS:
-            /** 将isPicking设置false */
             return fromJS(state).set('isPicking', false).toJS();
         case actionTypes.PICK_APPLE_FAIL:
-            /** 将isPicking设置false */
             return fromJS(state).set('isPicking', false).toJS();
 
         case actionTypes.EAT_APPLE:
