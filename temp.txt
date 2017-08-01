@@ -202,24 +202,21 @@ cnpm install -g webpack
 //在本项目中安装webpack，--save-dev的意思是将依赖写入项目的package.json文件
 
 cnpm install --save-dev webpack
-
-cnpm install --save-dev react react-dom
-cnpm install --save-dev babel-cli babel-core babel-loader  babel-preset-es2015 babel-preset-react
 cnpm install --save-dev webpack-dev-server
 
+cnpm install --save-dev babel-cli babel-core babel-loader  babel-preset-es2015 babel-preset-react
 cnpm install --save-dev babel-plugin-react-transform react-transform-hmr
+
+cnpm install --save-dev react react-dom
+cnpm install --save-dev react-router
+
 
 cnpm install --save-dev style-loader css-loader sass-loader
 cnpm install --save-dev url-loader file-loader
+cnpm install node-sass@latest
 
 cnpm --save-dev jquery moment
-
-npm uninstall babel
-cnpm install --save-dev babel-cli
-
 cnpm install --save-dev immutability
-
-cnpm install node-sass@latest
 
 
 webpack常用的插件安装命令
@@ -271,3 +268,33 @@ $ npm install --save-dev babel-preset-stage-3
   "extends": "eslint-config-airbnb"
   }
   eslint index.js
+  
+  
+----------------------------------------------------------------------------
+
+http://www.cnblogs.com/BestMePeng/p/React_Router.html
+
+http://luckykun.com/work/2016-05-10/es6-feature.html ES6
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {createStore, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux'
+import {Route, IndexRoute, hashHistory, Router} from 'react-router';
+import thunk from 'redux-thunk';
+import reducer from './reducers';
+import AppleBasket from './components/AppleBasket.jsx';
+
+const store = createStore(reducer, applyMiddleware(thunk));
+
+ReactDOM.render(
+    <Provider store={store}>
+        <Router history={hashHistory}>
+            <Route path="/" component={AppleBasket}>
+            </Route>
+        </Router>
+    </Provider>,
+    document.getElementById('app')
+)
+
