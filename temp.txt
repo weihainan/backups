@@ -275,26 +275,4 @@ $ npm install --save-dev babel-preset-stage-3
 http://www.cnblogs.com/BestMePeng/p/React_Router.html
 
 http://luckykun.com/work/2016-05-10/es6-feature.html ES6
-
-
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {createStore, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux'
-import {Route, IndexRoute, hashHistory, Router} from 'react-router';
-import thunk from 'redux-thunk';
-import reducer from './reducers';
-import AppleBasket from './components/AppleBasket.jsx';
-
-const store = createStore(reducer, applyMiddleware(thunk));
-
-ReactDOM.render(
-    <Provider store={store}>
-        <Router history={hashHistory}>
-            <Route path="/" component={AppleBasket}>
-            </Route>
-        </Router>
-    </Provider>,
-    document.getElementById('app')
-)
-
+https://ant.design/docs/react/introduce-cn

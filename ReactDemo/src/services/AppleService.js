@@ -3,17 +3,17 @@ import BaseService from './baseService.js'
 export default new class AppleService extends BaseService {
 
     getApples() {
-        let endPoint = `/apples`;
+        let endPoint = `apples`;
         return super.ufRequest({endpoint: endPoint, body: null, method: 'get', withAuthToken: false});
     }
 
     eat(id) {
-        let endPoint = `/apples/${id}`;
+        let endPoint = `apples/${id}`;
         return super.ufRequest({endpoint: endPoint, body: {}, method: 'post', withAuthToken: false});
     }
 
     pickApple() {
-        let endPoint = `/apples`;
+        let endPoint = `apples`;
         return super.ufRequest({endpoint: endPoint, body: {}, method: 'post', withAuthToken: false});
     }
 
