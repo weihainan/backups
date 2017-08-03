@@ -2,6 +2,8 @@
 
 import React from 'react';
 import {Link, hashHistory} from 'react-router';
+import {remove} from '../utils/localstorageUtils';
+import {getItem} from '../utils/localstorageUtils';
 
 
 // 引入Antd的导航组件
@@ -38,12 +40,13 @@ class App extends React.Component {
 
     componentDidMount() {
         this.setState({
-            username: 'luckykun'
+            username: !getItem('admin') ? '': getItem('admin').name
         });
     }
 
     loginout() {
         console.log(`${this.state.username} login out ...`)
+        remove('admin');
         hashHistory.push({pathname: '/login'})
     }
 

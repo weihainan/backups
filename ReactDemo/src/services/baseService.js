@@ -26,7 +26,11 @@ export default class {
             headers
         };
 
-        if (['get', 'head'].indexOf(method) !== -1 && body) {
+        // if (['get', 'head'].indexOf(method) !== -1 && body) {
+        //     settings['body'] = JSON.stringify(body)
+        // }
+
+        if (![ 'get', 'head' ].includes(_method) && body) {
             settings['body'] = JSON.stringify(body)
         }
 
