@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/AppleItem.css';
+import '../../styles/AppleItem.css';
 
 class AppleItem extends React.Component {
 
@@ -12,7 +12,7 @@ class AppleItem extends React.Component {
 
         return (
             <div className="appleItem">
-                <div className="apple"><img src={require('../images/apple.png')} alt="apple"/></div>
+                <div className="apple"><img src={require('../../images/apple.png')} alt="apple"/></div>
                 <div className="info">
                     <div className="name">红苹果 - { apple.id }号</div>
                     <div className="weight">{ apple.weight }克</div>

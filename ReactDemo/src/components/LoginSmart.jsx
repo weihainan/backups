@@ -5,7 +5,7 @@ import {Form, Icon, Input, Button, Checkbox} from 'antd';
 import adminActions from '../actions/AdminAction'
 import {getItem} from '../utils/localstorageUtils';
 import {hashHistory} from 'react-router';
-import {Alert} from 'antd';
+import {message} from 'antd';
 
 const FormItem = Form.Item;
 
@@ -34,17 +34,21 @@ class NormalLoginForm extends React.Component {
         });
     }
 
+    error = (errorMsg)=>{
+          if(errorMsg){
+              message.info(errorMsg);
+          }
+    }
+
     render() {
         let {adminState} = this.props;
         let {logining, errorMsg} = adminState;
 
+        this.error(errorMsg)
+
         const {getFieldDecorator} = this.props.form;
         return (
-
             <div>
-
-                {errorMsg ? <Alert message="登录失败" description={errorMsg} type="warning" showIcon/> : null}
-
                 <div id="components-form-demo-normal-login">
 
                     <Form onSubmit={this.handleSubmit} className="login-form">

@@ -10,7 +10,10 @@ export default (state = initialState, action) => {
 
     switch (action.type) {
         case actionTypes.LOGIN:
-            return fromJS(state).set('logining', true).toJS();
+            return fromJS(state)
+                .set('logining', true)
+                .set('errorMsg', '')
+                .toJS();
         case actionTypes.LOGIN_SUCCESS:
             return fromJS(state)
                 .set('logining', false)

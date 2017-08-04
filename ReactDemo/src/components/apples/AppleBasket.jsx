@@ -2,9 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import actions from '../actions/appleAction.js';
+import actions from '../../actions/appleAction.js';
 import AppleItem from './AppleItem.jsx';
-import '../styles/AppleBasket.scss';
+import '../../styles/AppleBasket.scss';
 
 class AppleBusket extends React.Component {
 
@@ -69,33 +69,35 @@ class AppleBusket extends React.Component {
         } = status;
 
         return (
-            <div className="appleBusket">
+            <div>
+                <div className="appleBusket">
 
-                <div className="title">苹果篮子</div>
+                    <div className="title">苹果篮子</div>
 
-                <div className="stats">
-                    <div className="section">
-                        <div className="head">当前</div>
-                        <div className="content">
-                            {notEatenQuantity}个苹果，{notEatenWeight}克
+                    <div className="stats">
+                        <div className="section">
+                            <div className="head">当前</div>
+                            <div className="content">
+                                {notEatenQuantity}个苹果，{notEatenWeight}克
+                            </div>
+                        </div>
+                        <div className="section">
+                            <div className="head">已吃掉</div>
+                            <div className="content">
+                                {EatenQuantity}个苹果，{EatenWeight}克
+                            </div>
                         </div>
                     </div>
-                    <div className="section">
-                        <div className="head">已吃掉</div>
-                        <div className="content">
-                            {EatenQuantity}个苹果，{EatenWeight}克
-                        </div>
+
+                    <div className="appleList">
+                        { this.getAppleItem(apples) }
                     </div>
-                </div>
 
-                <div className="appleList">
-                    { this.getAppleItem(apples) }
-                </div>
-
-                <div className="btn-div">
-                    <button className={isPicking ? 'disabled' : ''} onClick={actions.pickApple}>
-                        {!isPicking ? '摘苹果' : '正在摘取中...'}
-                    </button>
+                    <div className="btn-div">
+                        <button className={isPicking ? 'disabled' : ''} onClick={actions.pickApple}>
+                            {!isPicking ? '摘苹果' : '正在摘取中...'}
+                        </button>
+                    </div>
                 </div>
             </div>
         );

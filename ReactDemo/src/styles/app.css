@@ -8,9 +8,9 @@ html, body {
     height: 100%;
 }
 
-*, *:before, *:after {
-    box-sizing: inherit;
-}
+/**, *:before, *:after {*/
+    /*box-sizing: inherit;*/
+/*}*/
 
 html, body, h1, h2, h3, h4, h5, h6, p, div, ol, ul, li {
     margin: 0;
@@ -103,7 +103,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 
 /*清除浮动*/
 .clearfix:after {
-    content: ' ';
+    content: '';
     display: block;
     height: 0;
     visibility: hidden;
