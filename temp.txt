@@ -218,6 +218,10 @@ cnpm install node-sass@latest
 cnpm --save-dev jquery moment
 cnpm install --save-dev immutability
 
+cnpm install --save-dev redux-devtools
+cnpm install --save-dev redux-devtools-log-monitor
+cnpm install --save-dev redux-devtools-dock-monitor
+
 
 webpack常用的插件安装命令
 webpack常用的插件安装命令：
