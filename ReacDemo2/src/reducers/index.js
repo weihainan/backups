@@ -1,5 +1,4 @@
 import {combineReducers} from 'redux';
-import {routerStateReducer} from 'redux-router'
 import appleBasketReducer from './appleBasketReducer';
 import adminReducer from './adminReducer';
 
@@ -11,7 +10,6 @@ import adminReducer from './adminReducer';
  */
 
 const rootReducer = combineReducers({
-    router: routerStateReducer,
     appleBasket: appleBasketReducer,
     adminState: adminReducer,
 });
