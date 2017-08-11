@@ -103,6 +103,7 @@ class ChargeTable extends React.Component {
                     visible={this.state.isAddNewRecord}
                     handleOk={this.handleAddConfirm.bind(this)}
                     handleCancel={this.handleAddcancel.bind(this)}
+                    bordered="true"
                 />
             </div>
         );
