@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Button, Table} from 'antd';
 import AddChargeDialog from './AddChargeDialog';
+import dateUtils from '../../utils/dateUtils'
 
 import './ChargeTable.css'
 
@@ -11,18 +12,21 @@ import './ChargeTable.css'
 const columns = [{
     title: '收支类型',
     dataIndex: 'type',
+    width: 180
 }, {
     title: '金额(￥)',
     dataIndex: 'amount',
 }, {
-    title: '消费类别',
+    title: '消费标签',
     dataIndex: 'label',
 }, {
     title: '备  注',
     dataIndex: 'mark',
+    width: 420
 }, {
     title: '记录时间',
     dataIndex: 'createTime',
+    width: 200
 }];
 
 class ChargeTable extends React.Component {
@@ -37,7 +41,11 @@ class ChargeTable extends React.Component {
 
     componentDidMount() {
         let {actions} = this.props;
-        actions.getCharges();
+        let body={
+            page:1,
+            size:20
+        };
+        actions.getCharges(body);
     }
 
     clickAddButton() {
@@ -63,8 +71,20 @@ class ChargeTable extends React.Component {
         let {chargeTableState, actions} = this.props;
         let {data} = chargeTableState;
         let {items, total} = data;
-        items = items || [];
+
         total = total || 0;
+
+        items = items || [];
+        items.forEach(item=> {
+            let createTime = dateUtils.returnDiffDate(item['createTime']);
+            item['createTime'] = createTime;
+
+            if (item['type'] === 'receipts') {
+                item['type'] = '收入'
+            } else {
+                item['type'] = '支出'
+            }
+        });
         return (
             <div>
                 <div>

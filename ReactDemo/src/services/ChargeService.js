@@ -21,4 +21,19 @@ export default new class ChargeService extends BaseService {
         let endPoint = `personal/charges/year_month`;
         return super.ufRequest({endpoint: endPoint, body: null, method: 'get', withAuthToken: true});
     }
+
+    addLabel(body) {
+        let endPoint = `personal/charge_labels`;
+        return super.ufRequest({endpoint: endPoint, body: null, method: 'post', withAuthToken: true});
+    }
+
+    deleteLabel(id) {
+        let endPoint = `personal/charge_labels/${id}`;
+        return super.ufRequest({endpoint: endPoint, body: {}, method: 'delete', withAuthToken: true});
+    }
+
+    getLabels(body) {
+        let endPoint = `personal/charge_labels`;
+        return super.ufRequest({endpoint: endPoint, body: body, method: 'get', withAuthToken: true});
+    }
 }
