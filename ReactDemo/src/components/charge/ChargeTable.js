@@ -97,13 +97,16 @@ class ChargeTable extends React.Component {
                     <Button type="primary" onClick={this.clickAddButton}>新增账目</Button>
                 </div>
 
-                <Table columns={columns} dataSource={items}/>
+                <Table
+                    columns={columns}
+                    dataSource={items}
+                    bordered="true"
+                />
 
                 <AddChargeDialog
                     visible={this.state.isAddNewRecord}
                     handleOk={this.handleAddConfirm.bind(this)}
                     handleCancel={this.handleAddcancel.bind(this)}
-                    bordered="true"
                 />
             </div>
         );
