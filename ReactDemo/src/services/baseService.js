@@ -34,6 +34,17 @@ export default class {
             settings['body'] = JSON.stringify(body)
         }
 
+        if (_method === 'get' && body) {
+            let dataStr = '';
+            Object.keys(body).forEach(key => {
+                dataStr += key + '=' + body[key] + '&';
+            })
+            if (dataStr !== '') {
+                dataStr = dataStr.substr(0, dataStr.lastIndexOf('&'));
+                apiUrl = apiUrl + '?' + dataStr;
+            }
+        }
+
         return this.direct(apiUrl, settings, headers)
     }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Form, Icon, Input, Button, Checkbox} from 'antd';
+import {Form, Icon, Input, Button} from 'antd';
 import adminActions from '../actions/AdminAction'
 import {getItem} from '../utils/localstorageUtils';
 import {hashHistory} from 'react-router';
@@ -18,6 +18,18 @@ class NormalLoginForm extends React.Component {
     }
 
     componentDidMount() {
+        if (getItem('admin')) {
+            hashHistory.push({pathname: '/'})
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        let {adminState} = nextProps;
+        if (adminState.isLoggedIn && getItem('admin')) {
+            setTimeout(()=> {
+                window.location.href = '/#'
+            }, 100)
+        }
     }
 
     handleSubmit = (e) => {
@@ -27,17 +39,14 @@ class NormalLoginForm extends React.Component {
             if (!err) {
                 console.log('Received values of form: ', values);
                 actions.doLogin(values);
-                if (getItem('admin')) {
-                    hashHistory.push({pathname: '/'})
-                }
             }
         });
     }
 
-    error = (errorMsg)=>{
-          if(errorMsg){
-              message.info(errorMsg);
-          }
+    error = (errorMsg)=> {
+        if (errorMsg) {
+            message.info(errorMsg);
+        }
     }
 
     render() {
@@ -50,7 +59,6 @@ class NormalLoginForm extends React.Component {
         return (
             <div>
                 <div id="components-form-demo-normal-login">
-
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <FormItem>
                             {getFieldDecorator('id', {
@@ -88,8 +96,9 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(adminActions, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(NormalLoginForm));
+let LoginSmart = connect(mapStateToProps, mapDispatchToProps)(Form.create()(NormalLoginForm));
+
+export default LoginSmart;
 
 
-//export default ;
 

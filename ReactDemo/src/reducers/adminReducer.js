@@ -1,10 +1,8 @@
 import {fromJS} from 'immutable';
 import * as actionTypes from '../actions/AdminAction.js'
+import {initAdminLoginState} from '../constants/structure.default'
 
-const initialState = {
-    logining: false,
-    errorMsg: '',
-};
+const initialState = fromJS(initAdminLoginState)
 
 export default (state = initialState, action) => {
 
@@ -17,13 +15,14 @@ export default (state = initialState, action) => {
         case actionTypes.LOGIN_SUCCESS:
             return fromJS(state)
                 .set('logining', false)
+                .set('isLoggedIn', true)
                 .set('errorMsg', '')
                 .toJS();
         case actionTypes.LOGIN_FAIL:
-            return fromJS(state).set('logining', false).set('errorMsg', action.payload).toJS();
-
-        default:
-            return state;
+            return fromJS(state)
+                .set('logining', false)
+                .set('isLoggedIn', false)
+                .set('errorMsg', action.payload).toJS();
     }
-
+    return state
 }

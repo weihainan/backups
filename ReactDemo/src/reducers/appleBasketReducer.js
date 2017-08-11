@@ -1,13 +1,10 @@
 import {fromJS} from 'immutable';
 import * as actionTypes from '../actions/AppleAction.js'
+import { initApplesState } from '../constants/structure.default'
 
-const initialState = {
-    isPicking: false,
-    apples: []
-};
+const initialState = fromJS(initApplesState)
 
 export default (state = initialState, action) => {
-
     switch (action.type) {
 
         case actionTypes.FETCH_APPLES:
@@ -30,9 +27,6 @@ export default (state = initialState, action) => {
             return state;
         case actionTypes.EAT_APPLE_FAIL:
             return state;
-
-        default:
-            return state;
     }
-
+    return state
 };

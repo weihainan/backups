@@ -97,7 +97,7 @@ class App extends React.Component {
                             <Menu.Item key="1"><Link to="/appleBasket">摘苹果</Link></Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub2" title={<span><Icon type="bars"/><span>记  账</span></span>}>
-                            <Menu.Item key="2"><Link to="/myIntroduce">账目表</Link></Menu.Item>
+                            <Menu.Item key="2"><Link to="/chargeTable">账目表</Link></Menu.Item>
                             <Menu.Item key="3"><Link to="/myIntroduce">时间轴</Link></Menu.Item>
                             <Menu.Item key="4"><Link to="/myIntroduce">统 计</Link></Menu.Item>
                         </SubMenu>

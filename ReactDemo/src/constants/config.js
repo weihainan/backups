@@ -1,6 +1,6 @@
 var CONFIG = {
     uf: {
-        host: '127.0.0.1:9088',
+        host: '127.0.0.1:9099',
         version: 'v0.1'
     },
     app: {

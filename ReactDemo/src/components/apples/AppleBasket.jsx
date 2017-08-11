@@ -117,4 +117,6 @@ const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(actions, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppleBusket);
+let AppleBusketSmart = connect(mapStateToProps, mapDispatchToProps)(AppleBusket);
+
+export default AppleBusketSmart;
