@@ -70,6 +70,11 @@ class AppleBusket extends React.Component {
 
         return (
             <div>
+
+                <div className="top">
+                    摘苹果
+                </div>
+
                 <div className="appleBusket">
 
                     <div className="title">苹果篮子</div>

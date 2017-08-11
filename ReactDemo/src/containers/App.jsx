@@ -104,7 +104,7 @@ class App extends React.Component {
                     </Menu>
                 </div>
                 <div id="rightWrap">
-                    <Menu mode="horizontal">
+                    <Menu mode="horizontal" className="head-menu">
                         <SubMenu title={<span><Icon type="user" /> {this.state.username }</span>}>
                             <Menu.Item key="setting:1" style={{textAlign:'center'}}>
                                 <Button type="primary" onClick={this.loginout.bind(this)}>退  出</Button>

@@ -28,7 +28,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    padding:0;
+    padding: 0;
     margin: 0;
     position: absolute;
     top: 0;
@@ -40,8 +40,8 @@
 
   .right-box {
     box-sizing: border-box;
-    padding: 0;
-    margin:0;
+    padding: 20px 40px 0 40px;
+    margin: 0;
     position: absolute;
     top: 73px;
     left: 0;
@@ -50,12 +50,32 @@
     overflow-y: auto;
   }
 
+  .right-box .top {
+    font-size: small;
+    font-weight: bold;
+    color: #5F5F5F;
+    border-bottom: 1px solid #D5D5D5;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+  }
+
+  .right-box .operation-div {
+    margin: 10px 0 20px 0;
+  }
+
   #rightWrap .ant-menu-submenu {
+    color: white;
     float: right;
   }
 
+  #rightWrap .head-menu {
+    height: 7%;
+    background: #333;
+    padding-top: 20px;
+  }
   .ani-box {
     text-align: center;
     font-size: 20px;
   }
+
 }

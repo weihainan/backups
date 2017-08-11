@@ -87,8 +87,14 @@ class ChargeTable extends React.Component {
         });
         return (
             <div>
-                <div>
-                    <Button type="primary" onClick={this.clickAddButton}>记一笔</Button>
+
+
+                <div className="top">
+                    账目表
+                </div>
+
+                <div className="operation-div">
+                    <Button type="primary" onClick={this.clickAddButton}>新增账目</Button>
                 </div>
 
                 <Table columns={columns} dataSource={items}/>
