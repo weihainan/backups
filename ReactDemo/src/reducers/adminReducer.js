@@ -7,18 +7,18 @@ const initialState = fromJS(initAdminLoginState)
 export default (state = initialState, action) => {
 
     switch (action.type) {
-        case actionTypes.LOGIN:
+        case actionTypes.LOGIN_ADMIN:
             return fromJS(state)
                 .set('logining', true)
                 .set('errorMsg', '')
                 .toJS();
-        case actionTypes.LOGIN_SUCCESS:
+        case actionTypes.LOGIN_ADMIN_SUCCESS:
             return fromJS(state)
                 .set('logining', false)
                 .set('isLoggedIn', true)
                 .set('errorMsg', '')
                 .toJS();
-        case actionTypes.LOGIN_FAIL:
+        case actionTypes.LOGIN_ADMIN_FAILURE:
             return fromJS(state)
                 .set('logining', false)
                 .set('isLoggedIn', false)

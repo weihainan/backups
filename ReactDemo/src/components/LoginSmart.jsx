@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Form, Icon, Input, Button} from 'antd';
-import adminActions from '../actions/AdminAction'
+import  {loginAction } from '../actions/AdminAction'
 import {getItem} from '../utils/localstorageUtils';
 import {hashHistory} from 'react-router';
 import {message} from 'antd';
@@ -34,11 +34,10 @@ class NormalLoginForm extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let {actions} = this.props;
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
-                actions.doLogin(values);
+                this.props.loginActions(values);
             }
         });
     }
@@ -93,7 +92,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(adminActions, dispatch)
+    loginActions: bindActionCreators(loginAction, dispatch)
 });
 
 let LoginSmart = connect(mapStateToProps, mapDispatchToProps)(Form.create()(NormalLoginForm));

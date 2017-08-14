@@ -15,11 +15,11 @@ export default (state = initialState, action) => {
             return state;
 
         case actionTypes.PICK_APPLE:
-            return fromJS(state).set('isPicking', true).toJS();
+            return state;
         case actionTypes.PICK_APPLE_SUCCESS:
-            return fromJS(state).set('isPicking', false).toJS();
+            return state;
         case actionTypes.PICK_APPLE_FAIL:
-            return fromJS(state).set('isPicking', false).toJS();
+            return state;
 
         case actionTypes.EAT_APPLE:
             return state;

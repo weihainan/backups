@@ -2,19 +2,21 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import actions from '../../actions/appleAction.js';
+import {fetchApples, pickApple, eatApple} from '../../actions/appleAction.js';
 import AppleItem from './AppleItem.jsx';
 import '../../styles/AppleBasket.scss';
 
 class AppleBusket extends React.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
+        this.state = {
+            isPicking: false
+        };
     }
 
     componentDidMount() {
-        let {actions} = this.props;
-        actions.init();
+        this.props.fetchApples();
     }
 
     componentWillUnmount() {
@@ -49,7 +51,7 @@ class AppleBusket extends React.Component {
         let data = [];
         apples.forEach(apple => {
             if (!apple.isEaten) {
-                data.push(<AppleItem apple={apple} eatApple={this.props.actions.eatApple} key={apple.id}/>)
+                data.push(<AppleItem apple={apple} eatApple={this.eatApple.bind(this)} key={apple.id}/>)
             }
         });
 
@@ -58,9 +60,23 @@ class AppleBusket extends React.Component {
         return data;
     }
 
+    pickApple() {
+        this.setState({
+            isPicking: true
+        });
+        this.props.pickApple();
+        this.setState({
+            isPicking: false
+        });
+    }
+
+    eatApple(id) {
+        this.props.eatApple(id);
+    }
+
     render() {
 
-        let {appleBasket, actions} = this.props;
+        let {appleBasket} = this.props;
         let {apples, isPicking} = appleBasket;
         let status = this.calculateStatus();
         let {
@@ -99,8 +115,8 @@ class AppleBusket extends React.Component {
                     </div>
 
                     <div className="btn-div">
-                        <button className={isPicking ? 'disabled' : ''} onClick={actions.pickApple}>
-                            {!isPicking ? '摘苹果' : '正在摘取中...'}
+                        <button className={isPicking ? 'disabled' : ''} onClick={this.pickApple.bind(this)}>
+                            {!this.state.isPicking ? '摘苹果' : '正在摘取中...'}
                         </button>
                     </div>
                 </div>
@@ -110,7 +126,6 @@ class AppleBusket extends React.Component {
 }
 
 AppleBusket.propTypes = {
-    isPicking: React.PropTypes.bool.isRequired,
     apples: React.PropTypes.array.isRequired
 };
 
@@ -119,7 +134,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(actions, dispatch)
+    fetchApples: bindActionCreators(fetchApples, dispatch),
+    pickApple: bindActionCreators(pickApple, dispatch),
+    eatApple: bindActionCreators(eatApple, dispatch),
 });
 
 let AppleBusketSmart = connect(mapStateToProps, mapDispatchToProps)(AppleBusket);

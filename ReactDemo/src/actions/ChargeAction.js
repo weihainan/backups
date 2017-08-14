@@ -1,18 +1,40 @@
-import ChargeService from '../services/ChargeService'
+export const FETCH_CHARGES = 'FETCH_CHARGES';
+export const FETCH_CHARGES_SUCCESS = 'FETCH_CHARGES_SUCCESS';
+export const FETCH_CHARGES_FAIL = 'FETCH_CHARGES_FAIL';
 
-export const FETCH_CHAERGES = 'FETCH_CHAERGES';
+export const fetchCharges = (value)=> ({
+    type: FETCH_CHARGES,
+    payload: value
+})
 
-export const chargeTableActions = {
-    getCharges: (body)=> {
-        return function (dispatch, getState) {
-            ChargeService.getCharges(body).then(value => {
-                dispatch(chargeTableActions[FETCH_CHAERGES](!value ? {items: [], total: 0} : value));
-            });
-        }
-    },
+export const fetchChargesSuccess = (list)=> ({
+    type: FETCH_CHARGES_SUCCESS,
+    payload: list
+})
 
-    [FETCH_CHAERGES]: (value)=> ({
-        type: FETCH_CHAERGES,
-        payload: value
-    }),
-};
+export const fetchChargesFail = (msg)=> ({
+    type: FETCH_CHARGES_FAIL,
+    payload: msg
+})
+
+
+export const ADD_CHARGES = 'ADD_CHARGES';
+export const ADD_CHARGES_SUCCESS = 'ADD_CHARGES_SUCCESS';
+export const ADD_CHARGES_FAIL = 'ADD_CHARGES_FAIL';
+
+
+export const addCharges = (value)=> ({
+    type: FETCH_CHARGES,
+    payload: value
+})
+
+export const addChargesSuccess = (value)=> ({
+    type: FETCH_CHARGES_SUCCESS,
+    payload: value
+})
+
+
+export const addChargesFail = (msg)=> ({
+    type: FETCH_CHARGES_FAIL,
+    payload: msg
+})

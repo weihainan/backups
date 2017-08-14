@@ -1,5 +1,5 @@
 import React from 'react'
-import {chargeTableActions} from '../../actions/ChargeAction'
+import {fetchCharges} from '../../actions/ChargeAction'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Button, Table} from 'antd';
@@ -34,29 +34,38 @@ class ChargeTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: false,
             isAddNewRecord: false,
+            page: 1,
+            size: 15,
         };
-        this.clickAddButton = this.clickAddButton.bind(this);
     }
 
     componentDidMount() {
-        let {actions} = this.props;
-        let body={
-            page:1,
-            size:20
-        };
-        actions.getCharges(body);
+        this.fetchCharges(this.state.page, this.state.size);
     }
 
     clickAddButton() {
         this.setState({
             isAddNewRecord: true
         })
+
     }
 
-    handleAddConfirm() {
+    handleAddConfirm(charge) {
+        if (!charge) {
+            console.log(false)
+            return;
+        }
         this.setState({
-            isAddNewRecord: false
+            loading: true,
+        })
+        let {actions} = this.props;
+        actions.addCharge(charge);
+        this.fetchCharges(this.state.page, this.state.size);
+        this.setState({
+            loading: false,
+            isAddNewRecord: false,
         })
     }
 
@@ -66,6 +75,26 @@ class ChargeTable extends React.Component {
         })
     }
 
+    onTableChange(page) {
+        this.fetchCharges(page.current, page.pageSize);
+    }
+
+    fetchCharges(current, pageSize) {
+        this.setState({loading: true});
+
+        let body = {
+            page: current,
+            size: pageSize,
+        };
+        this.props.fetchChargesAction(body);
+        this.setState({
+            loading: true,
+            page: current,
+            size: pageSize,
+        });
+
+    }
+
     render() {
 
         let {chargeTableState, actions} = this.props;
@@ -73,6 +102,12 @@ class ChargeTable extends React.Component {
         let {items, total} = data;
 
         total = total || 0;
+
+        let pagination = {
+            total: total,
+            pageSize: this.state.size,
+            current: this.state.page,
+        }
 
         items = items || [];
         items.forEach(item=> {
@@ -94,13 +129,16 @@ class ChargeTable extends React.Component {
                 </div>
 
                 <div className="operation-div">
-                    <Button type="primary" onClick={this.clickAddButton}>新增账目</Button>
+                    <Button type="primary" onClick={this.clickAddButton.bind(this)}>新增账目</Button>
                 </div>
 
                 <Table
                     columns={columns}
                     dataSource={items}
-                    bordered="true"
+                    bordered={true}
+                    onChange={this.onTableChange.bind(this)}
+                    pagination={pagination}
+                    rowKey={record => record.id}
                 />
 
                 <AddChargeDialog
@@ -119,7 +157,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators(chargeTableActions, dispatch)
+    fetchChargesAction: bindActionCreators(fetchCharges, dispatch)
 });
 
 let ChargeTableSmart = connect(mapStateToProps, mapDispatchToProps)(ChargeTable);

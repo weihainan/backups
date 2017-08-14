@@ -6,7 +6,6 @@ export const initAdminLoginState = {
 
 
 export const initApplesState = {
-    isPicking: false,
     apples: []
 }
 

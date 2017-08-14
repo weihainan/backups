@@ -14,20 +14,27 @@ import LoginSmart from './components/LoginSmart.jsx';
 import DevTools from './containers/devTools'
 import * as browserUtils from './utils/browserUtils'
 
+import createSagaMiddleware from 'redux-saga'
+import rootSaga from './sagas/sagas';
+
 import './styles/app.scss';
 
-import { initialState } from './constants/structure.default'
-const initState =initialState
+
+import {initialState} from './constants/structure.default'
+const initState = initialState
+
+const sagaMiddleware = createSagaMiddleware();
 
 const enhancer = compose(
     //你要使用的中间件，放在前面
-    applyMiddleware(thunk),
+    applyMiddleware(sagaMiddleware, thunk),
     //必须的！启用带有monitors（监视显示）的DevTools
     DevTools.instrument()
 )
 
 let Page404 = () => (<div><h1>FIXME FIXME 404 404</h1></div>)
 const store = createStore(reducer, initState, enhancer);
+sagaMiddleware.run(rootSaga);
 
 const requireAuth = (nextState, replace) => {
     if (!auth()) {
