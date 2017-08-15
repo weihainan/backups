@@ -32,7 +32,8 @@ class AddChargeDialog extends React.Component {
                                     }
                                 }
                             }, 500);
-                        }, trigger: 'blur'
+                        },
+                        trigger: 'blur'
                     }
                 ],
                 label: [
@@ -68,11 +69,9 @@ class AddChargeDialog extends React.Component {
     }
 
     render() {
-        let {visible, handleCancel} = this.props;
-
         return (
             <div>
-                <Dialog title="新账目" visible={visible} onCancel={handleCancel}>
+                <Dialog title="新账目" visible={this.props.visible} onCancel={this.props.handleCancel}>
                     <Dialog.Body>
                         <Form labelWidth="80" labelPosition="right" ref="form" model={this.state.form}
                               rules={this.state.rules}>
@@ -100,7 +99,7 @@ class AddChargeDialog extends React.Component {
                         </Form>
                     </Dialog.Body>
                     <Dialog.Footer>
-                        <Button type="primary" onClick={handleCancel}>取 消</Button>
+                        <Button type="primary" onClick={this.props.handleCancel}>取 消</Button>
                         <Button type="primary" onClick={this.handleClickOk.bind(this)}>确 定</Button>
                     </Dialog.Footer>
                 </Dialog>

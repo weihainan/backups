@@ -7,7 +7,7 @@ import AddChargeDialog from './AddChargeDialog';
 import dateUtils from '../../utils/dateUtils'
 
 import './ChargeTable.css'
-
+import {Message} from 'element-react';
 
 const columns = [{
     title: '收支类型',
@@ -45,6 +45,17 @@ class ChargeTable extends React.Component {
         this.fetchCharges(this.state.page, this.state.size);
     }
 
+    componentWillReceiveProps(nextProps) {
+        let {msg} = nextProps.chargeTableState;
+        if (msg) {
+            Message({
+                message: msg,
+                type: 'warning',
+                duration: 2000,
+            });
+        }
+    }
+
     clickAddButton() {
         this.setState({
             isAddNewRecord: true
@@ -52,7 +63,7 @@ class ChargeTable extends React.Component {
 
     }
 
-   async handleAddConfirm(charge) {
+    async handleAddConfirm(charge) {
         if (!charge) {
             console.log(false)
             return;
@@ -96,12 +107,10 @@ class ChargeTable extends React.Component {
 
     render() {
 
-        let {chargeTableState} = this.props;
-        let {data} = chargeTableState;
+        let {data} = this.props.chargeTableState;
         let {items, total} = data;
 
         total = total || 0;
-
         let pagination = {
             total: total,
             pageSize: this.state.size,

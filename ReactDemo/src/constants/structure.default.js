@@ -13,7 +13,8 @@ export const initChargeTableState = {
     data: {
         items: [],
         total: 0
-    }
+    },
+    msg:''
 }
 
 
