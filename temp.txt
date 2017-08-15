@@ -218,9 +218,23 @@ cnpm install node-sass@latest
 cnpm --save-dev jquery moment
 cnpm install --save-dev immutability
 
+cnpm install --save-dev redux-saga
+
 cnpm install --save-dev redux-devtools
 cnpm install --save-dev redux-devtools-log-monitor
 cnpm install --save-dev redux-devtools-dock-monitor
+
+cnpm i element-react --save
+cnpm install element-theme-default --save
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Button } from 'element-react';
+
+import 'element-theme-default';
+
+ReactDOM.render(<Button type="primary">Hello</Button>, document.getElementById('app'));
 
 
 webpack常用的插件安装命令
@@ -244,6 +258,9 @@ style-loader 将样式添加进 DOM 中)
 14: npm install autoprefixer-loader --save-dev//
 15: npm install vue --save-dev//
 16: npm install -d //将项目中package.json依赖的包全部下载到该项目中
+
+cnpm install --save-dev redux-saga
+
 
 
 # 最新转码规则

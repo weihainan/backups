@@ -51,7 +51,8 @@ module.exports = {//注意这里是exports不是export
             {
                 test: /\.(mp4|ogg|svg)$/,
                 loader: 'file-loader'
-            }
+            } ,
+            {test: /\.(eot|woff|ttf)$/, loader: "file-loader" }
         ]
     },
 

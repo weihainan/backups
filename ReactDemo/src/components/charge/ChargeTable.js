@@ -1,5 +1,5 @@
 import React from 'react'
-import {fetchCharges} from '../../actions/ChargeAction'
+import {fetchCharges, addCharges} from '../../actions/ChargeAction'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Button, Table} from 'antd';
@@ -52,7 +52,7 @@ class ChargeTable extends React.Component {
 
     }
 
-    handleAddConfirm(charge) {
+   async handleAddConfirm(charge) {
         if (!charge) {
             console.log(false)
             return;
@@ -60,8 +60,7 @@ class ChargeTable extends React.Component {
         this.setState({
             loading: true,
         })
-        let {actions} = this.props;
-        actions.addCharge(charge);
+        await this.props.addChargesAction(charge);
         this.fetchCharges(this.state.page, this.state.size);
         this.setState({
             loading: false,
@@ -88,7 +87,7 @@ class ChargeTable extends React.Component {
         };
         this.props.fetchChargesAction(body);
         this.setState({
-            loading: true,
+            loading: false,
             page: current,
             size: pageSize,
         });
@@ -97,7 +96,7 @@ class ChargeTable extends React.Component {
 
     render() {
 
-        let {chargeTableState, actions} = this.props;
+        let {chargeTableState} = this.props;
         let {data} = chargeTableState;
         let {items, total} = data;
 
@@ -133,6 +132,7 @@ class ChargeTable extends React.Component {
                 </div>
 
                 <Table
+                    loading={this.state.loading}
                     columns={columns}
                     dataSource={items}
                     bordered={true}
@@ -157,7 +157,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchChargesAction: bindActionCreators(fetchCharges, dispatch)
+    fetchChargesAction: bindActionCreators(fetchCharges, dispatch),
+    addChargesAction: bindActionCreators(addCharges, dispatch)
 });
 
 let ChargeTableSmart = connect(mapStateToProps, mapDispatchToProps)(ChargeTable);

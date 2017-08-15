@@ -24,17 +24,17 @@ export const ADD_CHARGES_FAIL = 'ADD_CHARGES_FAIL';
 
 
 export const addCharges = (value)=> ({
-    type: FETCH_CHARGES,
+    type: ADD_CHARGES,
     payload: value
 })
 
 export const addChargesSuccess = (value)=> ({
-    type: FETCH_CHARGES_SUCCESS,
+    type: ADD_CHARGES_SUCCESS,
     payload: value
 })
 
 
 export const addChargesFail = (msg)=> ({
-    type: FETCH_CHARGES_FAIL,
+    type: ADD_CHARGES_FAIL,
     payload: msg
 })
