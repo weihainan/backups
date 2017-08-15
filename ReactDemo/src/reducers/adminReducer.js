@@ -1,6 +1,6 @@
-import {fromJS} from 'immutable';
+import { fromJS } from 'immutable';
 import * as actionTypes from '../actions/AdminAction.js'
-import {initAdminLoginState} from '../constants/structure.default'
+import { initAdminLoginState } from '../constants/structure.default'
 
 const initialState = fromJS(initAdminLoginState)
 

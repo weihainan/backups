@@ -23,16 +23,16 @@ export function base64Decode(str) {
         do {
             c1 = base64DecodeChars[str.charCodeAt(i++) & 0xff]
         } while (
-        i < len && c1 == -1
-            )
+            i < len && c1 == -1
+        )
 
         if (c1 == -1) break
 
         do {
             c2 = base64DecodeChars[str.charCodeAt(i++) & 0xff]
         } while (
-        i < len && c2 == -1
-            )
+            i < len && c2 == -1
+        )
 
         if (c2 == -1) break
 
@@ -45,8 +45,8 @@ export function base64Decode(str) {
 
             c3 = base64DecodeChars[c3]
         } while (
-        i < len && c3 == -1
-            )
+            i < len && c3 == -1
+        )
 
         if (c3 == -1) break
 
@@ -57,8 +57,8 @@ export function base64Decode(str) {
             if (c4 == 61) return string
             c4 = base64DecodeChars[c4]
         } while (
-        i < len && c4 == -1
-            )
+            i < len && c4 == -1
+        )
 
         if (c4 == -1) break
 
@@ -76,7 +76,7 @@ export function base64Decode(str) {
 export function base64Encode(str) {
     let c1, c2, c3
     let base64EncodeChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
-    let i = 0, len= str.length, string = ''
+    let i = 0, len = str.length, string = ''
 
     while (i < len) {
         c1 = str.charCodeAt(i++) & 0xff

@@ -1,7 +1,6 @@
 /**
  * Created by Administrator on 2015/12/7.
  */
-// import $ from 'jquery'
 import CONFIG from '../constants/config'
 import auth from './auth'
 import fetch from 'isomorphic-fetch'
@@ -10,7 +9,7 @@ import { camelizeKeys } from 'humps'
 
 export default class {
 
-    request({apiUrl, body, method = 'get', withAuthToken = true}) {
+    request({ apiUrl, body, method = 'get', withAuthToken = true }) {
         const _method = method.toLowerCase()
         let headers = {
             'Accept': 'application/json',
@@ -26,11 +25,7 @@ export default class {
             headers
         };
 
-        // if (['get', 'head'].indexOf(method) !== -1 && body) {
-        //     settings['body'] = JSON.stringify(body)
-        // }
-
-        if (![ 'get', 'head' ].includes(_method) && body) {
+        if (!['get', 'head'].includes(_method) && body) {
             settings['body'] = JSON.stringify(body)
         }
 
@@ -52,8 +47,8 @@ export default class {
         return fetch(apiUrl, settings).then(response => {
             let json = response.json();
             return json.then(json => {
-                return {json, response}
-            }).then(({json, response}) => {
+                return { json, response }
+            }).then(({ json, response }) => {
                 if (!response.ok) {
                     return Promise.reject(json)
                 }
@@ -68,20 +63,9 @@ export default class {
             })
         })
     }
-    //
-    // ajaxUnauthorized(url, method, data, headers) {
-    //     return $.ajax({
-    //         url: url,
-    //         headers: headers,
-    //         dataType: 'json',
-    //         type: method.toUpperCase(),
-    //         data: data,
-    //         cache: false
-    //     })
-    // }
 
-    ufRequest({endpoint, body, method = 'get', withAuthToken = true}) {
+    ufRequest({ endpoint, body, method = 'get', withAuthToken = true }) {
         let apiUrl = `${CONFIG.api_protocol}://${CONFIG.uf.host}/${CONFIG.uf.version}/${endpoint}`
-        return this.request({apiUrl, body, method, withAuthToken})
+        return this.request({ apiUrl, body, method, withAuthToken })
     }
 }

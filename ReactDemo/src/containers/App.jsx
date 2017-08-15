@@ -1,13 +1,13 @@
 'use strict';
 
 import React from 'react';
-import {Link, hashHistory} from 'react-router';
-import {remove} from '../utils/localstorageUtils';
-import {getItem} from '../utils/localstorageUtils';
+import { Link, hashHistory } from 'react-router';
+import { remove } from '../utils/localstorageUtils';
+import { getItem } from '../utils/localstorageUtils';
 
 
 // 引入Antd的导航组件
-import {Menu, Icon, Button, Avatar} from 'antd';
+import { Menu, Icon, Button, Avatar } from 'antd';
 const SubMenu = Menu.SubMenu;
 
 let routeMap = {
@@ -52,7 +52,7 @@ class App extends React.Component {
     loginout() {
         console.log(`${this.state.username} login out ...`)
         remove('admin');
-        hashHistory.push({pathname: '/login'})
+        hashHistory.push({ pathname: '/login' })
     }
 
     onOpenChange = (openKeys) => {
@@ -67,7 +67,7 @@ class App extends React.Component {
         if (latestCloseKey) {
             nextOpenKeys = this.getAncestorKeys(latestCloseKey);
         }
-        this.setState({openKeys: nextOpenKeys});
+        this.setState({ openKeys: nextOpenKeys });
     }
     getAncestorKeys = (key) => {
         const map = {
@@ -80,23 +80,23 @@ class App extends React.Component {
         return (
             <div>
                 <div id="leftMenu">
-                    <img src={require('../images/logo.png')} width="50" id="logo"/>
-                    <Menu.Divider  />
+                    <img src={require('../images/logo.png')} width="50" id="logo" />
+                    <Menu.Divider />
                     <Menu theme="dark"
-                          onClick={this.handleClick.bind(this)}
-                          style={{width: 200}}
-                          defaultOpenKeys={['sub1', 'sub2']}
-                          defaultSelectedKeys={[this.state.current]}
-                          mode="inline"
-                          openKeys={this.state.openKeys}
-                          selectedKeys={[this.state.current]}
-                          onOpenChange={this.onOpenChange}
+                        onClick={this.handleClick.bind(this)}
+                        style={{ width: 200 }}
+                        defaultOpenKeys={['sub1', 'sub2']}
+                        defaultSelectedKeys={[this.state.current]}
+                        mode="inline"
+                        openKeys={this.state.openKeys}
+                        selectedKeys={[this.state.current]}
+                        onOpenChange={this.onOpenChange}
                     >
-                        <Menu.Item key="0"><Link to="/myIntroduce"><Icon type="mail"/>我没有子菜单</Link></Menu.Item>
-                        <SubMenu key="sub1" title={<span><Icon type="bars"/><span>主导航</span></span>}>
+                        <Menu.Item key="0"><Link to="/myIntroduce"><Icon type="mail" />我没有子菜单</Link></Menu.Item>
+                        <SubMenu key="sub1" title={<span><Icon type="bars" /><span>主导航</span></span>}>
                             <Menu.Item key="1"><Link to="/appleBasket">摘苹果</Link></Menu.Item>
                         </SubMenu>
-                        <SubMenu key="sub2" title={<span><Icon type="bars"/><span>记  账</span></span>}>
+                        <SubMenu key="sub2" title={<span><Icon type="bars" /><span>记  账</span></span>}>
                             <Menu.Item key="2"><Link to="/chargeTable">账目表</Link></Menu.Item>
                             <Menu.Item key="3"><Link to="/myIntroduce">时间轴</Link></Menu.Item>
                             <Menu.Item key="4"><Link to="/myIntroduce">统 计</Link></Menu.Item>
@@ -105,14 +105,14 @@ class App extends React.Component {
                 </div>
                 <div id="rightWrap">
                     <Menu mode="horizontal" className="head-menu">
-                        <SubMenu title={<span><Icon type="user" /> {this.state.username }</span>}>
-                            <Menu.Item key="setting:1" style={{textAlign:'center'}}>
+                        <SubMenu title={<span><Icon type="user" /> {this.state.username}</span>}>
+                            <Menu.Item key="setting:1" style={{ textAlign: 'center' }}>
                                 <Button type="primary" onClick={this.loginout.bind(this)}>退  出</Button>
                             </Menu.Item>
                         </SubMenu>
                     </Menu>
                     <div className="right-box">
-                        { this.props.children }
+                        {this.props.children}
                     </div>
                 </div>
             </div>

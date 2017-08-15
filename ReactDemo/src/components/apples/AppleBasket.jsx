@@ -1,8 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import {fetchApples, pickApple, eatApple} from '../../actions/appleAction.js';
+import { fetchApples, pickApple, eatApple } from '../../actions/AppleAction.js';
 import AppleItem from './AppleItem.jsx';
 import '../../styles/AppleBasket.scss';
 
@@ -51,7 +51,7 @@ class AppleBusket extends React.Component {
         let data = [];
         apples.forEach(apple => {
             if (!apple.isEaten) {
-                data.push(<AppleItem apple={apple} eatApple={this.eatApple.bind(this)} key={apple.id}/>)
+                data.push(<AppleItem apple={apple} eatApple={this.eatApple.bind(this)} key={apple.id} />)
             }
         });
 
@@ -76,12 +76,12 @@ class AppleBusket extends React.Component {
 
     render() {
 
-        let {appleBasket} = this.props;
-        let {apples, isPicking} = appleBasket;
+        let { appleBasket } = this.props;
+        let { apples, isPicking } = appleBasket;
         let status = this.calculateStatus();
         let {
-            appleNow: {quantity:notEatenQuantity, weight:notEatenWeight},
-            appleEaten: {quantity:EatenQuantity, weight:EatenWeight}
+            appleNow: { quantity: notEatenQuantity, weight: notEatenWeight },
+            appleEaten: { quantity: EatenQuantity, weight: EatenWeight }
         } = status;
 
         return (
@@ -111,7 +111,7 @@ class AppleBusket extends React.Component {
                     </div>
 
                     <div className="appleList">
-                        { this.getAppleItem(apples) }
+                        {this.getAppleItem(apples)}
                     </div>
 
                     <div className="btn-div">

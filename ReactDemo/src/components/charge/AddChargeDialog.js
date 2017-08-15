@@ -1,7 +1,7 @@
 import React from 'react'
-import {Modal} from 'antd';
+import { Modal } from 'antd';
 
-import {Dialog, Form, Button, Input, Radio, Select} from 'element-react';
+import { Dialog, Form, Button, Input, Radio, Select } from 'element-react';
 import 'element-theme-default';
 
 
@@ -17,7 +17,7 @@ class AddChargeDialog extends React.Component {
             },
             rules: {
                 amount: [
-                    {required: true, message: '请输入账目金额', trigger: 'blur'},
+                    { required: true, message: '请输入账目金额', trigger: 'blur' },
                     {
                         validator: (rule, value, callback) => {
                             var amount = parseFloat(value);
@@ -37,7 +37,7 @@ class AddChargeDialog extends React.Component {
                     }
                 ],
                 label: [
-                    {required: true, message: '请选择账目标签', trigger: 'blur'}
+                    { required: true, message: '请选择账目标签', trigger: 'blur' }
                 ]
             }
         };
@@ -64,7 +64,7 @@ class AddChargeDialog extends React.Component {
 
     onChange(key, value) {
         this.setState({
-            form: Object.assign({}, this.state.form, {[key]: value})
+            form: Object.assign({}, this.state.form, { [key]: value })
         });
     }
 
@@ -74,10 +74,10 @@ class AddChargeDialog extends React.Component {
                 <Dialog title="新账目" visible={this.props.visible} onCancel={this.props.handleCancel}>
                     <Dialog.Body>
                         <Form labelWidth="80" labelPosition="right" ref="form" model={this.state.form}
-                              rules={this.state.rules}>
+                            rules={this.state.rules}>
                             <Form.Item label="金额" prop="amount">
                                 <Input value={this.state.form.amount} prepend={'RMB'}
-                                       onChange={this.onChange.bind(this, 'amount')}></Input>
+                                    onChange={this.onChange.bind(this, 'amount')}></Input>
                             </Form.Item>
                             <Form.Item label="收支类型" prop="type">
                                 <Radio.Group value={this.state.form.type} onChange={this.onChange.bind(this, 'type')}>
@@ -87,14 +87,14 @@ class AddChargeDialog extends React.Component {
                             </Form.Item>
                             <Form.Item label="标签" prop="label">
                                 <Select value={this.state.form.label} placeholder="请选择账目标签"
-                                        onChange={this.onChange.bind(this, 'label')}>
+                                    onChange={this.onChange.bind(this, 'label')}>
                                     <Select.Option label="区域一" value="shanghai"></Select.Option>
                                     <Select.Option label="区域二" value="beijing"></Select.Option>
                                 </Select>
                             </Form.Item>
                             <Form.Item label="备注">
                                 <Input type="textarea" value={this.state.form.mark}
-                                       onChange={this.onChange.bind(this, 'mark')}></Input>
+                                    onChange={this.onChange.bind(this, 'mark')}></Input>
                             </Form.Item>
                         </Form>
                     </Dialog.Body>

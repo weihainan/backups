@@ -1,10 +1,10 @@
-import {takeLatest, takeEvery} from 'redux-saga/effects';
-import {loginUserAsync} from './admin';
-import {applesList, pickApple, eatApple} from './apple';
-import {chargesList, addCharge} from './charge';
-import {LOGIN_ADMIN} from '../actions/AdminAction';
-import {FETCH_APPLES, PICK_APPLE, EAT_APPLE} from '../actions/AppleAction';
-import {FETCH_CHARGES, ADD_CHARGES} from '../actions/ChargeAction';
+import { takeLatest, takeEvery } from 'redux-saga/effects';
+import { loginUserAsync } from './admin';
+import { applesList, pickApple, eatApple } from './apple';
+import { chargesList, addCharge } from './charge';
+import { LOGIN_ADMIN } from '../actions/AdminAction';
+import { FETCH_APPLES, PICK_APPLE, EAT_APPLE } from '../actions/AppleAction';
+import { FETCH_CHARGES, ADD_CHARGES } from '../actions/ChargeAction';
 
 
 export default function* rootSaga() {

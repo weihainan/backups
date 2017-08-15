@@ -1,4 +1,4 @@
-import {select, put, call} from 'redux-saga/effects';
+import { select, put, call } from 'redux-saga/effects';
 import * as actionTypes from '../actions/AppleAction.js'
 import appleService from '../services/AppleService'
 

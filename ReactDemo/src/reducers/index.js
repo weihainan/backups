@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import appleBasketReducer from './appleBasketReducer';
 import adminReducer from './adminReducer';
 import chargeReducer from './chargeReducer';

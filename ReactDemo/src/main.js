@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore, applyMiddleware, compose} from 'redux';
-import {Provider} from 'react-redux'
-import {Route, IndexRoute, hashHistory, Router} from 'react-router';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux'
+import { Route, IndexRoute, hashHistory, Router } from 'react-router';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
 import auth from './services/auth'
@@ -20,7 +20,7 @@ import rootSaga from './sagas/sagas';
 import './styles/app.scss';
 
 
-import {initialState} from './constants/structure.default'
+import { initialState } from './constants/structure.default'
 const initState = initialState
 
 const sagaMiddleware = createSagaMiddleware();
@@ -38,29 +38,29 @@ sagaMiddleware.run(rootSaga);
 
 const requireAuth = (nextState, replace) => {
     if (!auth()) {
-        replace({pathname: '/login'})
+        replace({ pathname: '/login' })
     }
 }
 
 let child = <div>
     <Router history={hashHistory}>
-        <Route path='login' component={LoginSmart}/>
+        <Route path='login' component={LoginSmart} />
         <Route onEnter={requireAuth}>
             <Route path="/" component={App}>
-                <IndexRoute component={MyIntroduce}/>
-                <Route path="myIntroduce" component={MyIntroduce}/>
-                <Route path="appleBasket" component={AppleBasket}/>
-                <Route path="chargeTable" component={ChargeTableSmart}/>
+                <IndexRoute component={MyIntroduce} />
+                <Route path="myIntroduce" component={MyIntroduce} />
+                <Route path="appleBasket" component={AppleBasket} />
+                <Route path="chargeTable" component={ChargeTableSmart} />
             </Route>
         </Route>
-        <Route path='*' component={Page404} status={404}/>
+        <Route path='*' component={Page404} status={404} />
     </Router>
     {!browserUtils.itIE(10) ? <DevTools /> : null}
 </div>
 
 ReactDOM.render(
     <Provider store={store}>
-        { child }
+        {child}
     </Provider>,
     document.getElementById('app')
 );

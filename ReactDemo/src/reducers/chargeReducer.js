@@ -1,4 +1,4 @@
-import {fromJS} from 'immutable';
+import { fromJS } from 'immutable';
 import {
     FETCH_CHARGES,
     FETCH_CHARGES_SUCCESS,
@@ -7,7 +7,7 @@ import {
     DELETE_CHARGES_SUCCESS,
     ADD_CHARGES_FAIL
 } from '../actions/ChargeAction.js'
-import {initChargeTableState} from '../constants/structure.default'
+import { initChargeTableState } from '../constants/structure.default'
 import formatMsg from '../utils/errorMsgFormat'
 
 const initialState = fromJS(initChargeTableState)

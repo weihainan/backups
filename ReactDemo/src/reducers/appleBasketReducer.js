@@ -1,4 +1,4 @@
-import {fromJS} from 'immutable';
+import { fromJS } from 'immutable';
 import * as actionTypes from '../actions/AppleAction.js'
 import { initApplesState } from '../constants/structure.default'
 

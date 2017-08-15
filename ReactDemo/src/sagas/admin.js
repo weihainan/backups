@@ -1,6 +1,6 @@
-import {select, put, call} from 'redux-saga/effects';
+import { select, put, call } from 'redux-saga/effects';
 import * as actionTypes from '../actions/AdminAction.js'
-import {setItem} from '../utils/localstorageUtils';
+import { setItem } from '../utils/localstorageUtils';
 import adminService from '../services/AdminService'
 
 
@@ -9,7 +9,7 @@ export function* loginUserAsync(user) {
         let response = yield call([adminService, adminService.login], user)
         setItem('admin', response)
         yield put(actionTypes.loginSuccessAction(response))
-    } catch(err) {
+    } catch (err) {
         yield put(actionTypes.loginFailureAction(err.message))
     }
 }

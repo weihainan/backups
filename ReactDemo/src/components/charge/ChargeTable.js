@@ -1,13 +1,12 @@
 import React from 'react'
-import {fetchCharges, addCharges} from '../../actions/ChargeAction'
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {Button, Table} from 'antd';
+import { fetchCharges, addCharges } from '../../actions/ChargeAction'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Button, Table } from 'antd';
 import AddChargeDialog from './AddChargeDialog';
 import dateUtils from '../../utils/dateUtils'
 
-import './ChargeTable.css'
-import {Message} from 'element-react';
+import { Message } from 'element-react';
 
 const columns = [{
     title: '收支类型',
@@ -46,7 +45,7 @@ class ChargeTable extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let {msg} = nextProps.chargeTableState;
+        let { msg } = nextProps.chargeTableState;
         if (msg) {
             Message({
                 message: msg,
@@ -90,7 +89,7 @@ class ChargeTable extends React.Component {
     }
 
     fetchCharges(current, pageSize) {
-        this.setState({loading: true});
+        this.setState({ loading: true });
 
         let body = {
             page: current,
@@ -107,8 +106,8 @@ class ChargeTable extends React.Component {
 
     render() {
 
-        let {data} = this.props.chargeTableState;
-        let {items, total} = data;
+        let { data } = this.props.chargeTableState;
+        let { items, total } = data;
 
         total = total || 0;
         let pagination = {
@@ -118,7 +117,7 @@ class ChargeTable extends React.Component {
         }
 
         items = items || [];
-        items.forEach(item=> {
+        items.forEach(item => {
             let createTime = dateUtils.returnDiffDate(item['createTime']);
             item['createTime'] = createTime;
 
