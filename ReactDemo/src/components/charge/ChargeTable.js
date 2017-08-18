@@ -145,6 +145,7 @@ class ChargeTable extends React.Component {
                 <Pagination style={{ float: 'right', marginTop: '10px' }}
                     layout="total, prev, pager, next, jumper"
                     total={total}
+					currentPage={this.state.page}
                     pageSize={this.state.size}
                     onCurrentChange={this.onTableChange.bind(this)}
                 />
