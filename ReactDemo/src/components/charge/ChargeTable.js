@@ -1,31 +1,38 @@
 import React from 'react'
-import { fetchCharges, addCharges } from '../../actions/ChargeAction'
+import { fetchCharges, addCharges, fetchChargesLabel } from '../../actions/ChargeAction'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button, Table } from 'antd';
-import AddChargeDialog from './AddChargeDialog';
-import dateUtils from '../../utils/dateUtils'
 
-import { Message } from 'element-react';
+import AddChargeDialog from './AddChargeDialog';
+import dateUtils from '../../utils/dateUtils';
+
+import { Message, Button, Table, Pagination } from 'element-react';
+import 'element-theme-default';
 
 const columns = [{
-    title: '收支类型',
-    dataIndex: 'type',
+    label: '收支类型',
+    prop: 'type',
     width: 180
 }, {
-    title: '金额(￥)',
-    dataIndex: 'amount',
+    label: '金额(￥)',
+    prop: 'amount',
 }, {
-    title: '消费标签',
-    dataIndex: 'label',
+    label: '消费标签',
+    prop: 'label',
 }, {
-    title: '备  注',
-    dataIndex: 'mark',
+    label: '备  注',
+    prop: 'mark',
     width: 420
 }, {
-    title: '记录时间',
-    dataIndex: 'createTime',
+    label: '记录时间',
+    prop: 'createTime',
     width: 200
+}, {
+    label: "操作",
+    prop: "id",
+    render: function () {
+        return (<span><Button type="text" size="small">移除</Button></span>)
+    }
 }];
 
 class ChargeTable extends React.Component {
@@ -55,11 +62,11 @@ class ChargeTable extends React.Component {
         }
     }
 
-    clickAddButton() {
+    async clickAddButton() {
+        await this.props.fetchALlLabelsAction({ all: true });
         this.setState({
             isAddNewRecord: true
         })
-
     }
 
     async handleAddConfirm(charge) {
@@ -85,7 +92,7 @@ class ChargeTable extends React.Component {
     }
 
     onTableChange(page) {
-        this.fetchCharges(page.current, page.pageSize);
+        this.fetchCharges(page, this.state.size);
     }
 
     fetchCharges(current, pageSize) {
@@ -101,21 +108,13 @@ class ChargeTable extends React.Component {
             page: current,
             size: pageSize,
         });
-
     }
 
     render() {
 
-        let { data } = this.props.chargeTableState;
+        let { data, labels } = this.props.chargeTableState;
         let { items, total } = data;
-
         total = total || 0;
-        let pagination = {
-            total: total,
-            pageSize: this.state.size,
-            current: this.state.page,
-        }
-
         items = items || [];
         items.forEach(item => {
             let createTime = dateUtils.returnDiffDate(item['createTime']);
@@ -127,10 +126,9 @@ class ChargeTable extends React.Component {
                 item['type'] = '支出'
             }
         });
+
         return (
             <div>
-
-
                 <div className="top">
                     账目表
                 </div>
@@ -140,17 +138,20 @@ class ChargeTable extends React.Component {
                 </div>
 
                 <Table
-                    loading={this.state.loading}
                     columns={columns}
-                    dataSource={items}
-                    bordered={true}
-                    onChange={this.onTableChange.bind(this)}
-                    pagination={pagination}
-                    rowKey={record => record.id}
+                    data={items}
+                />
+
+                <Pagination style={{ float: 'right', marginTop: '10px' }}
+                    layout="total, prev, pager, next, jumper"
+                    total={total}
+                    pageSize={this.state.size}
+                    onCurrentChange={this.onTableChange.bind(this)}
                 />
 
                 <AddChargeDialog
                     visible={this.state.isAddNewRecord}
+                    labels={labels}
                     handleOk={this.handleAddConfirm.bind(this)}
                     handleCancel={this.handleAddcancel.bind(this)}
                 />
@@ -166,7 +167,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     fetchChargesAction: bindActionCreators(fetchCharges, dispatch),
-    addChargesAction: bindActionCreators(addCharges, dispatch)
+    addChargesAction: bindActionCreators(addCharges, dispatch),
+    fetchALlLabelsAction: bindActionCreators(fetchChargesLabel, dispatch),
 });
 
 let ChargeTableSmart = connect(mapStateToProps, mapDispatchToProps)(ChargeTable);

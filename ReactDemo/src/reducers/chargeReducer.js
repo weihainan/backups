@@ -5,7 +5,10 @@ import {
     FETCH_CHARGES_FAIL,
     DELETE_CHARGES,
     DELETE_CHARGES_SUCCESS,
-    ADD_CHARGES_FAIL
+    ADD_CHARGES_FAIL,
+    FETCH_CHARGES_LABEL,
+    FETCH_CHARGES_LABEL_SUCCESS,
+    FETCH_CHARGES_LABEL_FAIL
 } from '../actions/ChargeAction.js'
 import { initChargeTableState } from '../constants/structure.default'
 import formatMsg from '../utils/errorMsgFormat'
@@ -28,6 +31,15 @@ export default (state = initialState, action) => {
         case DELETE_CHARGES_SUCCESS:
             return state;
         case ADD_CHARGES_FAIL: {
+            let msg = formatMsg(action.payload)
+            return fromJS(state).set('msg', msg).toJS();
+        }
+
+        case FETCH_CHARGES_LABEL:
+            return state;
+        case FETCH_CHARGES_LABEL_SUCCESS:
+            return fromJS(state).set('labels', action.payload.items).toJS();;
+        case FETCH_CHARGES_LABEL_FAIL:{
             let msg = formatMsg(action.payload)
             return fromJS(state).set('msg', msg).toJS();
         }

@@ -69,6 +69,11 @@ class AddChargeDialog extends React.Component {
     }
 
     render() {
+        let options = [];  
+        this.props.labels.map(function(item){  
+            options.push(<Select.Option key={item.name} value={item.name}></Select.Option> ); 
+        })  
+        
         return (
             <div>
                 <Dialog title="新账目" visible={this.props.visible} onCancel={this.props.handleCancel}>
@@ -88,8 +93,7 @@ class AddChargeDialog extends React.Component {
                             <Form.Item label="标签" prop="label">
                                 <Select value={this.state.form.label} placeholder="请选择账目标签"
                                     onChange={this.onChange.bind(this, 'label')}>
-                                    <Select.Option label="区域一" value="shanghai"></Select.Option>
-                                    <Select.Option label="区域二" value="beijing"></Select.Option>
+                                    {options}
                                 </Select>
                             </Form.Item>
                             <Form.Item label="备注">
@@ -110,6 +114,7 @@ class AddChargeDialog extends React.Component {
 
 
 AddChargeDialog.propTypes = {
+    labels: React.PropTypes.array.isRequired,
     visible: React.PropTypes.bool.isRequired,
     handleOk: React.PropTypes.func.isRequired,
     handleCancel: React.PropTypes.func.isRequired,

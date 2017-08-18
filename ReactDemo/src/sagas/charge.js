@@ -19,3 +19,12 @@ export function* addCharge(charge) {
         yield put(actionTypes.addChargesFail(err.message))
     }
 }
+
+export function* getChargesLabels(params) {
+    try {
+        let response = yield call([chargeService, chargeService.getLabels], params)
+        yield put(actionTypes.fetchChargesLabelSuccess(response))
+    } catch (err) {
+        yield put(actionTypes.fetchChargesLabelFail(err.message))
+    }
+}
