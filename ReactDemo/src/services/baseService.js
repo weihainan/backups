@@ -52,7 +52,7 @@ export default class {
                 if (!response.ok) {
                     return Promise.reject(json)
                 }
-                console.log(JSON.stringify(camelizeKeys(json)))
+                //console.log(JSON.stringify(camelizeKeys(json)))
                 return camelizeKeys(json);
             }).catch(e => {
                 if (response.ok) {

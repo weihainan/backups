@@ -20,6 +20,15 @@ export function* addCharge(charge) {
     }
 }
 
+export function* deleteCharge(id) {
+    try {
+        let response = yield call([chargeService, chargeService.deleteCharge], id)
+        yield put(actionTypes.deleteChargesSuccess(response))
+    } catch (err) {
+        yield put(actionTypes.deleteChargesFail(err.message))
+    }
+}
+
 export function* getChargesLabels(params) {
     try {
         let response = yield call([chargeService, chargeService.getLabels], params)
