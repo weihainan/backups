@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import AddChargeDialog from './AddChargeDialog';
 import dateUtils from '../../utils/dateUtils';
 
-import { Message, MessageBox, Button, Table, Pagination } from 'element-react';
+import { Message, MessageBox, Button, Table, Pagination, Select } from 'element-react';
 import 'element-theme-default';
 
 class ChargeTable extends React.Component {
@@ -17,6 +17,8 @@ class ChargeTable extends React.Component {
             isAddNewRecord: false,
             page: 1,
             size: 15,
+            yearAndMonth: '',
+            yearAndMonthes: [{ value: '2017-07' }, { value: '2017-08' }]
         };
 
         this.columns = [{
@@ -71,22 +73,25 @@ class ChargeTable extends React.Component {
         }
     }
 
-    async clickAddButton() {
-        await this.props.fetchALlLabelsAction({ all: true });
+    clickAddButton() {
+        this.props.fetchAllLabelsAction({ all: true });
         this.setState({
             isAddNewRecord: true
         })
     }
 
-    async handleAddConfirm(charge) {
+    handleAddConfirm(charge) {
         if (!charge) {
             return;
         }
-        await this.props.addChargesAction(charge);
-        this.fetchCharges(this.state.page, this.state.size);
+        this.props.addChargesAction(charge);
         this.setState({
             isAddNewRecord: false,
         })
+        let me = this;
+        setTimeout(() => {
+            me.fetchCharges(this.state.page, this.state.size);
+        }, 300);
     }
 
     handleAddcancel() {
@@ -102,7 +107,7 @@ class ChargeTable extends React.Component {
         }).then(async () => {
             await me.props.deleteChargesAction(id);
             setTimeout(() => {
-                if (me.props.chargeTableState.data.items.length == 1) { // 奇怪 为什么是1而不是0
+                if (me.props.chargeTableState.data.items.length == 1) { // 此次删除后 本页就没数据了 所以此处是1 省去一次查询
                     me.setState({
                         page: me.state.page - 1 === 0 ? 1 : me.state.page - 1
                     });
@@ -112,9 +117,20 @@ class ChargeTable extends React.Component {
 
             Message({
                 type: 'success',
-                message: '删除成功!'
+                message: '删除成功!',
+                duration: 2000,
             });
         }).catch(() => {
+        });
+    }
+
+    clickSearchButton() {
+        console.log(this.state.yearAndMonth)
+    }
+
+    onChange(value) {
+        this.setState({
+            yearAndMonth: value
         });
     }
 
@@ -122,10 +138,11 @@ class ChargeTable extends React.Component {
         this.fetchCharges(page, this.state.size);
     }
 
-    fetchCharges(current, pageSize) {
+    fetchCharges(current = 1, pageSize = 15) {
         let body = {
             page: current,
             size: pageSize,
+            yearAndMonth: this.state.yearAndMonth            
         };
         this.props.fetchChargesAction(body);
         this.setState({
@@ -143,6 +160,16 @@ class ChargeTable extends React.Component {
 
                 <div className="operation-div">
                     <Button type="primary" onClick={this.clickAddButton.bind(this)}>新增账目</Button>
+                    <hr className="vertical-line" />
+                    <Select value={this.state.yearAndMonth} clearable={true}
+                        onChange={this.onChange.bind(this)}>
+                        {
+                            this.state.yearAndMonthes.map(el => {
+                                return <Select.Option key={el.value} label={el.value} value={el.value} />
+                            })
+                        }
+                    </Select>
+                    <Button type="primary" icon="search" onClick={this.clickSearchButton.bind(this)}>搜索</Button>
                 </div>
 
                 <Table
@@ -178,7 +205,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     fetchChargesAction: bindActionCreators(fetchCharges, dispatch),
     addChargesAction: bindActionCreators(addCharges, dispatch),
-    fetchALlLabelsAction: bindActionCreators(fetchChargesLabel, dispatch),
+    fetchAllLabelsAction: bindActionCreators(fetchChargesLabel, dispatch),
     deleteChargesAction: bindActionCreators(deleteCharges, dispatch),
 });
 

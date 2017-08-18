@@ -132,3 +132,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
 }
+
+.vertical-line {
+    border-right: 1px;
+    color: #D5D5D5;
+    margin-left: 10px;
+    margin-right: 12px;
+    display: inline;
+  }

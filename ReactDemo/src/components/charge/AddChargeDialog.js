@@ -69,11 +69,14 @@ class AddChargeDialog extends React.Component {
     }
 
     render() {
-        let options = [];  
-        this.props.labels.map(function(item){  
-            options.push(<Select.Option key={item.name} value={item.name}></Select.Option> ); 
-        })  
-        
+        let options = [];
+        this.props.labels.map(function (item) {
+            options.push(<Select.Option key={item.name} value={item.name} label={item.name}>
+                <span style={{ float: 'left' }}>{item.name}</span>
+                <span style={{ float: 'right', color: '#8492a6', fontSize: '13px' }}>{item.mark}</span>
+            </Select.Option >);
+        })
+
         return (
             <div>
                 <Dialog title="新账目" visible={this.props.visible} onCancel={this.props.handleCancel}>
