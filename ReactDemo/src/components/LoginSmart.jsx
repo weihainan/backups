@@ -1,11 +1,11 @@
 import React from 'react'
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { Form, Icon, Input, Button } from 'antd';
-import { loginAction } from '../actions/AdminAction'
-import { getItem } from '../utils/localstorageUtils';
-import { hashHistory } from 'react-router';
-import { message } from 'antd';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {Form, Icon, Input, Button} from 'antd';
+import {loginAction} from '../actions/AdminAction'
+import {getItem} from '../utils/localstorageUtils';
+import {hashHistory} from 'react-router';
+import {message} from 'antd';
 
 const FormItem = Form.Item;
 
@@ -19,16 +19,19 @@ class NormalLoginForm extends React.Component {
 
     componentDidMount() {
         if (getItem('admin')) {
-            hashHistory.push({ pathname: '/' })
+            hashHistory.push({pathname: '/'})
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        let { adminState } = nextProps;
+        let {adminState} = nextProps;
         if (adminState.isLoggedIn && getItem('admin')) {
             setTimeout(() => {
-                window.location.href = '/demo/#'
+                window.location.href = '/#'
             }, 100)
+        }
+        if (nextProps.adminState.errorMsg) {
+            message.info(nextProps.adminState.errorMsg);
         }
     }
 
@@ -42,37 +45,29 @@ class NormalLoginForm extends React.Component {
         });
     }
 
-    error = (errorMsg) => {
-        if (errorMsg) {
-            message.info(errorMsg);
-        }
-    }
-
     render() {
-        let { adminState } = this.props;
-        let { logining, errorMsg } = adminState;
+        let {adminState} = this.props;
+        let {logining, errorMsg} = adminState;
 
-        this.error(errorMsg)
-
-        const { getFieldDecorator } = this.props.form;
+        const {getFieldDecorator} = this.props.form;
         return (
             <div>
                 <div id="components-form-demo-normal-login">
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <FormItem>
                             {getFieldDecorator('id', {
-                                rules: [{ required: true, message: '请输入用户编号!' }],
+                                rules: [{required: true, message: '请输入用户编号!'}],
                             })(
-                                <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="ID" />
-                                )}
+                                <Input prefix={<Icon type="user" style={{fontSize: 13}}/>} placeholder="ID"/>
+                            )}
                         </FormItem>
                         <FormItem>
                             {getFieldDecorator('password', {
-                                rules: [{ required: true, message: '请输入登录密码!' }],
+                                rules: [{required: true, message: '请输入登录密码!'}],
                             })(
-                                <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password"
-                                    placeholder="Password" />
-                                )}
+                                <Input prefix={<Icon type="lock" style={{fontSize: 13}}/>} type="password"
+                                       placeholder="Password"/>
+                            )}
                         </FormItem>
                         <FormItem>
                             <Button type="primary" htmlType="submit" className="login-form-button">
