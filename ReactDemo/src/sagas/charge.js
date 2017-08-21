@@ -1,4 +1,4 @@
-import { select, put, call } from 'redux-saga/effects';
+import {select, put, call} from 'redux-saga/effects';
 import * as actionTypes from '../actions/ChargeAction.js'
 import chargeService from '../services/ChargeService'
 
@@ -35,5 +35,14 @@ export function* getChargesLabels(params) {
         yield put(actionTypes.fetchChargesLabelSuccess(response))
     } catch (err) {
         yield put(actionTypes.fetchChargesLabelFail(err.message))
+    }
+}
+
+export function* getYearAndMonth() {
+    try {
+        let response = yield call([chargeService, chargeService.yearAndMonth])
+        yield put(actionTypes.fetchYearAndMonthSuccess(response))
+    } catch (err) {
+        yield put(actionTypes.fetchYearAndMonthFail(err.message))
     }
 }

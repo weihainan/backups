@@ -1,12 +1,13 @@
 import React from 'react'
-import { fetchCharges, addCharges, fetchChargesLabel, deleteCharges } from '../../actions/ChargeAction'
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {fetchCharges, addCharges, fetchChargesLabel, deleteCharges, fetchYearAndMonth} from '../../actions/ChargeAction'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import AddChargeDialog from './AddChargeDialog';
+import NotDataTip from '../common/noDataTip'
 import dateUtils from '../../utils/dateUtils';
 
-import { Message, MessageBox, Button, Table, Pagination, Select } from 'element-react';
+import {Message, MessageBox, Button, Table, Pagination, Select} from 'element-react';
 import 'element-theme-default';
 
 class ChargeTable extends React.Component {
@@ -18,7 +19,6 @@ class ChargeTable extends React.Component {
             page: 1,
             size: 15,
             yearAndMonth: '',
-            yearAndMonthes: [{ value: '2017-07' }, { value: '2017-08' }]
         };
 
         this.columns = [{
@@ -60,10 +60,11 @@ class ChargeTable extends React.Component {
 
     componentDidMount() {
         this.fetchCharges(this.state.page, this.state.size);
+        this.props.fetchYearAndMonthesAction();
     }
 
     componentWillReceiveProps(nextProps) {
-        let { msg } = nextProps.chargeTableState;
+        let {msg} = nextProps.chargeTableState;
         if (msg) {
             Message({
                 message: msg,
@@ -74,7 +75,7 @@ class ChargeTable extends React.Component {
     }
 
     clickAddButton() {
-        this.props.fetchAllLabelsAction({ all: true });
+        this.props.fetchAllLabelsAction({all: true});
         this.setState({
             isAddNewRecord: true
         })
@@ -90,7 +91,7 @@ class ChargeTable extends React.Component {
         })
         let me = this;
         setTimeout(() => {
-            me.fetchCharges(this.state.page, this.state.size);
+            me.fetchCharges(me.state.page, me.state.size);
         }, 300);
     }
 
@@ -104,7 +105,7 @@ class ChargeTable extends React.Component {
         let me = this;
         MessageBox.confirm('此操作将永久删除该记录, 是否继续?', '提示', {
             type: 'warning'
-        }).then(async () => {
+        }).then(async() => {
             await me.props.deleteChargesAction(id);
             setTimeout(() => {
                 if (me.props.chargeTableState.data.items.length == 1) { // 此次删除后 本页就没数据了 所以此处是1 省去一次查询
@@ -126,6 +127,7 @@ class ChargeTable extends React.Component {
 
     clickSearchButton() {
         console.log(this.state.yearAndMonth)
+        this.fetchCharges(this.state.page, this.state.size);
     }
 
     onChange(value) {
@@ -142,13 +144,36 @@ class ChargeTable extends React.Component {
         let body = {
             page: current,
             size: pageSize,
-            yearAndMonth: this.state.yearAndMonth            
+            year_and_month: this.state.yearAndMonth
         };
         this.props.fetchChargesAction(body);
         this.setState({
             page: current,
             size: pageSize,
         });
+    }
+
+    fetchDataBody() {
+        if (this.props.chargeTableState.data.items && this.props.chargeTableState.data.items.length > 0) {
+            return (
+                <div>
+                    <Table
+                        columns={this.columns}
+                        data={this.props.chargeTableState.data.items}
+                        loading={this.state.loading}
+                    />
+                    <Pagination style={{float: 'right', marginTop: '10px'}}
+                                layout="total, prev, pager, next, jumper"
+                                total={this.props.chargeTableState.data.total}
+                                currentPage={this.state.page}
+                                pageSize={this.state.size}
+                                onCurrentChange={this.onTableChange.bind(this)}
+                    />
+                </div>
+            )
+        } else {
+            return <NotDataTip msg='找不到数据'/>
+        }
     }
 
     render() {
@@ -160,31 +185,20 @@ class ChargeTable extends React.Component {
 
                 <div className="operation-div">
                     <Button type="primary" onClick={this.clickAddButton.bind(this)}>新增账目</Button>
-                    <hr className="vertical-line" />
+                    <hr className="vertical-line"/>
                     <Select value={this.state.yearAndMonth} clearable={true}
-                        onChange={this.onChange.bind(this)}>
+                            onChange={this.onChange.bind(this)}>
                         {
-                            this.state.yearAndMonthes.map(el => {
-                                return <Select.Option key={el.value} label={el.value} value={el.value} />
+                            this.props.chargeTableState.yearAndMonthes.map(el => {
+                                return <Select.Option key={el.time} label={el.time} value={el.time}/>
                             })
                         }
                     </Select>
+                    <span style={{width: '10px', display: 'inline-block'}}></span>
                     <Button type="primary" icon="search" onClick={this.clickSearchButton.bind(this)}>搜索</Button>
                 </div>
 
-                <Table
-                    columns={this.columns}
-                    data={this.props.chargeTableState.data.items}
-                    loading={this.state.loading}
-                />
-
-                <Pagination style={{ float: 'right', marginTop: '10px' }}
-                    layout="total, prev, pager, next, jumper"
-                    total={this.props.chargeTableState.data.total}
-                    currentPage={this.state.page}
-                    pageSize={this.state.size}
-                    onCurrentChange={this.onTableChange.bind(this)}
-                />
+                {this.fetchDataBody()}
 
                 <AddChargeDialog
                     visible={this.state.isAddNewRecord}
@@ -207,6 +221,7 @@ const mapDispatchToProps = dispatch => ({
     addChargesAction: bindActionCreators(addCharges, dispatch),
     fetchAllLabelsAction: bindActionCreators(fetchChargesLabel, dispatch),
     deleteChargesAction: bindActionCreators(deleteCharges, dispatch),
+    fetchYearAndMonthesAction: bindActionCreators(fetchYearAndMonth, dispatch),
 });
 
 let ChargeTableSmart = connect(mapStateToProps, mapDispatchToProps)(ChargeTable);

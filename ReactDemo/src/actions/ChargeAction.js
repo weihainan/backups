@@ -122,17 +122,16 @@ export const FETCH_YEARANDMONTH = 'FETCH_YEARANDMONTH';
 export const FETCH_YEARANDMONTH_SUCCESS = 'FETCH_YEARANDMONTH_SUCCESS';
 export const FETCH_YEARANDMONTH_FAIL = 'FETCH_YEARANDMONTH_FAIL';
 
-export const fetchYearAndMonthLabel = (params) => ({
+export const fetchYearAndMonth = () => ({
     type: FETCH_YEARANDMONTH,
-    payload: params
 })
 
-export const fetchYearAndMonthLabelSuccess = (value) => ({
+export const fetchYearAndMonthSuccess = (value) => ({
     type: FETCH_YEARANDMONTH_SUCCESS,
     payload: value
 })
 
-export const fetchYearAndMonthLabelFail = (msg) => ({
+export const fetchYearAndMonthFail = (msg) => ({
     type: FETCH_YEARANDMONTH_FAIL,
     payload: msg
 })

@@ -1,16 +1,12 @@
-import { fromJS } from 'immutable';
+import {fromJS} from 'immutable';
 import {
-    FETCH_CHARGES,
-    FETCH_CHARGES_SUCCESS,
-    FETCH_CHARGES_FAIL,
-    DELETE_CHARGES,
-    DELETE_CHARGES_SUCCESS,
-    ADD_CHARGES_FAIL,
-    FETCH_CHARGES_LABEL,
-    FETCH_CHARGES_LABEL_SUCCESS,
-    FETCH_CHARGES_LABEL_FAIL
+    ADD_CHARGES, ADD_CHARGES_SUCCESS, ADD_CHARGES_FAIL,
+    FETCH_CHARGES, FETCH_CHARGES_SUCCESS, FETCH_CHARGES_FAIL,
+    DELETE_CHARGES, DELETE_CHARGES_SUCCESS, DELETE_CHARGES_FAIL,
+    FETCH_CHARGES_LABEL, FETCH_CHARGES_LABEL_SUCCESS, FETCH_CHARGES_LABEL_FAIL,
+    FETCH_YEARANDMONTH, FETCH_YEARANDMONTH_SUCCESS, FETCH_YEARANDMONTH_FAIL,
 } from '../actions/ChargeAction.js'
-import { initChargeTableState } from '../constants/structure.default'
+import {initChargeTableState} from '../constants/structure.default'
 import formatMsg from '../utils/errorMsgFormat'
 
 const initialState = fromJS(initChargeTableState)
@@ -26,11 +22,20 @@ export default (state = initialState, action) => {
             return fromJS(state).set('msg', msg).toJS();
         }
 
+        case ADD_CHARGES:
+            return state;
+        case ADD_CHARGES_SUCCESS:
+            return state;
+        case ADD_CHARGES_FAIL: {
+            let msg = formatMsg(action.payload)
+            return fromJS(state).set('msg', msg).toJS();
+        }
+
         case DELETE_CHARGES:
             return state;
         case DELETE_CHARGES_SUCCESS:
             return state;
-        case ADD_CHARGES_FAIL: {
+        case DELETE_CHARGES_FAIL: {
             let msg = formatMsg(action.payload)
             return fromJS(state).set('msg', msg).toJS();
         }
@@ -38,8 +43,17 @@ export default (state = initialState, action) => {
         case FETCH_CHARGES_LABEL:
             return state;
         case FETCH_CHARGES_LABEL_SUCCESS:
-            return fromJS(state).set('labels', action.payload.items).toJS();;
-        case FETCH_CHARGES_LABEL_FAIL:{
+            return fromJS(state).set('labels', action.payload.items).toJS();
+        case FETCH_CHARGES_LABEL_FAIL: {
+            let msg = formatMsg(action.payload)
+            return fromJS(state).set('msg', msg).toJS();
+        }
+
+        case FETCH_YEARANDMONTH:
+            return state;
+        case FETCH_YEARANDMONTH_SUCCESS:
+            return fromJS(state).set('yearAndMonthes', action.payload).toJS();
+        case FETCH_YEARANDMONTH_FAIL: {
             let msg = formatMsg(action.payload)
             return fromJS(state).set('msg', msg).toJS();
         }
