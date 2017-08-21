@@ -19,6 +19,7 @@ class ChargeTable extends React.Component {
             page: 1,
             size: 15,
             yearAndMonth: '',
+            selectedCharge: null,
         };
 
         this.columns = [{
@@ -53,7 +54,13 @@ class ChargeTable extends React.Component {
             label: "操作",
             prop: "id",
             render: (data, column) => {
-                return (<span><Button type="text" size="small" onClick={this.delete.bind(this, data['id'])}>移除</Button></span>)
+                return (
+                    <div>
+                        <span><Button type="text" size="small" onClick={this.delete.bind(this, data['id'])}>移除</Button></span>
+                        <span style={{width: '10px', display: 'inline-block'}}></span>
+                        <span><Button type="text" size="small" onClick={this.update.bind(this, data)}>更新</Button></span>
+                    </div>
+                )
             }
         }];
     }
@@ -97,6 +104,7 @@ class ChargeTable extends React.Component {
 
     handleAddcancel() {
         this.setState({
+            selectedCharge: null,
             isAddNewRecord: false
         })
     }
@@ -122,6 +130,14 @@ class ChargeTable extends React.Component {
                 duration: 2000,
             });
         }).catch(() => {
+        });
+    }
+
+    update(charge) {
+        this.props.fetchAllLabelsAction({all: true});
+        this.setState({
+            selectedCharge: charge,
+            isAddNewRecord: true
         });
     }
 
@@ -202,6 +218,7 @@ class ChargeTable extends React.Component {
 
                 <AddChargeDialog
                     visible={this.state.isAddNewRecord}
+                    charge={this.state.selectedCharge}
                     labels={this.props.chargeTableState.labels}
                     handleOk={this.handleAddConfirm.bind(this)}
                     handleCancel={this.handleAddcancel.bind(this)}
