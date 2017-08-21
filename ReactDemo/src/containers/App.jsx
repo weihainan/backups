@@ -1,13 +1,17 @@
 'use strict';
 
 import React from 'react';
-import { Link, hashHistory } from 'react-router';
-import { remove } from '../utils/localstorageUtils';
-import { getItem } from '../utils/localstorageUtils';
+import {Link, hashHistory} from 'react-router';
+import {remove} from '../utils/localstorageUtils';
+import {getItem} from '../utils/localstorageUtils';
 
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {valideToken} from '../actions/AdminAction'
+import auth from '../services/auth'
 
 // 引入Antd的导航组件
-import { Menu, Icon, Button, Avatar } from 'antd';
+import {Menu, Icon, Button, message} from 'antd';
 const SubMenu = Menu.SubMenu;
 
 let routeMap = {
@@ -26,7 +30,8 @@ class App extends React.Component {
         this.state = {
             current: '0',
             openKeys: [],
-            username: ''
+            username: '',
+            valideTokenTask: null,
         };
     }
 
@@ -36,23 +41,50 @@ class App extends React.Component {
         });
     }
 
-    componentWillMount() {
+    componentDidMount() {
         var route = this.props.location.pathname;
         this.setState({
             current: routeMap[route] || '0'
         });
-    }
-
-    componentDidMount() {
         this.setState({
             username: !getItem('admin') ? '' : getItem('admin').name
         });
+        this.startValidTokenPoll();
+    }
+
+    componentWillUnmount() {
+        this.stopValidTokenPoll()
+    }
+
+    startValidTokenPoll() {
+        let valideTokenTask = ()=> {
+            console.log("5s running ....")
+            this.props.valideTokenAction(auth());
+        }
+        this.timer = setInterval(valideTokenTask, 5000)
+    }
+
+    stopValidTokenPoll() {
+        if (this.timer) {
+            clearInterval(this.timer)
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.adminState.expired) {
+            window.clearTimeout(this.state.valideTokenTask);
+            this.loginout();
+        }
+
+        if (nextProps.adminState.errorMsg) {
+            message.info(nextProps.adminState.errorMsg);
+        }
     }
 
     loginout() {
         console.log(`${this.state.username} login out ...`)
         remove('admin');
-        hashHistory.push({ pathname: '/login' })
+        hashHistory.push({pathname: '/login'})
     }
 
     onOpenChange = (openKeys) => {
@@ -67,7 +99,7 @@ class App extends React.Component {
         if (latestCloseKey) {
             nextOpenKeys = this.getAncestorKeys(latestCloseKey);
         }
-        this.setState({ openKeys: nextOpenKeys });
+        this.setState({openKeys: nextOpenKeys});
     }
     getAncestorKeys = (key) => {
         const map = {
@@ -80,23 +112,23 @@ class App extends React.Component {
         return (
             <div>
                 <div id="leftMenu">
-                    <img src={require('../images/logo.png')} width="50" id="logo" />
+                    <img src={require('../images/logo.png')} width="50" id="logo"/>
                     <Menu.Divider />
                     <Menu theme="dark"
-                        onClick={this.handleClick.bind(this)}
-                        style={{ width: 200 }}
-                        defaultOpenKeys={['sub1', 'sub2']}
-                        defaultSelectedKeys={[this.state.current]}
-                        mode="inline"
-                        openKeys={this.state.openKeys}
-                        selectedKeys={[this.state.current]}
-                        onOpenChange={this.onOpenChange}
+                          onClick={this.handleClick.bind(this)}
+                          style={{width: 200}}
+                          defaultOpenKeys={['sub1', 'sub2']}
+                          defaultSelectedKeys={[this.state.current]}
+                          mode="inline"
+                          openKeys={this.state.openKeys}
+                          selectedKeys={[this.state.current]}
+                          onOpenChange={this.onOpenChange}
                     >
-                        <Menu.Item key="0"><Link to="/myIntroduce"><Icon type="mail" />我没有子菜单</Link></Menu.Item>
-                        <SubMenu key="sub1" title={<span><Icon type="bars" /><span>主导航</span></span>}>
+                        <Menu.Item key="0"><Link to="/myIntroduce"><Icon type="mail"/>我没有子菜单</Link></Menu.Item>
+                        <SubMenu key="sub1" title={<span><Icon type="bars"/><span>主导航</span></span>}>
                             <Menu.Item key="1"><Link to="/appleBasket">摘苹果</Link></Menu.Item>
                         </SubMenu>
-                        <SubMenu key="sub2" title={<span><Icon type="bars" /><span>记  账</span></span>}>
+                        <SubMenu key="sub2" title={<span><Icon type="bars"/><span>记  账</span></span>}>
                             <Menu.Item key="2"><Link to="/chargeTable">账目表</Link></Menu.Item>
                             <Menu.Item key="3"><Link to="/myIntroduce">时间轴</Link></Menu.Item>
                             <Menu.Item key="4"><Link to="/myIntroduce">统 计</Link></Menu.Item>
@@ -105,9 +137,9 @@ class App extends React.Component {
                 </div>
                 <div id="rightWrap">
                     <Menu mode="horizontal" className="head-menu">
-                        <SubMenu title={<span><Icon type="user" /> {this.state.username}</span>}>
-                            <Menu.Item key="setting:1" style={{ textAlign: 'center' }}>
-                                <Button type="primary" onClick={this.loginout.bind(this)}>退  出</Button>
+                        <SubMenu title={<span><Icon type="user"/> {this.state.username}</span>}>
+                            <Menu.Item key="setting:1" style={{textAlign: 'center'}}>
+                                <Button type="primary" onClick={this.loginout.bind(this)}>退 出</Button>
                             </Menu.Item>
                         </SubMenu>
                     </Menu>
@@ -120,4 +152,16 @@ class App extends React.Component {
     }
 }
 
-export default App;
+
+const mapStateToProps = state => ({
+    adminState: state.adminState
+});
+
+const mapDispatchToProps = dispatch => ({
+    valideTokenAction: bindActionCreators(valideToken, dispatch)
+});
+
+let AppSmart = connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default AppSmart;
+

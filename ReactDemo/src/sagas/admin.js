@@ -13,3 +13,12 @@ export function* loginUserAsync(user) {
         yield put(actionTypes.loginFailureAction(err.message))
     }
 }
+
+export function* validToken(token) {
+    try {
+        let response = yield call([adminService, adminService.valid], token)
+        yield put(actionTypes.valideTokenSuccess(response))
+    } catch (err) {
+        yield put(actionTypes.valideTokenFail(err.message))
+    }
+}

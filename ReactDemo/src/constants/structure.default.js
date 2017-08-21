@@ -2,6 +2,7 @@ export const initAdminLoginState = {
     logining: false,
     isLoggedIn: false,
     errorMsg: '',
+    expired: false
 }
 
 

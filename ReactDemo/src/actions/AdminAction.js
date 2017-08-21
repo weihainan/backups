@@ -17,3 +17,24 @@ export const loginFailureAction = (message)=>({
     type: LOGIN_ADMIN_FAILURE,
     payload: message
 })
+
+
+export const VALID_TOKEN = 'VALID_TOKEN';
+export const VALID_TOKEN_SUCCESS = 'VALID_TOKEN_SUCCESS';
+export const VALID_TOKEN_FAILURE = 'VALID_TOKEN_FAILURE';
+
+
+export const valideToken = (token)=>({
+    type: VALID_TOKEN,
+    payload: token
+})
+
+export const valideTokenSuccess = (value)=>({
+    type: VALID_TOKEN_SUCCESS,
+    payload: value
+})
+
+export const valideTokenFail = (message)=>({
+    type: VALID_TOKEN_FAILURE,
+    payload: message
+})
