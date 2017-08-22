@@ -20,6 +20,7 @@ let routeMap = {
     '/chargeTable': '2',
     '/chargeTimeLine': '3',
     '/chargeStatistic': '4',
+    '/chargeLabels': '5',
 };
 
 // 配置导航
@@ -132,6 +133,7 @@ class App extends React.Component {
                             <Menu.Item key="2"><Link to="/chargeTable">账目表</Link></Menu.Item>
                             <Menu.Item key="3"><Link to="/myIntroduce">时间轴</Link></Menu.Item>
                             <Menu.Item key="4"><Link to="/myIntroduce">统 计</Link></Menu.Item>
+                            <Menu.Item key="5"><Link to="/chargeLabels">标 签</Link></Menu.Item>
                         </SubMenu>
                     </Menu>
                 </div>

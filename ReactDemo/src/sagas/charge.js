@@ -46,3 +46,22 @@ export function* getYearAndMonth() {
         yield put(actionTypes.fetchYearAndMonthFail(err.message))
     }
 }
+
+export function* deleteLabel(id) {
+    try {
+        let response = yield call([chargeService, chargeService.deleteLabel], id)
+        yield put(actionTypes.deleteChargesLabelSuccess(response))
+    } catch (err) {
+        yield put(actionTypes.deleteChargesLabelFail(err.message))
+    }
+}
+
+
+export function* addLabel(body) {
+    try {
+        let response = yield call([chargeService, chargeService.addLabel], body)
+        yield put(actionTypes.addChargesLabelSuccess(response))
+    } catch (err) {
+        yield put(actionTypes.addChargesFail(err.message))
+    }
+}

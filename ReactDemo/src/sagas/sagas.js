@@ -1,7 +1,7 @@
 import {takeLatest, takeEvery} from 'redux-saga/effects';
 import {loginUserAsync, validToken} from './admin';
 import {applesList, pickApple, eatApple} from './apple';
-import {chargesList, addCharge, getChargesLabels, deleteCharge, getYearAndMonth} from './charge';
+import {chargesList, addCharge, getChargesLabels, deleteCharge, getYearAndMonth, deleteLabel, addLabel} from './charge';
 import {LOGIN_ADMIN, VALID_TOKEN} from '../actions/AdminAction';
 import {FETCH_APPLES, PICK_APPLE, EAT_APPLE} from '../actions/AppleAction';
 import {
@@ -9,7 +9,9 @@ import {
     ADD_CHARGES,
     FETCH_CHARGES_LABEL,
     DELETE_CHARGES,
-    FETCH_YEARANDMONTH
+    FETCH_YEARANDMONTH,
+    DELETE_CHARGES_LABEL,
+    ADD_CHARGES_LABEL,
 } from '../actions/ChargeAction';
 
 
@@ -26,6 +28,8 @@ export default function* rootSaga() {
     yield takeEvery(DELETE_CHARGES, mapPayload(deleteCharge))
 
     yield takeEvery(FETCH_CHARGES_LABEL, mapPayload(getChargesLabels))
+    yield takeEvery(DELETE_CHARGES_LABEL, mapPayload(deleteLabel))
+    yield takeEvery(ADD_CHARGES_LABEL, mapPayload(addLabel))
 
     yield takeEvery(FETCH_YEARANDMONTH, mapPayload(getYearAndMonth))
 }

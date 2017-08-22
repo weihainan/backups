@@ -28,6 +28,7 @@ class NormalLoginForm extends React.Component {
         if (adminState.isLoggedIn && getItem('admin')) {
             setTimeout(() => {
                 window.location.href = '/#'
+                // window.location.href = '/demo/#'
             }, 100)
         }
         if (nextProps.adminState.errorMsg) {
@@ -46,9 +47,6 @@ class NormalLoginForm extends React.Component {
     }
 
     render() {
-        let {adminState} = this.props;
-        let {logining, errorMsg} = adminState;
-
         const {getFieldDecorator} = this.props.form;
         return (
             <div>
@@ -71,7 +69,7 @@ class NormalLoginForm extends React.Component {
                         </FormItem>
                         <FormItem>
                             <Button type="primary" htmlType="submit" className="login-form-button">
-                                {!logining ? ' 登 录' : 'login ...'}
+                                {!this.props.adminState.logining ? ' 登 录' : 'login ...'}
                             </Button>
                         </FormItem>
                     </Form>

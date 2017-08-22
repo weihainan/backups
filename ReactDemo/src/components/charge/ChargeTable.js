@@ -21,7 +21,6 @@ class ChargeTable extends React.Component {
             yearAndMonth: '',
             selectedCharge: null,
         };
-
         this.columns = [{
             label: '收支类型',
             prop: 'type',

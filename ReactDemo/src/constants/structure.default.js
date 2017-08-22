@@ -20,7 +20,6 @@ export const initChargeTableState = {
     yearAndMonthes: []
 }
 
-
 export const initialState = {
     appleBasket: initApplesState,
     adminState: initAdminLoginState,

@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
                     .set('errorMsg', 'Token已经过期,请重新登陆.')
                     .toJS();
             }
-            return state;
+            return fromJS(state).set('errorMsg', '').toJS();
         }
         case actionTypes.VALID_TOKEN_FAILURE:
             return fromJS(state)

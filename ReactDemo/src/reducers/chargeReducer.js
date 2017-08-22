@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
         case ADD_CHARGES:
             return state;
         case ADD_CHARGES_SUCCESS:
-            return state;
+            return fromJS(state).set('msg', '').toJS();
         case ADD_CHARGES_FAIL: {
             let msg = formatMsg(action.payload)
             return fromJS(state).set('msg', msg).toJS();
@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
         case DELETE_CHARGES:
             return state;
         case DELETE_CHARGES_SUCCESS:
-            return state;
+            return fromJS(state).set('msg', '').toJS();
         case DELETE_CHARGES_FAIL: {
             let msg = formatMsg(action.payload)
             return fromJS(state).set('msg', msg).toJS();
@@ -43,7 +43,7 @@ export default (state = initialState, action) => {
         case FETCH_CHARGES_LABEL:
             return state;
         case FETCH_CHARGES_LABEL_SUCCESS:
-            return fromJS(state).set('labels', action.payload.items).toJS();
+            return fromJS(state).set('labels', action.payload.items).set('msg', '').toJS();
         case FETCH_CHARGES_LABEL_FAIL: {
             let msg = formatMsg(action.payload)
             return fromJS(state).set('msg', msg).toJS();
@@ -52,7 +52,7 @@ export default (state = initialState, action) => {
         case FETCH_YEARANDMONTH:
             return state;
         case FETCH_YEARANDMONTH_SUCCESS:
-            return fromJS(state).set('yearAndMonthes', action.payload).toJS();
+            return fromJS(state).set('yearAndMonthes', action.payload).set('msg', '').toJS();
         case FETCH_YEARANDMONTH_FAIL: {
             let msg = formatMsg(action.payload)
             return fromJS(state).set('msg', msg).toJS();
