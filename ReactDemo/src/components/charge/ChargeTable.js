@@ -18,7 +18,7 @@ class ChargeTable extends React.Component {
             isAddNewRecord: false,
             page: 1,
             size: 15,
-            yearAndMonth: '',
+            yearAndMonth: dateUtils.getCurrentYearMonthForQuery(),
             selectedCharge: null,
         };
         this.columns = [{
@@ -141,8 +141,10 @@ class ChargeTable extends React.Component {
     }
 
     clickSearchButton() {
-        console.log(this.state.yearAndMonth)
-        this.fetchCharges(this.state.page, this.state.size);
+        this.setState({
+            page: 1
+        });
+        this.fetchCharges(1, this.state.size);
     }
 
     onChange(value) {

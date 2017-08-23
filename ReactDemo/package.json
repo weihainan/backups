@@ -4,7 +4,7 @@
   "description": "React learn demo",
   "main": "index.js",
   "scripts": {
-    "start": "webpack",
+    "build": "webpack",
     "dev": "webpack-dev-server"
   },
   "keywords": [
@@ -28,6 +28,7 @@
     "babel-preset-stage-3": "^6.24.1",
     "babel-runtime": "^6.25.0",
     "css-loader": "^0.28.4",
+    "echarts": "^3.7.0",
     "file-loader": "^0.11.2",
     "immutability": "^1.0.2",
     "react": "^15.6.1",

@@ -32,14 +32,7 @@ class App extends React.Component {
             current: '0',
             openKeys: [],
             username: '',
-            valideTokenTask: null,
         };
-    }
-
-    handleClick(e) {
-        this.setState({
-            current: e.key
-        });
     }
 
     componentDidMount() {
@@ -53,16 +46,25 @@ class App extends React.Component {
         this.startValidTokenPoll();
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.adminState.expired) {
+            this.loginout();
+        }
+
+        if (nextProps.adminState.errorMsg) {
+            message.info(nextProps.adminState.errorMsg);
+        }
+    }
+
     componentWillUnmount() {
         this.stopValidTokenPoll()
     }
 
     startValidTokenPoll() {
         let valideTokenTask = ()=> {
-            console.log("5s running ....")
             this.props.valideTokenAction(auth());
         }
-        this.timer = setInterval(valideTokenTask, 5000)
+        this.timer = setInterval(valideTokenTask, 60 * 1000)
     }
 
     stopValidTokenPoll() {
@@ -71,15 +73,10 @@ class App extends React.Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.adminState.expired) {
-            window.clearTimeout(this.state.valideTokenTask);
-            this.loginout();
-        }
-
-        if (nextProps.adminState.errorMsg) {
-            message.info(nextProps.adminState.errorMsg);
-        }
+    handleClick(e) {
+        this.setState({
+            current: e.key
+        });
     }
 
     loginout() {
@@ -102,6 +99,7 @@ class App extends React.Component {
         }
         this.setState({openKeys: nextOpenKeys});
     }
+
     getAncestorKeys = (key) => {
         const map = {
             sub3: ['sub2'],
@@ -132,7 +130,7 @@ class App extends React.Component {
                         <SubMenu key="sub2" title={<span><Icon type="bars"/><span>记  账</span></span>}>
                             <Menu.Item key="2"><Link to="/chargeTable">账目表</Link></Menu.Item>
                             <Menu.Item key="3"><Link to="/myIntroduce">时间轴</Link></Menu.Item>
-                            <Menu.Item key="4"><Link to="/myIntroduce">统 计</Link></Menu.Item>
+                            <Menu.Item key="4"><Link to="/chargeStatistic">统 计</Link></Menu.Item>
                             <Menu.Item key="5"><Link to="/chargeLabels">标 签</Link></Menu.Item>
                         </SubMenu>
                     </Menu>

@@ -36,4 +36,10 @@ export default new class ChargeService extends BaseService {
         let endPoint = `personal/charge_labels`;
         return super.ufRequest({endpoint: endPoint, body: body, method: 'get', withAuthToken: false});
     }
+
+
+    statistics() {
+        let endPoint = `personal/charges/statistics`;
+        return super.ufRequest({endpoint: endPoint, body: null, method: 'get', withAuthToken: true});
+    }
 }

@@ -65,3 +65,11 @@ export function* addLabel(body) {
         yield put(actionTypes.addChargesFail(err.message))
     }
 }
+export function* statistics() {
+    try {
+        let response = yield call([chargeService, chargeService.statistics])
+        yield put(actionTypes.statisticsSuccess(response))
+    } catch (err) {
+        yield put(actionTypes.statisticsFail(err.message))
+    }
+}

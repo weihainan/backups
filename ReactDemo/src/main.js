@@ -10,6 +10,7 @@ import App from './containers/App.jsx';
 import AppleBasket from './components/apples/AppleBasket.jsx';
 import ChargeTableSmart from './components/charge/ChargeTable.js';
 import ChargeLableSmart from './components/charge/ChargeLable.js';
+import ChargeStatisticsSmart from './components/charge/ChargeStatistics.js';
 import MyIntroduce from './components/common/Introduce.js';
 import LoginSmart from './components/LoginSmart.jsx';
 import DevTools from './containers/devTools'
@@ -53,6 +54,7 @@ let child = <div>
                 <Route path="appleBasket" component={AppleBasket}/>
                 <Route path="chargeTable" component={ChargeTableSmart}/>
                 <Route path="chargeLabels" component={ChargeLableSmart}/>
+                <Route path="chargeStatistic" component={ChargeStatisticsSmart}/>
             </Route>
         </Route>
         <Route path='*' component={Page404} status={404}/>

@@ -135,3 +135,22 @@ export const fetchYearAndMonthFail = (msg) => ({
     type: FETCH_YEARANDMONTH_FAIL,
     payload: msg
 })
+
+
+export const CHARGES_STATISTICS = 'CHARGES_STATISTICS';
+export const CHARGES_STATISTICS_SUCCESS = 'CHARGES_STATISTICS_SUCCESS';
+export const CHARGES_STATISTICS_FAIL = 'CHARGES_STATISTICS_FAIL';
+
+export const statistics = () => ({
+    type: CHARGES_STATISTICS,
+})
+
+export const statisticsSuccess = (value) => ({
+    type: CHARGES_STATISTICS_SUCCESS,
+    payload: value
+})
+
+export const statisticsFail = (msg) => ({
+    type: CHARGES_STATISTICS_FAIL,
+    payload: msg
+})

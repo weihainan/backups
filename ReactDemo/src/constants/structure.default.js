@@ -17,7 +17,8 @@ export const initChargeTableState = {
     },
     labels: [],
     msg: '',
-    yearAndMonthes: []
+    yearAndMonthes: [],
+    statistics: null,
 }
 
 export const initialState = {
