@@ -28,7 +28,7 @@ class NormalLoginForm extends React.Component {
         if (adminState.isLoggedIn && getItem('admin')) {
             setTimeout(() => {
                 window.location.href = '/#'
-                // window.location.href = '/demo/#'
+                //window.location.href = '/demo/#'
             }, 100)
         }
         if (nextProps.adminState.errorMsg) {

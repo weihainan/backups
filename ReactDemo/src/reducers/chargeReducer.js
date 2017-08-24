@@ -62,7 +62,7 @@ export default (state = initialState, action) => {
         case CHARGES_STATISTICS:
             return state;
         case CHARGES_STATISTICS_SUCCESS:
-            return state;
+            return fromJS(state).set('statistics', action.payload).set('msg', '').toJS();
         case CHARGES_STATISTICS_FAIL: {
             let msg = formatMsg(action.payload)
             return fromJS(state).set('msg', msg).toJS();

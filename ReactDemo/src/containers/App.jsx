@@ -23,6 +23,8 @@ let routeMap = {
     '/chargeLabels': '5',
 };
 
+const POLL_INTERVAL = 60000
+
 // 配置导航
 class App extends React.Component {
 
@@ -64,7 +66,7 @@ class App extends React.Component {
         let valideTokenTask = ()=> {
             this.props.valideTokenAction(auth());
         }
-        this.timer = setInterval(valideTokenTask, 60 * 1000)
+        this.timer = setInterval(valideTokenTask, POLL_INTERVAL)
     }
 
     stopValidTokenPoll() {
