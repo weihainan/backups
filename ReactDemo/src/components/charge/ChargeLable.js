@@ -100,7 +100,6 @@ class ChargeLable extends React.Component {
     }
 
     handleAddConfirm() {
-        console.log(this.state.form)
         this.props.addLabelAction(this.state.form);
         this.handleAddcancel();
         let me = this;

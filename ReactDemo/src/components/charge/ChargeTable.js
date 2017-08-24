@@ -65,8 +65,8 @@ class ChargeTable extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchCharges(this.state.page, this.state.size);
         this.props.fetchYearAndMonthesAction();
+        this.fetchCharges(this.state.page, this.state.size);
     }
 
     componentWillReceiveProps(nextProps) {
