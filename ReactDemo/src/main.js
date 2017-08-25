@@ -14,6 +14,7 @@ import ChargeStatisticsSmart from './components/charge/ChargeStatistics.js';
 import MyIntroduce from './components/common/Introduce.js';
 import LoginSmart from './components/LoginSmart.jsx';
 import DevTools from './containers/devTools'
+import TodoSmart from './containers/TodoSmart'
 import * as browserUtils from './utils/browserUtils'
 
 import createSagaMiddleware from 'redux-saga'
@@ -52,6 +53,7 @@ let child = <div>
                 <IndexRoute component={MyIntroduce}/>
                 <Route path="myIntroduce" component={MyIntroduce}/>
                 <Route path="appleBasket" component={AppleBasket}/>
+                <Route path="todo" component={TodoSmart}/>
                 <Route path="chargeTable" component={ChargeTableSmart}/>
                 <Route path="chargeLabels" component={ChargeLableSmart}/>
                 <Route path="chargeStatistic" component={ChargeStatisticsSmart}/>
