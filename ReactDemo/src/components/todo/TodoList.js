@@ -1,22 +1,12 @@
 import React from 'react'
 import TodoItem from './TodoItem'
 
-
-const value1 = {
-    completed: true,
-    content: 'contentcontentcontent'
-}
-
-const value = {
-    completed: false,
-    content: 'contentcontentcontent'
-}
+import NoDataTip from '../common/noDataTip'
 
 export default class TodoList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
     }
 
     componentWillMount() {
@@ -24,6 +14,7 @@ export default class TodoList extends React.Component {
     }
 
     componentDidMount() {
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -41,15 +32,20 @@ export default class TodoList extends React.Component {
     render() {
         return (
             <div>
-                <div>
-                    <TodoItem value={value1}/>
-                    <TodoItem value={value1}/>
-                    <TodoItem value={value}/>
-                </div>
-                <div>
-                    加载更多
-                </div>
+                {this.getBody()}
             </div>
         )
+    }
+
+    getBody() {
+        let todoItems = [];
+        this.props.data.items.map(el=> {
+            todoItems.push(<TodoItem value={el}/>);
+        })
+        if (todoItems.length == 0) {
+            return <NoDataTip msg='还没有待办事务...'/>;
+        } else {
+            return todoItems;
+        }
     }
 }

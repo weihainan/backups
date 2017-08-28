@@ -7,10 +7,10 @@ import {getItem} from '../utils/localstorageUtils';
 import {hashHistory} from 'react-router';
 import {message} from 'antd';
 
-const FormItem = Form.Item;
-
 import '../styles/app.css';
 import '../styles/login.css';
+
+const FormItem = Form.Item;
 
 class NormalLoginForm extends React.Component {
     constructor(props) {

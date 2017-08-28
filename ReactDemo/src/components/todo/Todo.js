@@ -9,11 +9,15 @@ class Todo extends React.Component {
         super(props);
         this.state = {
             todoContent: '',
+            pagination: {
+                page: 1,
+                size: 20,
+            }
         };
     }
 
     componentWillMount() {
-
+        this.props.fetchAction(this.state.pagination);
     }
 
     componentDidMount() {
@@ -38,14 +42,14 @@ class Todo extends React.Component {
                     待办事务
                 </div>
                 <div className="operation-div">
-                    <Input placeholder="待办事务" onChange={this.onChange.bind(this)}
+                    <Input placeholder="待办事务" value={this.state.todoContent} onChange={this.onChange.bind(this)}
                            append={
                                <Button type="primary" onClick={this.add.bind(this)}>添加</Button>}
                     ></Input>
                 </div>
 
                 <div>
-                    <TodoList/>
+                    <TodoList data={this.props.todoState.data}/>
                 </div>
 
             </div>
@@ -53,7 +57,17 @@ class Todo extends React.Component {
     }
 
     add() {
-        console.log("add ...")
+        if (this.state.todoContent) {
+            this.props.addAction({
+                content: this.state.todoContent
+            });
+            this.setState({
+                todoContent: ''
+            });
+            setInterval((()=> {
+                this.props.fetchAction(this.state.pagination);
+            }).bind(this), 300)
+        }
     }
 
     onChange(value) {
