@@ -38,7 +38,7 @@ class AppleBusket extends React.Component {
         };
         if (this.props.appleBasket.apples) {
             this.props.appleBasket.apples.forEach(apple => {
-                let selector = apple.isEaten ? 'appleEaten' : 'appleNow';
+                let selector = apple.is_eaten ? 'appleEaten' : 'appleNow';
                 status[selector].quantity++;
                 status[selector].weight += apple.weight;
             });
@@ -50,7 +50,7 @@ class AppleBusket extends React.Component {
     getAppleItem(apples) {
         let data = [];
         apples.forEach(apple => {
-            if (!apple.isEaten) {
+            if (!apple.is_eaten) {
                 data.push(<AppleItem apple={apple} eatApple={this.eatApple.bind(this)} key={apple.id} />)
             }
         });

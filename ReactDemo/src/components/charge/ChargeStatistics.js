@@ -42,26 +42,28 @@ class ChargeStatistics extends React.Component {
      */
     componentWillUpdate(nextProps, nextState) {
         let currentYM = dateUtils.getCurrentYearMonth();
-        let data = this.props.chargeState.statistics['2017']['details']['201708']['disbursements'];
-        let xAxis = Object.keys(data);
-        let series = Object.values(data);
-        // 基于准备好的dom，初始化echarts实例
-        let myChart = echarts.init(document.getElementById('myChart'));
-        // 绘制图表
-        myChart.setOption({
-            title: {text: `${currentYM} 花销`},
-            tooltip: {},
-            xAxis: {
-                data: xAxis
-            },
-            yAxis: {},
-            series: [{
-                name: '支出',
-                type: 'line',
-                barWidth: '60%',
-                data: series
-            }]
-        });
+        if(this.props.chargeState.statistics && this.props.chargeState.statistics['2017']) {
+            let data = this.props.chargeState.statistics['2017']['details']['2017-08']['disbursements'];
+            let xAxis = Object.keys(data);
+            let series = Object.values(data);
+            // 基于准备好的dom，初始化echarts实例
+            let myChart = echarts.init(document.getElementById('myChart'));
+            // 绘制图表
+            myChart.setOption({
+                title: {text: `${currentYM} 花销`},
+                tooltip: {},
+                xAxis: {
+                    data: xAxis
+                },
+                yAxis: {},
+                series: [{
+                    name: '支出',
+                    type: 'line',
+                    barWidth: '60%',
+                    data: series
+                }]
+            });
+        }
     }
 
     componentWillUnmount() {

@@ -44,10 +44,10 @@ class ChargeTable extends React.Component {
             width: 420
         }, {
             label: '记录时间',
-            prop: 'createTime',
+            prop: 'create_time',
             width: 200,
             render: (data, column) => {
-                return dateUtils.returnDiffDate(data['createTime'])
+                return dateUtils.returnDiffDate(data['create_time'])
             }
         }, {
             label: "操作",
