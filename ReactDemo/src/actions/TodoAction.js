@@ -62,16 +62,16 @@ export const COMPLETE_TODO_SUCCESS = 'COMPLETE_TODO_SUCCESS'
 export const COMPLETE_TODO_FAILURE = 'COMPLETE_TODO_FAILURE'
 
 export const completeTodo = (id) => ({
-    type: DELETE_TODO_REQUEST,
+    type: COMPLETE_TODO_REQUEST,
     payload: id
 })
 
 export const completeTodoSuccess = (result) => ({
-    type: DELETE_TODO_SUCCESS,
+    type: COMPLETE_TODO_SUCCESS,
     payload: result
 })
 
 export const completeTodoFail = (msg) => ({
-    type: DELETE_TODO_FAILURE,
+    type: COMPLETE_TODO_FAILURE,
     payload: msg
 })

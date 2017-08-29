@@ -40,7 +40,11 @@ export default class TodoList extends React.Component {
     getBody() {
         let todoItems = [];
         this.props.data.items.map(el=> {
-            todoItems.push(<TodoItem value={el}/>);
+            todoItems.push(<TodoItem
+                key={el.id}
+                delete={this.props.delete}
+                complete={this.props.complete}
+                value={el}/>);
         })
         if (todoItems.length == 0) {
             return <NoDataTip msg='还没有待办事务...'/>;

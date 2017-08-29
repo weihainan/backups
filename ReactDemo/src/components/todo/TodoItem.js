@@ -35,9 +35,9 @@ export default class TodoItem extends React.Component {
         let completedValue = item.completed ? 'completed' : 'unComplete';
         let button = null;
         if (item.completed) {
-            button = <Button type="text"> 删除 </Button>
+            button = <Button type="text" onClick={this.props.delete.bind(this, item.id)}> 删除 </Button>
         } else {
-            button = <Button type="text"> 完成 </Button>
+            button = <Button type="text" onClick={this.props.complete.bind(this, item.id)}> 完成 </Button>
         }
 
         return (

@@ -11,7 +11,7 @@ class Todo extends React.Component {
             todoContent: '',
             pagination: {
                 page: 1,
-                size: 20,
+                size: 200,
             }
         };
     }
@@ -49,12 +49,17 @@ class Todo extends React.Component {
                 </div>
 
                 <div>
-                    <TodoList data={this.props.todoState.data}/>
+                    <TodoList
+                        data={this.props.todoState.data}
+                        delete={this.props.deleteAction}
+                        complete={this.props.completeAction}
+                    />
                 </div>
 
             </div>
         );
     }
+
 
     add() {
         if (this.state.todoContent) {
@@ -64,7 +69,7 @@ class Todo extends React.Component {
             this.setState({
                 todoContent: ''
             });
-            setInterval((()=> {
+            setTimeout((()=> {
                 this.props.fetchAction(this.state.pagination);
             }).bind(this), 300)
         }
