@@ -124,8 +124,8 @@ class ChargeStatistics extends React.Component {
                     <Button type="primary" onClick={this.refresh.bind(this)}>刷新</Button>
                 </div>
                 <Loading loading={this.state.loading} text="努力加载中...">
-                    <div id="disbursements" style={{width: '50%', height: 400}}></div>
-                    <div id="receipts" style={{width: '50%', height: 400}}></div>
+                    <div id="disbursements" style={{width: '100%', height: 400}}></div>
+                    <div id="receipts" style={{width: '100%', height: 400}}></div>
                 </Loading>
             </div>
         );
