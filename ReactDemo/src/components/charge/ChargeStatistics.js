@@ -9,7 +9,7 @@ import dateUtils from '../../utils/dateUtils';
 // 引入 ECharts 主模块
 import echarts from 'echarts/lib/echarts';
 // 引入柱状图
-import  'echarts/lib/chart/line';
+import  'echarts/lib/chart/bar';
 // 引入提示框和标题组件
 import 'echarts/lib/component/tooltip';
 import 'echarts/lib/component/title';
@@ -23,10 +23,14 @@ class ChargeStatistics extends React.Component {
 
     /*生命周期函数--->该方法在完成首次渲染之前被调用-》调用action中ajax方法，获取数据*/
     componentWillMount() {
-        this.props.statisticsAction();
+
     }
 
     componentDidMount() {
+        this.props.statisticsAction();
+        setTimeout((()=> {
+            this.plot();
+        }).bind(this), 300)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -41,16 +45,22 @@ class ChargeStatistics extends React.Component {
      * @param nextState
      */
     componentWillUpdate(nextProps, nextState) {
-        let currentYM = dateUtils.getCurrentYearMonth();
-        if(this.props.chargeState.statistics && this.props.chargeState.statistics['2017']) {
-            let data = this.props.chargeState.statistics['2017']['details']['2017-08']['disbursements'];
+
+    }
+
+    plot() {
+        let year = dateUtils.getCurrentYear()
+        let currentYM = dateUtils.getCurrentYearMonthForQuery();
+        if (this.props.chargeState.statistics && this.props.chargeState.statistics['2017']) {
+            let currentData = this.props.chargeState.statistics[year]['details'][currentYM];
+            let data = currentData['disbursements'];
             let xAxis = Object.keys(data);
             let series = Object.values(data);
             // 基于准备好的dom，初始化echarts实例
-            let myChart = echarts.init(document.getElementById('myChart'));
+            let myChart = echarts.init(document.getElementById('disbursements'));
             // 绘制图表
             myChart.setOption({
-                title: {text: `${currentYM} 花销`},
+                title: {text: `${currentYM} 花销:${currentData.disbursements_total}`},
                 tooltip: {},
                 xAxis: {
                     data: xAxis
@@ -58,8 +68,29 @@ class ChargeStatistics extends React.Component {
                 yAxis: {},
                 series: [{
                     name: '支出',
-                    type: 'line',
-                    barWidth: '60%',
+                    type: 'bar',
+                    barWidth: '10%',
+                    data: series
+                }]
+            });
+
+            data = currentData['receipts'];
+            xAxis = Object.keys(data);
+            series = Object.values(data);
+            // 基于准备好的dom，初始化echarts实例
+            myChart = echarts.init(document.getElementById('receipts'));
+            // 绘制图表
+            myChart.setOption({
+                title: {text: `${currentYM} 收入:${currentData.receipts_total}`},
+                tooltip: {},
+                xAxis: {
+                    data: xAxis
+                },
+                yAxis: {},
+                series: [{
+                    name: '收入',
+                    type: 'bar',
+                    barWidth: '10%',
                     data: series
                 }]
             });
@@ -76,7 +107,8 @@ class ChargeStatistics extends React.Component {
                 <div className="top">
                     账目报表
                 </div>
-                <div id="myChart" style={{width: '50%', height: 400}}></div>
+                <div id="disbursements" style={{width: '50%', height: 400}}></div>
+                <div id="receipts" style={{width: '50%', height: 400}}></div>
             </div>
         );
     }
