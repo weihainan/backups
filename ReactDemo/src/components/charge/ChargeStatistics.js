@@ -14,11 +14,18 @@ import  'echarts/lib/chart/bar';
 import 'echarts/lib/component/tooltip';
 import 'echarts/lib/component/title';
 
+
+import {Button, Loading} from 'element-react';
+
 class ChargeStatistics extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            year: dateUtils.getCurrentYear(),
+            yearAndMonth: dateUtils.getCurrentYearMonthForQuery(),
+            loading: true,
+        };
     }
 
     /*生命周期函数--->该方法在完成首次渲染之前被调用-》调用action中ajax方法，获取数据*/
@@ -27,10 +34,7 @@ class ChargeStatistics extends React.Component {
     }
 
     componentDidMount() {
-        this.props.statisticsAction();
-        setTimeout((()=> {
-            this.plot();
-        }).bind(this), 300)
+       this.refresh()
     }
 
     componentWillReceiveProps(nextProps) {
@@ -49,9 +53,9 @@ class ChargeStatistics extends React.Component {
     }
 
     plot() {
-        let year = dateUtils.getCurrentYear()
-        let currentYM = dateUtils.getCurrentYearMonthForQuery();
-        if (this.props.chargeState.statistics && this.props.chargeState.statistics['2017']) {
+        let year = this.state.year
+        let currentYM = this.state.yearAndMonth
+        if (this.props.chargeState.statistics && this.props.chargeState.statistics[year]) {
             let currentData = this.props.chargeState.statistics[year]['details'][currentYM];
             let data = currentData['disbursements'];
             let xAxis = Object.keys(data);
@@ -101,14 +105,28 @@ class ChargeStatistics extends React.Component {
 
     }
 
+    refresh() {
+        this.setState({loading: true})
+        this.props.statisticsAction();
+        setTimeout((()=> {
+            this.plot();
+            this.setState({loading: false})
+        }).bind(this), 1000)
+    }
+
     render() {
         return (
             <div>
                 <div className="top">
                     账目报表
                 </div>
-                <div id="disbursements" style={{width: '50%', height: 400}}></div>
-                <div id="receipts" style={{width: '50%', height: 400}}></div>
+                <div className="operation-div">
+                    <Button type="primary" onClick={this.refresh.bind(this)}>刷新</Button>
+                </div>
+                <Loading loading={this.state.loading} text="努力加载中...">
+                    <div id="disbursements" style={{width: '50%', height: 400}}></div>
+                    <div id="receipts" style={{width: '50%', height: 400}}></div>
+                </Loading>
             </div>
         );
     }
