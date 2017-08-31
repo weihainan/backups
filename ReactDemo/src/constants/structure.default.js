@@ -31,7 +31,7 @@ export const initTodoState = {
 }
 
 export const initialState = {
-    appleBasket: initApplesState,
+    appleBasketState: initApplesState,
     adminState: initAdminLoginState,
     chargeTableState: initChargeTableState,
     todoState: initTodoState,

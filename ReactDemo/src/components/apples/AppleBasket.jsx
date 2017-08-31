@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import { fetchApples, pickApple, eatApple } from '../../actions/AppleAction.js';
+import {fetchApples, pickApple, eatApple} from '../../actions/AppleAction.js';
 import AppleItem from './AppleItem.jsx';
 import '../../styles/AppleBasket.scss';
 
@@ -63,7 +63,7 @@ class AppleBusket extends React.Component {
         let data = [];
         apples.forEach(apple => {
             if (!apple.is_eaten) {
-                data.push(<AppleItem apple={apple} eatApple={this.eatApple.bind(this)} key={apple.id} />)
+                data.push(<AppleItem apple={apple} eatApple={this.eatApple.bind(this)} key={apple.id}/>)
             }
         });
 
@@ -87,13 +87,11 @@ class AppleBusket extends React.Component {
     }
 
     render() {
-
-        let { appleBasket } = this.props;
-        let { apples, isPicking } = appleBasket;
+        let apples = this.props.appleBasket.apples;
         let status = this.calculateStatus();
         let {
-            appleNow: { quantity: notEatenQuantity, weight: notEatenWeight },
-            appleEaten: { quantity: EatenQuantity, weight: EatenWeight }
+            appleNow: {quantity: notEatenQuantity, weight: notEatenWeight},
+            appleEaten: {quantity: EatenQuantity, weight: EatenWeight}
         } = status;
 
         return (
@@ -127,7 +125,7 @@ class AppleBusket extends React.Component {
                     </div>
 
                     <div className="btn-div">
-                        <button className={isPicking ? 'disabled' : ''} onClick={this.pickApple.bind(this)}>
+                        <button className={this.state.isPicking ? 'disabled' : ''} onClick={this.pickApple.bind(this)}>
                             {!this.state.isPicking ? '摘苹果' : '正在摘取中...'}
                         </button>
                     </div>
@@ -142,7 +140,7 @@ AppleBusket.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    appleBasket: state.appleBasket
+    appleBasket: state.appleBasketState
 });
 
 const mapDispatchToProps = dispatch => ({

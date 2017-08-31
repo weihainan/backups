@@ -12,7 +12,7 @@ import todoReducer from './todoReducer';
  */
 
 const rootReducer = combineReducers({
-    appleBasket: appleBasketReducer,
+    appleBasketState: appleBasketReducer,
     adminState: adminReducer,
     chargeTableState: chargeReducer,
     todoState: todoReducer,
