@@ -93,6 +93,7 @@ class ChargeTable extends React.Component {
         }
         this.props.addChargesAction(charge);
         this.setState({
+            selectedCharge: null,
             isAddNewRecord: false,
         })
         let me = this;

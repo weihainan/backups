@@ -7,7 +7,8 @@ export const initAdminLoginState = {
 
 
 export const initApplesState = {
-    apples: []
+    apples: [],
+    msg: '',
 }
 
 export const initChargeTableState = {

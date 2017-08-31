@@ -24,7 +24,13 @@ class Todo extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
+        if (nextProps.todoState.msg) {
+            Message({
+                message: nextProps.todoState.msg,
+                type: 'warning',
+                duration: 2000,
+            });
+        }
     }
 
     componentWillUpdate(nextProps, nextState) {

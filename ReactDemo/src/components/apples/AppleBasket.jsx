@@ -6,6 +6,8 @@ import { fetchApples, pickApple, eatApple } from '../../actions/AppleAction.js';
 import AppleItem from './AppleItem.jsx';
 import '../../styles/AppleBasket.scss';
 
+import {Message} from 'element-react';
+
 class AppleBusket extends React.Component {
 
     constructor(props) {
@@ -21,6 +23,16 @@ class AppleBusket extends React.Component {
 
     componentWillUnmount() {
 
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.appleBasket.msg) {
+            Message({
+                message: nextProps.appleBasket.msg,
+                type: 'warning',
+                duration: 2000,
+            });
+        }
     }
 
     /**  计算当前已吃和未吃苹果的状态*/

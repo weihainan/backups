@@ -75,6 +75,19 @@ class AddChargeDialog extends React.Component {
         });
     }
 
+    handleClickCancel(e) {
+        e.preventDefault();
+        this.props.handleCancel();
+        this.setState({
+            form: {
+                amount: 0,
+                type: 'disbursements',
+                mark: '',
+                label: '',
+            }
+        });
+    }
+
     onChange(key, value) {
         this.setState({
             form: Object.assign({}, this.state.form, {[key]: value})
@@ -119,7 +132,7 @@ class AddChargeDialog extends React.Component {
                         </Form>
                     </Dialog.Body>
                     <Dialog.Footer>
-                        <Button type="primary" onClick={this.props.handleCancel}>取 消</Button>
+                        <Button type="primary" onClick={this.handleClickCancel.bind(this)}>取 消</Button>
                         <Button type="primary" onClick={this.handleClickOk.bind(this)}>确 定</Button>
                     </Dialog.Footer>
                 </Dialog>

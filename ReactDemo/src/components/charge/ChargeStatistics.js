@@ -14,6 +14,7 @@ import  'echarts/lib/chart/bar';
 import 'echarts/lib/component/tooltip';
 import 'echarts/lib/component/title';
 
+import {Message} from 'element-react';
 
 import {Button, Loading} from 'element-react';
 
@@ -34,11 +35,17 @@ class ChargeStatistics extends React.Component {
     }
 
     componentDidMount() {
-       this.refresh()
+        this.refresh()
     }
 
     componentWillReceiveProps(nextProps) {
-
+        if (nextProps.chargeState.msg) {
+            Message({
+                message: nextProps.chargeState.msg,
+                type: 'warning',
+                duration: 2000,
+            });
+        }
     }
 
     /**
