@@ -11,8 +11,10 @@ import {
     addLabel,
     statistics,
 } from './charge';
+import {addTodo, deleteTodo, completeTodo, fetchTodos} from './todo'
 import {LOGIN_ADMIN, VALID_TOKEN} from '../actions/AdminAction';
 import {FETCH_APPLES, PICK_APPLE, EAT_APPLE} from '../actions/AppleAction';
+import {FETCH_TODOS_REQUEST, ADD_TODO_REQUEST, DELETE_TODO_REQUEST, COMPLETE_TODO_REQUEST} from '../actions/TodoAction';
 import {
     FETCH_CHARGES,
     ADD_CHARGES,
@@ -23,7 +25,6 @@ import {
     ADD_CHARGES_LABEL,
     CHARGES_STATISTICS,
 } from '../actions/ChargeAction';
-
 
 export default function* rootSaga() {
     yield takeLatest(LOGIN_ADMIN, mapPayload(loginUserAsync))
@@ -43,8 +44,12 @@ export default function* rootSaga() {
 
     yield takeEvery(FETCH_YEARANDMONTH, mapPayload(getYearAndMonth))
     yield takeEvery(CHARGES_STATISTICS, mapPayload(statistics))
-}
 
+    yield takeEvery(FETCH_TODOS_REQUEST, mapPayload(fetchTodos))
+    yield takeEvery(COMPLETE_TODO_REQUEST, mapPayload(completeTodo))
+    yield takeEvery(DELETE_TODO_REQUEST, mapPayload(deleteTodo))
+    yield takeEvery(ADD_TODO_REQUEST, mapPayload(addTodo))
+}
 
 /**
  * 提取action.payload

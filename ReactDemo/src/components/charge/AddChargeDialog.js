@@ -1,9 +1,6 @@
 import React from 'react'
-import {Modal} from 'antd';
-
 import {Dialog, Form, Button, Input, Radio, Select} from 'element-react';
 import 'element-theme-default';
-
 
 class AddChargeDialog extends React.Component {
     constructor(props) {
@@ -17,7 +14,7 @@ class AddChargeDialog extends React.Component {
             },
             rules: {
                 amount: [
-                    {required: true, message: '请输入账目金额', trigger: 'blur'},
+                    {required: true, message: '请输入账目金额', trigger: 'change'},
                     {
                         validator: (rule, value, callback) => {
                             var amount = parseFloat(value);
@@ -33,11 +30,11 @@ class AddChargeDialog extends React.Component {
                                 }
                             }, 500);
                         },
-                        trigger: 'blur'
+                        trigger: 'change'
                     }
                 ],
                 label: [
-                    {required: true, message: '请选择账目标签', trigger: 'blur'}
+                    {required: true, message: '请选择账目标签', trigger: 'change'}
                 ]
             }
         };
@@ -71,6 +68,19 @@ class AddChargeDialog extends React.Component {
                 });
             } else {
                 return false;
+            }
+        });
+    }
+
+    handleClickCancel(e) {
+        e.preventDefault();
+        this.props.handleCancel();
+        this.setState({
+            form: {
+                amount: 0,
+                type: 'disbursements',
+                mark: '',
+                label: '',
             }
         });
     }
@@ -119,7 +129,7 @@ class AddChargeDialog extends React.Component {
                         </Form>
                     </Dialog.Body>
                     <Dialog.Footer>
-                        <Button type="primary" onClick={this.props.handleCancel}>取 消</Button>
+                        <Button type="primary" onClick={this.handleClickCancel.bind(this)}>取 消</Button>
                         <Button type="primary" onClick={this.handleClickOk.bind(this)}>确 定</Button>
                     </Dialog.Footer>
                 </Dialog>
@@ -127,7 +137,6 @@ class AddChargeDialog extends React.Component {
         );
     }
 }
-
 
 AddChargeDialog.propTypes = {
     labels: React.PropTypes.array.isRequired,

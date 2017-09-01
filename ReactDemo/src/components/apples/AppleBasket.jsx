@@ -1,10 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import { fetchApples, pickApple, eatApple } from '../../actions/AppleAction.js';
+import {fetchApples, pickApple, eatApple} from '../../actions/AppleAction.js';
 import AppleItem from './AppleItem.jsx';
 import '../../styles/AppleBasket.scss';
+
+import {Message} from 'element-react';
 
 class AppleBusket extends React.Component {
 
@@ -23,6 +25,16 @@ class AppleBusket extends React.Component {
 
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.appleBasket.msg) {
+            Message({
+                message: nextProps.appleBasket.msg,
+                type: 'warning',
+                duration: 2000,
+            });
+        }
+    }
+
     /**  计算当前已吃和未吃苹果的状态*/
     calculateStatus() {
 
@@ -38,7 +50,7 @@ class AppleBusket extends React.Component {
         };
         if (this.props.appleBasket.apples) {
             this.props.appleBasket.apples.forEach(apple => {
-                let selector = apple.isEaten ? 'appleEaten' : 'appleNow';
+                let selector = apple.is_eaten ? 'appleEaten' : 'appleNow';
                 status[selector].quantity++;
                 status[selector].weight += apple.weight;
             });
@@ -50,8 +62,8 @@ class AppleBusket extends React.Component {
     getAppleItem(apples) {
         let data = [];
         apples.forEach(apple => {
-            if (!apple.isEaten) {
-                data.push(<AppleItem apple={apple} eatApple={this.eatApple.bind(this)} key={apple.id} />)
+            if (!apple.is_eaten) {
+                data.push(<AppleItem apple={apple} eatApple={this.eatApple.bind(this)} key={apple.id}/>)
             }
         });
 
@@ -75,13 +87,11 @@ class AppleBusket extends React.Component {
     }
 
     render() {
-
-        let { appleBasket } = this.props;
-        let { apples, isPicking } = appleBasket;
+        let apples = this.props.appleBasket.apples;
         let status = this.calculateStatus();
         let {
-            appleNow: { quantity: notEatenQuantity, weight: notEatenWeight },
-            appleEaten: { quantity: EatenQuantity, weight: EatenWeight }
+            appleNow: {quantity: notEatenQuantity, weight: notEatenWeight},
+            appleEaten: {quantity: EatenQuantity, weight: EatenWeight}
         } = status;
 
         return (
@@ -115,7 +125,7 @@ class AppleBusket extends React.Component {
                     </div>
 
                     <div className="btn-div">
-                        <button className={isPicking ? 'disabled' : ''} onClick={this.pickApple.bind(this)}>
+                        <button className={this.state.isPicking ? 'disabled' : ''} onClick={this.pickApple.bind(this)}>
                             {!this.state.isPicking ? '摘苹果' : '正在摘取中...'}
                         </button>
                     </div>
@@ -130,7 +140,7 @@ AppleBusket.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    appleBasket: state.appleBasket
+    appleBasket: state.appleBasketState
 });
 
 const mapDispatchToProps = dispatch => ({

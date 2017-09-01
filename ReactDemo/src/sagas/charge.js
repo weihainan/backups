@@ -2,7 +2,6 @@ import {select, put, call} from 'redux-saga/effects';
 import * as actionTypes from '../actions/ChargeAction.js'
 import chargeService from '../services/ChargeService'
 
-
 export function* chargesList(body) {
     try {
         let response = yield call([chargeService, chargeService.getCharges], body)
@@ -56,7 +55,6 @@ export function* deleteLabel(id) {
     }
 }
 
-
 export function* addLabel(body) {
     try {
         let response = yield call([chargeService, chargeService.addLabel], body)
@@ -65,6 +63,7 @@ export function* addLabel(body) {
         yield put(actionTypes.addChargesFail(err.message))
     }
 }
+
 export function* statistics() {
     try {
         let response = yield call([chargeService, chargeService.statistics])

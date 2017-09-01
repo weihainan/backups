@@ -3,7 +3,6 @@ import * as actionTypes from '../actions/AdminAction.js'
 import { setItem } from '../utils/localstorageUtils';
 import adminService from '../services/AdminService'
 
-
 export function* loginUserAsync(user) {
     try {
         let response = yield call([adminService, adminService.login], user)

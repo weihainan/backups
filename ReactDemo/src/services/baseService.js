@@ -6,7 +6,6 @@ import auth from './auth'
 import fetch from 'isomorphic-fetch'
 import {camelizeKeys, decamelizeKeys} from 'humps'
 
-
 export default class {
 
     request({apiUrl, body, method = 'get', withAuthToken = true}) {
@@ -26,8 +25,9 @@ export default class {
         };
 
         if (!['get', 'head'].includes(_method) && body) {
-            console.log(JSON.stringify(decamelizeKeys(body)))
-            settings['body'] = JSON.stringify(decamelizeKeys(body))
+            // console.log(JSON.stringify(decamelizeKeys(body)))
+            // settings['body'] = JSON.stringify(decamelizeKeys(body))
+            settings['body'] = JSON.stringify(body)
         }
 
         if (_method === 'get' && body) {
@@ -53,8 +53,9 @@ export default class {
                 if (!response.ok) {
                     return Promise.reject(json)
                 }
-                console.log(JSON.stringify(camelizeKeys(json)))
-                return camelizeKeys(json);
+                // console.log(JSON.stringify(camelizeKeys(json)))
+                // return camelizeKeys(json);
+                return json;
             }).catch(e => {
                 if (response.ok) {
                     return {}

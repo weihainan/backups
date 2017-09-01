@@ -14,7 +14,6 @@ export default new class AppleService extends BaseService {
 
     pickApple() {
         let endPoint = `apples`;
-        return super.ufRequest({ endpoint: endPoint, body: {}, method: 'post', withAuthToken: true });
+        return super.ufRequest({endpoint: endPoint, body: {}, method: 'post', withAuthToken: true});
     }
-
 }

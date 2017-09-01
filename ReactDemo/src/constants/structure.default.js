@@ -5,9 +5,9 @@ export const initAdminLoginState = {
     expired: false
 }
 
-
 export const initApplesState = {
-    apples: []
+    apples: [],
+    msg: '',
 }
 
 export const initChargeTableState = {
@@ -21,8 +21,17 @@ export const initChargeTableState = {
     statistics: null,
 }
 
+export const initTodoState = {
+    data: {
+        items: [],
+        total: 0
+    },
+    msg: '',
+}
+
 export const initialState = {
-    appleBasket: initApplesState,
+    appleBasketState: initApplesState,
     adminState: initAdminLoginState,
     chargeTableState: initChargeTableState,
+    todoState: initTodoState,
 }

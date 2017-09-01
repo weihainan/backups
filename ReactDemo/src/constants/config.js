@@ -4,8 +4,8 @@ var CONFIG = {
         version: 'v0.1'
     },
     app: {
-        name: 'app_name',
-        code: 'app_name'
+        name: '个人管理系统',
+        code: 'personal-manage'
     },
     undo_limit: 10,
     undo_debug: true,

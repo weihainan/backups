@@ -2,7 +2,6 @@ import { select, put, call } from 'redux-saga/effects';
 import * as actionTypes from '../actions/AppleAction.js'
 import appleService from '../services/AppleService'
 
-
 export function* applesList() {
     try {
         let response = yield call([appleService, appleService.getApples])

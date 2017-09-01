@@ -209,6 +209,12 @@ export default {
         return option
     },
 
+    getCurrentYear(){
+        let time = new Date()
+        let year = time.getFullYear()
+        return year;
+    },
+
     /**
      * 获取起始时间
      * */

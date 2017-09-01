@@ -99,7 +99,6 @@ export function detectBrowserNameAndVersion() {
     }
 }
 
-
 export function itIE(version) {
     let browerAndVersion = this.detectBrowserNameAndVersion()
     if (browerAndVersion && 'IE' === browerAndVersion['name'] && version >= browerAndVersion['version']) {

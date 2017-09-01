@@ -30,5 +30,4 @@ AppleItem.propTypes = {
     apple: React.PropTypes.object.isRequired     // 单个苹果的数据
 };
 
-
 export default AppleItem;

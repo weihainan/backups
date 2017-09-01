@@ -44,10 +44,10 @@ class ChargeTable extends React.Component {
             width: 420
         }, {
             label: '记录时间',
-            prop: 'createTime',
+            prop: 'create_time',
             width: 200,
             render: (data, column) => {
-                return dateUtils.returnDiffDate(data['createTime'])
+                return dateUtils.returnDiffDate(data['create_time'])
             }
         }, {
             label: "操作",
@@ -93,6 +93,7 @@ class ChargeTable extends React.Component {
         }
         this.props.addChargesAction(charge);
         this.setState({
+            selectedCharge: null,
             isAddNewRecord: false,
         })
         let me = this;
@@ -157,6 +158,10 @@ class ChargeTable extends React.Component {
         this.fetchCharges(page, this.state.size);
     }
 
+    refresh() {
+        this.fetchCharges(this.state.page, this.state.size);
+    }
+
     fetchCharges(current = 1, pageSize = 15) {
         let body = {
             page: current,
@@ -213,6 +218,8 @@ class ChargeTable extends React.Component {
                     </Select>
                     <span style={{width: '10px', display: 'inline-block'}}></span>
                     <Button type="primary" icon="search" onClick={this.clickSearchButton.bind(this)}>搜索</Button>
+                    <span style={{width: '10px', display: 'inline-block'}}></span>
+                    <Button type="primary" onClick={this.refresh.bind(this)}>刷新</Button>
                 </div>
 
                 {this.fetchDataBody()}

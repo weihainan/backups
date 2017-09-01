@@ -7,10 +7,10 @@ import {getItem} from '../utils/localstorageUtils';
 import {hashHistory} from 'react-router';
 import {message} from 'antd';
 
-const FormItem = Form.Item;
-
 import '../styles/app.css';
 import '../styles/login.css';
+
+const FormItem = Form.Item;
 
 class NormalLoginForm extends React.Component {
     constructor(props) {
@@ -79,7 +79,6 @@ class NormalLoginForm extends React.Component {
     }
 }
 
-
 const mapStateToProps = state => ({
     adminState: state.adminState
 });
@@ -91,6 +90,3 @@ const mapDispatchToProps = dispatch => ({
 let LoginSmart = connect(mapStateToProps, mapDispatchToProps)(Form.create()(NormalLoginForm));
 
 export default LoginSmart;
-
-
-

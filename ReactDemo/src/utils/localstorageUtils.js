@@ -6,7 +6,6 @@ export function remove(name) {
     localStorage.removeItem(name);
 }
 
-
 export function setItem(name, value) {
     if (name && value) {
         localStorage.setItem(name, JSON.stringify(value))

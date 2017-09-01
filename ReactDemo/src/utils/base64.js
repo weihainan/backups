@@ -143,4 +143,3 @@ export function getAuthorization(ucKey) {
     })
     return Authorization
 }
-

@@ -2,9 +2,7 @@
 
 import React from 'react';
 import {Link, hashHistory} from 'react-router';
-import {remove} from '../utils/localstorageUtils';
-import {getItem} from '../utils/localstorageUtils';
-
+import {remove, getItem} from '../utils/localstorageUtils';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {valideToken} from '../actions/AdminAction'
@@ -21,6 +19,7 @@ let routeMap = {
     '/chargeTimeLine': '3',
     '/chargeStatistic': '4',
     '/chargeLabels': '5',
+    '/todo': '6',
 };
 
 const POLL_INTERVAL = 60000
@@ -128,6 +127,7 @@ class App extends React.Component {
                         <Menu.Item key="0"><Link to="/myIntroduce"><Icon type="mail"/>我没有子菜单</Link></Menu.Item>
                         <SubMenu key="sub1" title={<span><Icon type="bars"/><span>主导航</span></span>}>
                             <Menu.Item key="1"><Link to="/appleBasket">摘苹果</Link></Menu.Item>
+                            <Menu.Item key="6"><Link to="/todo">TODO</Link></Menu.Item>
                         </SubMenu>
                         <SubMenu key="sub2" title={<span><Icon type="bars"/><span>记  账</span></span>}>
                             <Menu.Item key="2"><Link to="/chargeTable">账目表</Link></Menu.Item>
@@ -154,7 +154,6 @@ class App extends React.Component {
     }
 }
 
-
 const mapStateToProps = state => ({
     adminState: state.adminState
 });
@@ -166,4 +165,3 @@ const mapDispatchToProps = dispatch => ({
 let AppSmart = connect(mapStateToProps, mapDispatchToProps)(App);
 
 export default AppSmart;
-

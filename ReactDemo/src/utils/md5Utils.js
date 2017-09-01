@@ -133,4 +133,5 @@ export function getMD5Value(data) {
     let s = a + b + c
     return MD5(s)
 }
+
 export default { getMD5Value }

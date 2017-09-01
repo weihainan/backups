@@ -1,9 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-
 import {fetchChargesLabel, deleteChargesLabel, addChargesLabel} from '../../actions/ChargeAction'
-
 import NotDataTip from '../common/noDataTip'
 import {Message, MessageBox, Button, Table, Dialog, Form, Input} from 'element-react';
 

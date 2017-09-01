@@ -1,7 +1,8 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 import appleBasketReducer from './appleBasketReducer';
 import adminReducer from './adminReducer';
 import chargeReducer from './chargeReducer';
+import todoReducer from './todoReducer';
 
 /**
  * 此处合并Reducer，这步在本项目中意义不大，因为只有一个appleBasketReducer，完全可以不合并
@@ -11,10 +12,10 @@ import chargeReducer from './chargeReducer';
  */
 
 const rootReducer = combineReducers({
-    appleBasket: appleBasketReducer,
+    appleBasketState: appleBasketReducer,
     adminState: adminReducer,
     chargeTableState: chargeReducer,
+    todoState: todoReducer,
 });
 
 export default rootReducer;
-

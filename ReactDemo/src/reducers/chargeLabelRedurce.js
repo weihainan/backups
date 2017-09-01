@@ -2,10 +2,10 @@ import {fromJS} from 'immutable';
 import {
     FETCH_CHARGES_LABEL, FETCH_CHARGES_LABEL_SUCCESS, FETCH_CHARGES_LABEL_FAIL,
 } from '../actions/ChargeAction.js'
-import {initChargeLableState} from '../constants/structure.default'
+import {initChargeTableState} from '../constants/structure.default'
 import formatMsg from '../utils/errorMsgFormat'
 
-const initialState = fromJS(initChargeLableState)
+const initialState = fromJS(initChargeTableState)
 
 export default (state = initialState, action) => {
     switch (action.type) {
