@@ -102,9 +102,14 @@ class AddChargeDialog extends React.Component {
             </Select.Option >);
         })
 
+        let titleStr = "添加账目";
+        if (this.props.charge) {
+            titleStr = "更新账目";
+        }
+
         return (
             <div>
-                <Dialog title="新账目" visible={this.props.visible} onCancel={this.props.handleCancel}>
+                <Dialog title={titleStr} visible={this.props.visible} onCancel={this.props.handleCancel}>
                     <Dialog.Body>
                         <Form labelWidth="80" labelPosition="right" ref="form" model={this.state.form}
                               rules={this.state.rules}>
