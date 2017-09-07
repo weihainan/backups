@@ -14,9 +14,11 @@ class AddChargeDialog extends React.Component {
             },
             rules: {
                 amount: [
-                    {required: true, message: '请输入账目金额', trigger: 'change'},
                     {
                         validator: (rule, value, callback) => {
+                            if (!value) {
+                                callback(new Error('请输入数字值'));
+                            }
                             var amount = parseFloat(value);
                             setTimeout(() => {
                                 if (!amount) {
