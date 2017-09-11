@@ -53,12 +53,10 @@ class ChargeLable extends React.Component {
         MessageBox.confirm('此操作将永久删除该记录, 是否继续?', '提示', {
             type: 'warning'
         }).then(async() => {
-
-            me.props.deleteLabelAction(id);
+            await me.props.deleteLabelAction(id);
             setTimeout((() => {
                 this.props.fetchLabelsAction({all: true});
             }).bind(me), 300);
-
             Message({
                 type: 'success',
                 message: '删除成功!',

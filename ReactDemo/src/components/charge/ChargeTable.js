@@ -22,9 +22,8 @@ class ChargeTable extends React.Component {
             selectedCharge: null,
         };
         this.columns = [{
-            label: '收支类型',
+            label: '类 型',
             prop: 'type',
-            width: 180,
             render: (data, column) => {
                 if (data['type'] === 'receipts') {
                     return '收入'
@@ -41,11 +40,9 @@ class ChargeTable extends React.Component {
         }, {
             label: '备  注',
             prop: 'mark',
-            width: 420
         }, {
             label: '记录时间',
             prop: 'create_time',
-            width: 200,
             render: (data, column) => {
                 return dateUtils.returnDiffDate(data['create_time'])
             }
