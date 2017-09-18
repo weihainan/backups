@@ -41,6 +41,10 @@ class Todo extends React.Component {
 
     }
 
+    refresh() {
+        this.props.fetchAction(this.state.pagination);
+    }
+
     render() {
         return (
             <div>
@@ -52,6 +56,8 @@ class Todo extends React.Component {
                            append={
                                <Button type="primary" onClick={this.add.bind(this)}>添加</Button>}
                     ></Input>
+                    <span style={{width: '10px', display: 'inline-block'}}></span>
+                    <Button type="primary" onClick={this.refresh.bind(this)}>刷新</Button>
                 </div>
 
                 <div>
@@ -77,7 +83,7 @@ class Todo extends React.Component {
             });
             setTimeout((()=> {
                 this.props.fetchAction(this.state.pagination);
-            }).bind(this), 300)
+            }).bind(this), 600)
         }
     }
 

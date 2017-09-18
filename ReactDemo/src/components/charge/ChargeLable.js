@@ -110,6 +110,12 @@ class ChargeLable extends React.Component {
         });
     }
 
+    refresh() {
+        setTimeout((() => {
+            this.props.fetchLabelsAction({all: true});
+        }).bind(this), 300);
+    }
+
     render() {
         return (
             <div>
@@ -119,6 +125,8 @@ class ChargeLable extends React.Component {
 
                 <div className="operation-div">
                     <Button type="primary" onClick={this.clickAddButton.bind(this)}>新增标签</Button>
+                    <span style={{width: '10px', display: 'inline-block'}}></span>
+                    <Button type="primary" onClick={this.refresh.bind(this)}>刷新</Button>
                 </div>
 
                 {this.fetchDataBody()}

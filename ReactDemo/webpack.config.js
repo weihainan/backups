@@ -3,7 +3,12 @@ var webpack = require('webpack');//ÒıÈëWebpackÄ£¿é¹©ÎÒÃÇµ÷ÓÃ£¬ÕâÀïÖ»ÄÜÊ¹ÓÃES5Óï·
 //__dirnameÊÇnode.jsÖĞµÄÒ»¸öÈ«¾Ö±äÁ¿£¬ËüÖ¸Ïòµ±Ç°Ö´ĞĞ½Å±¾ËùÔÚµÄÄ¿Â¼
 module.exports = {//×¢ÒâÕâÀïÊÇexports²»ÊÇexport
     devtool: 'eval-source-map',//ÅäÖÃÉú³ÉSource Maps£¬Ñ¡ÔñºÏÊÊµÄÑ¡Ïî
-    entry: __dirname + "/src/main.js",//Î¨Ò»Èë¿ÚÎÄ¼ş£¬¾ÍÏñJavaÖĞµÄmain·½·¨
+    entry: {
+        app: [__dirname + "/src/main.js"//Î¨Ò»Èë¿ÚÎÄ¼ş£¬¾ÍÏñJavaÖĞµÄmain·½·¨
+        ],
+        reactlibs: ['react', 'react-dom', 'react-redux', 'redux',
+            'react-router', 'redux-router', 'redux-thunk', 'redux-saga'],
+    },
     output: {//Êä³öÄ¿Â¼
         path: __dirname + "/build",//´ò°üºóµÄjsÎÄ¼ş´æ·ÅµÄµØ·½
         filename: "bundle.js"//´ò°üºóµÄjsÎÄ¼şÃû
@@ -16,7 +21,7 @@ module.exports = {//×¢ÒâÕâÀïÊÇexports²»ÊÇexport
                 test: /\.(js|jsx)$/,//Ò»¸öÆ¥ÅäloadersËù´¦ÀíµÄÎÄ¼şµÄÍØÕ¹ÃûµÄÕıÔò±í´ïÊ½£¬ÕâÀïÓÃÀ´Æ¥ÅäjsºÍjsxÎÄ¼ş£¨±ØĞë£©
                 exclude: /node_modules/,//ÆÁ±Î²»ĞèÒª´¦ÀíµÄÎÄ¼ş£¨ÎÄ¼ş¼Ğ£©£¨¿ÉÑ¡£©
                 loader: 'babel-loader',//loaderµÄÃû³Æ£¨±ØĞë£©
-                query:{
+                query: {
                     presets: ['es2015', 'stage-0', 'react'],
                     plugins: ['transform-runtime', ['import', {
                         libraryName: 'antd',
@@ -51,12 +56,27 @@ module.exports = {//×¢ÒâÕâÀïÊÇexports²»ÊÇexport
             {
                 test: /\.(mp4|ogg|svg)$/,
                 loader: 'file-loader'
-            } ,
-            {test: /\.(eot|woff|ttf)$/, loader: "file-loader" }
+            },
+            {test: /\.(eot|woff|ttf)$/, loader: "file-loader"}
         ]
     },
 
     plugins: [
+        // new webpack.ProvidePlugin({
+        //     $: "jquery",
+        //     jQuery: "jquery",
+        //     "window.jQuery": "jquery"
+        // }),
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ['reactlibs'],
+            filename: '[name].bundle.js',
+            minChunks: Infinity
+        }),//ÌáÈ¡¹«¹²´úÂë
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),// ´úÂëÑ¹Ëõ
         new webpack.HotModuleReplacementPlugin()//ÈÈ¼ÓÔØ²å¼ş
     ],
 
