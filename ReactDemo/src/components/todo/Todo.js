@@ -55,6 +55,7 @@ class Todo extends React.Component {
                     <Input placeholder="待办事务" value={this.state.todoContent} onChange={this.onChange.bind(this)}
                            append={
                                <Button type="primary" onClick={this.add.bind(this)}>添加</Button>}
+                           style={{width:'95%'}}
                     ></Input>
                     <span style={{width: '10px', display: 'inline-block'}}></span>
                     <Button type="primary" onClick={this.refresh.bind(this)}>刷新</Button>
