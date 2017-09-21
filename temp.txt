@@ -310,3 +310,82 @@ https://github.com/DigAg/digag-pc-react.git
 http://www.cnblogs.com/susufufu/p/5844128.html 原生JS：Array对象详解
 http://www.cnblogs.com/liruihuan/p/6831122.html  MongoDB基础教程系列
 http://www.cnblogs.com/AlvinLee/p/6085442.html
+
+
+
+Authorization:debug userId=290536
+Content-Type:application/json
+
+Object.assign({},this.state.filter,{ pageNo: page }
+              目标对象   默认值     新值
+
+http://www.cnblogs.com/st-leslie/p/5771241.html
+
+			  
+GET_NEWS_ITEM_REQUEST
+GET_NEWS_ITEM_SUCCESS
+GET_MORE_NEWS_FAILURE
+
+    case GET_NEWS_ITEM_REQUEST:
+        return Object.assign({}, state, { isLoading: true, isExist: true, currentNews: null })
+    case GET_NEWS_ITEM_SUCCESS:
+        if(action.response['code'] === undefined) {
+            return Object.assign({}, state, { currentNews: action.response, isLoading: false, isExist: true })
+        } else {
+            return Object.assign({}, state, { isLoading: false, isExist: false, errorMsg: action.response.message })
+        }
+        return state
+    case GET_NEWS_ITEM_FAILURE:
+        return Object.assign({}, state, { isLoading: false, isExist: false, errorMsg: action.error.message })
+		
+		
+		
+import React from 'react'
+
+export class TodoList extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    componentWillMount() {
+
+    }
+
+    componentDidMount() {
+    }
+
+    componentWillReceiveProps(nextProps) {
+
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+
+    }
+
+    componentWillUnmount() {
+
+    }
+
+    render() {
+        return ({})
+    }
+}
+
+
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
+import TodoDump from '../components/todo/Todo'
+
+const mapStateToProps = state => ({chargeState: state.chargeTableState});
+
+const mapDispatchToProps = dispatch => ({});
+
+let TodoSmart = connect(mapStateToProps, mapDispatchToProps)(TodoDump);
+export default TodoSmart;
+
+
+如果component的某些状态由外部所决定，并且会影响到component的render，那么这些状态就应该用props表示。
+如果component的某些状态需要被改变，并且会影响到component的render，那么这些状态就应该用state表示。
