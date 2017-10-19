@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {statistics} from "../../actions/ChargeAction"
+import {statistics, fetchYearAndMonth} from "../../actions/ChargeAction"
 import dateUtils from '../../utils/dateUtils';
 
 // 引入 ECharts 主模块
@@ -12,7 +12,7 @@ import  'echarts/lib/chart/bar';
 import 'echarts/lib/component/tooltip';
 import 'echarts/lib/component/title';
 
-import {Button, Loading, Message} from 'element-react';
+import {Button, Loading, Message, Select} from 'element-react';
 
 class ChargeStatistics extends React.Component {
 
@@ -31,6 +31,7 @@ class ChargeStatistics extends React.Component {
     }
 
     componentDidMount() {
+        this.props.fetchYearAndMonthesAction();
         this.refresh()
     }
 
@@ -117,13 +118,30 @@ class ChargeStatistics extends React.Component {
         }).bind(this), 1000)
     }
 
+
+    onChange(value) {
+        this.setState({
+            yearAndMonth: value
+        });
+    }
+
     render() {
         return (
             <div>
                 <div className="top">
                     账目报表
                 </div>
+
                 <div className="operation-div">
+                    <Select value={this.state.yearAndMonth} clearable={true}
+                            onChange={this.onChange.bind(this)}>
+                        {
+                            this.props.chargeState.yearAndMonthes.map(el => {
+                                return <Select.Option key={el.time} label={el.time} value={el.time}/>
+                            })
+                        }
+                    </Select>
+                    <span style={{width: '10px', display: 'inline-block'}}></span>
                     <Button type="primary" onClick={this.refresh.bind(this)}>刷新</Button>
                 </div>
                 <Loading loading={this.state.loading} text="努力加载中...">
@@ -138,6 +156,7 @@ class ChargeStatistics extends React.Component {
 const mapStateToProps = state => ({chargeState: state.chargeTableState});
 
 const mapDispatchToProps = dispatch => ({
+    fetchYearAndMonthesAction: bindActionCreators(fetchYearAndMonth, dispatch),
     statisticsAction: bindActionCreators(statistics, dispatch)
 });
 
